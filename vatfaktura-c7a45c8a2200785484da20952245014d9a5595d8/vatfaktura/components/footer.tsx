@@ -31,16 +31,18 @@ export function Footer() {
               <li><Link href="/faq" className="text-blue-300 hover:text-blue-100 transition">FAQ</Link></li>
               <li><Link href="/blog" className="text-blue-300 hover:text-blue-100 transition">Poradniki</Link></li>
               <li><Link href="/reviews" className="text-blue-300 hover:text-blue-100 transition">Recenzje</Link></li>
+              <li><Link href="/narzedzia" className="text-blue-300 hover:text-blue-100 transition">Narzędzia</Link></li>
             </ul>
           </div>
 
-          {/* Partners */}
+          {/* Tools */}
           <div>
-            <h4 className="text-white font-semibold mb-4">Polecane</h4>
+            <h4 className="text-white font-semibold mb-4">Kalkulatory</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="https://wise.com" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-100 transition">Wise - Przelewy</a></li>
-              <li><a href="https://stripe.com" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-100 transition">Stripe - Platnosci</a></li>
-              <li><Link href="/partners" className="text-blue-300 hover:text-blue-100 transition">Wszystkie partnerzy</Link></li>
+              <li><Link href="/kalkulator-vat" className="text-blue-300 hover:text-blue-100 transition">Kalkulator VAT</Link></li>
+              <li><Link href="/kalkulator-pit" className="text-blue-300 hover:text-blue-100 transition">Kalkulator PIT</Link></li>
+              <li><Link href="/kalkulator-zus" className="text-blue-300 hover:text-blue-100 transition">Kalkulator ZUS</Link></li>
+              <li><Link href="/kalkulator-wynagrodzen" className="text-blue-300 hover:text-blue-100 transition">Wynagrodzenia</Link></li>
             </ul>
           </div>
 

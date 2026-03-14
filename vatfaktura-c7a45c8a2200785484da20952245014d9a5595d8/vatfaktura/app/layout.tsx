@@ -10,6 +10,7 @@ import { FuturisticLoader } from '@/components/futuristic-loader'
 import { JsonLd } from '@/components/json-ld'
 import { PerformanceOptimizations } from '@/components/performance-optimizations'
 import { Footer } from '@/components/footer'
+import { StickyHeaderCTA } from '@/components/sticky-header-cta'
 import './globals.css'
 
 const geist = Geist({ subsets: ["latin"] });
@@ -129,6 +130,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <StickyHeaderCTA />
             <CookieConsent />
             <Analytics />
           </InvoiceProvider>

@@ -4,12 +4,13 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/hooks/useUser'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText, Users, Star, Award } from 'lucide-react'
+import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText, Users, Star, Award, LogIn, Edit3, Download } from 'lucide-react'
 import Link from 'next/link'
 import { MobileNav } from '@/components/mobile-nav'
 import { PartnerPopup } from '@/components/partner-popup'
 import { SupportBanner } from '@/components/support-banner'
 import { AdSenseDisplay728x90, AdSenseDisplay300x250, AdSenseDisplayAuto } from '@/components/adsense-banner'
+import { NewsletterSignup } from '@/components/newsletter-signup'
 
 export default function Home() {
   const router = useRouter()
@@ -278,6 +279,91 @@ export default function Home() {
         {/* AdSense — Auto responsive po sekcji Features */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <AdSenseDisplayAuto />
+        </div>
+
+        {/* How it works - 3 kroków */}
+        <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
+          <div className="text-center mb-16 sm:mb-20 md:mb-24">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-300 bg-clip-text text-transparent mb-4">
+              Jak to działa?
+            </h2>
+            <p className="text-blue-200/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+              Zaledwie 3 proste kroki, aby zacząć wystawiać faktury za darmo
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 relative">
+            {/* Connecting line - hidden on mobile */}
+            <div className="hidden md:block absolute top-20 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500/0 via-blue-500/50 to-blue-500/0"></div>
+
+            {/* Step 1 */}
+            <div className="relative">
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-6 z-10">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center border-4 border-slate-900 shadow-2xl shadow-blue-500/50">
+                    <LogIn className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                  <span className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm border-2 border-slate-900">
+                    1
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Załóż konto</h3>
+                <p className="text-blue-200/70 text-sm sm:text-base leading-relaxed">
+                  Załóż bezpłatne konto w ciągu 30 sekund. Nie potrzebujesz karty kredytowej ani jakichkolwiek danych.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="relative">
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-6 z-10">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center border-4 border-slate-900 shadow-2xl shadow-purple-500/50">
+                    <Edit3 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                  <span className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm border-2 border-slate-900">
+                    2
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Utwórz fakturę</h3>
+                <p className="text-blue-200/70 text-sm sm:text-base leading-relaxed">
+                  Wypełnij dane odbiorcy, towary/usługi i gotowe. System automatycznie obliczy VAT i sumy.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative">
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-6 z-10">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center border-4 border-slate-900 shadow-2xl shadow-emerald-500/50">
+                    <Download className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                  <span className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm border-2 border-slate-900">
+                    3
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Pobierz i wyślij</h3>
+                <p className="text-blue-200/70 text-sm sm:text-base leading-relaxed">
+                  Pobierz fakturę jako PDF lub wyślij bezpośrednio do klienta. Wszystko w kilka kliknięć.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="mt-16 sm:mt-20 text-center">
+            <Link href="/register">
+              <Button className="bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-500 hover:to-cyan-500 text-white font-bold px-8 sm:px-10 py-3 sm:py-4 text-base sm:text-lg shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all">
+                Zacznij za darmo teraz
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* AdSense - baner po How it works */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <AdSenseDisplay728x90 />
         </div>
 
         {/* kSEF Highlight */}
@@ -617,6 +703,24 @@ export default function Home() {
                     Zarejestruj się za darmo
                   </Button>
                 </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Newsletter Section */}
+        <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-3xl blur-3xl opacity-50"></div>
+            <div className="relative bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-3xl p-8 sm:p-12 md:p-16 backdrop-blur-xl">
+              <div className="max-w-2xl mx-auto text-center">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
+                  Pozostań w kontakcie
+                </h3>
+                <p className="text-blue-200/80 text-sm sm:text-base mb-6 sm:mb-8">
+                  Subskrybuj nasz newsletter i otrzymuj tips do podatkowe, nowości i aktualizacje bezpłatnie
+                </p>
+                <NewsletterSignup />
               </div>
             </div>
           </div>

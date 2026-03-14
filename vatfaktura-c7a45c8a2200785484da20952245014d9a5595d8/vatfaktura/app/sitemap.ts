@@ -37,6 +37,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    // Tools hub — high SEO value
+    {
+      url: `${BASE_URL}/narzedzia`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    // Additional calculators
+    {
+      url: `${BASE_URL}/kalkulator-zus`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/kalkulator-wynagrodzen`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
     // Content hubs
     {
       url: `${BASE_URL}/blog`,
