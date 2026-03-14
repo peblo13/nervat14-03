@@ -2,13 +2,16 @@
 
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { usePathname } from 'next/navigation'
-import { ExternalLink, X } from 'lucide-react'
+import { ExternalLink } from 'lucide-react'
 import { PARTNERS, type Partner } from '@/lib/partners'
+import Image from 'next/image'
 
-// Minimum time to show the ad so it's actually visible
-const MIN_SHOW_MS = 1200
-// How long the progress bar lingers at 100% before hiding
-const COMPLETE_LINGER_MS = 400
+const MIN_SHOW_MS = 1400
+const COMPLETE_LINGER_MS = 450
+
+// Ring geometry
+const RING_R = 54
+const RING_CIRCUMFERENCE = 2 * Math.PI * RING_R
 
 function pickRandomPartner(): Partner {
   return PARTNERS[Math.floor(Math.random() * PARTNERS.length)]
@@ -36,28 +39,25 @@ export function FuturisticLoader() {
   const startLoading = useCallback(() => {
     clearTimers()
     setPartner(pickRandomPartner())
-    setProgress(8)
+    setProgress(6)
     setPhase('loading')
     setAdVisible(false)
     startTimeRef.current = Date.now()
 
-    // Short delay before showing ad — feels intentional, not jarring
-    setTimeout(() => setAdVisible(true), 80)
+    setTimeout(() => setAdVisible(true), 60)
 
-    // Eased progress increment — fast at first, slows down near 85
     intervalRef.current = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 85) return prev
         const remaining = 85 - prev
-        const increment = remaining * 0.12 + Math.random() * 3
-        return Math.min(prev + increment, 85)
+        const inc = remaining * 0.11 + Math.random() * 2.5
+        return Math.min(prev + inc, 85)
       })
-    }, 180)
+    }, 200)
   }, [clearTimers])
 
   const finishLoading = useCallback(() => {
     clearTimers()
-
     const elapsed = Date.now() - startTimeRef.current
     const remaining = Math.max(0, MIN_SHOW_MS - elapsed)
 
@@ -71,28 +71,24 @@ export function FuturisticLoader() {
         setTimeout(() => {
           setPhase('idle')
           setProgress(0)
-        }, 350)
+        }, 380)
       }, COMPLETE_LINGER_MS)
     }, remaining)
   }, [clearTimers])
 
-  // Trigger on route change
   useEffect(() => {
     if (pathname !== prevPathRef.current) {
       prevPathRef.current = pathname
-      // Route already changed, so we just finish
       finishLoading()
     }
   }, [pathname, finishLoading])
 
-  // Intercept all link clicks and button clicks to start the loader
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement
       const anchor = target.closest('a')
       const button = target.closest('button')
 
-      // Only trigger for internal navigation links
       if (anchor) {
         const href = anchor.getAttribute('href')
         if (
@@ -106,7 +102,6 @@ export function FuturisticLoader() {
           startLoading()
         }
       } else if (button && !button.disabled) {
-        // Buttons that are likely to cause navigation (submit, etc.)
         const type = button.getAttribute('type')
         if (type === 'submit' || button.closest('form')) {
           startLoading()
@@ -118,133 +113,227 @@ export function FuturisticLoader() {
     return () => document.removeEventListener('click', handleClick, true)
   }, [startLoading])
 
-  // Safety net: if loading takes too long, auto-complete
   useEffect(() => {
     if (phase === 'loading') {
-      const safetyTimer = setTimeout(() => finishLoading(), 8000)
-      return () => clearTimeout(safetyTimer)
+      const t = setTimeout(() => finishLoading(), 8000)
+      return () => clearTimeout(t)
     }
   }, [phase, finishLoading])
 
   if (phase === 'idle') return null
 
   const isShowing = phase === 'loading' || phase === 'complete'
+  const ringOffset = RING_CIRCUMFERENCE * (1 - progress / 100)
+
+  // Pick glow colour from partner accent or fall back to cyan
+  const glowColor = partner?.accentColor ?? '#06b6d4'
 
   return (
     <>
-      {/* ── Top progress bar ── */}
+      {/* ── Slim top progress bar ── */}
       <div className="fixed top-0 left-0 right-0 z-[9999] pointer-events-none">
-        <div className="h-[3px] w-full bg-slate-900/60">
+        <div className="h-[3px] w-full bg-white/5">
           <div
-            className="h-full transition-all ease-out relative overflow-hidden"
+            className="h-full relative overflow-hidden"
             style={{
               width: `${progress}%`,
-              transitionDuration: progress === 100 ? '200ms' : '300ms',
-              background: 'linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6)',
-              boxShadow: '0 0 12px rgba(99,102,241,0.7), 0 0 4px rgba(34,211,238,0.9)',
+              transitionProperty: 'width',
+              transitionDuration: progress === 100 ? '180ms' : '280ms',
+              transitionTimingFunction: 'ease-out',
+              background: `linear-gradient(90deg, ${glowColor}, #6366f1, #a78bfa)`,
+              boxShadow: `0 0 10px ${glowColor}aa, 0 0 3px #fff4`,
             }}
           >
-            {/* Leading glow pulse */}
-            <div
-              className="absolute right-0 top-0 h-full w-24"
-              style={{
-                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6))',
-                animation: phase === 'loading' ? 'loader-shimmer 1.4s ease-in-out infinite' : 'none',
-              }}
-            />
+            <div className="absolute right-0 top-0 h-full w-20 loader-shimmer-bar" />
           </div>
         </div>
       </div>
 
-      {/* ── Partner ad overlay ── */}
+      {/* ── Full-screen overlay ── */}
       <div
-        className="fixed inset-0 z-[9998] flex items-center justify-center pointer-events-none"
+        className="fixed inset-0 z-[9998] flex items-center justify-center"
         style={{
-          backgroundColor: adVisible && isShowing ? 'rgba(2,6,23,0.75)' : 'transparent',
-          backdropFilter: adVisible && isShowing ? 'blur(6px)' : 'none',
-          transition: 'background-color 300ms ease, backdrop-filter 300ms ease',
+          backgroundColor: adVisible && isShowing ? 'rgba(2,6,23,0.82)' : 'rgba(2,6,23,0)',
+          backdropFilter: adVisible && isShowing ? 'blur(8px) saturate(0.7)' : 'none',
+          transition: 'background-color 320ms ease, backdrop-filter 320ms ease',
+          pointerEvents: adVisible && isShowing ? 'auto' : 'none',
         }}
       >
         {partner && (
           <div
-            className="pointer-events-auto"
             style={{
               opacity: adVisible && isShowing ? 1 : 0,
-              transform: adVisible && isShowing ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.97)',
-              transition: 'opacity 280ms ease, transform 280ms ease',
+              transform: adVisible && isShowing ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
+              transition: 'opacity 300ms ease, transform 300ms ease',
             }}
           >
-            {/* Card */}
+            {/* ── Card ── */}
             <div
-              className="relative w-[340px] sm:w-[400px] rounded-2xl overflow-hidden border border-white/10"
+              className="relative w-[360px] sm:w-[440px] rounded-2xl overflow-hidden"
               style={{
-                background: 'linear-gradient(145deg, rgba(15,23,42,0.98) 0%, rgba(30,41,59,0.98) 100%)',
-                boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06)',
+                background: 'linear-gradient(160deg, rgba(13,20,40,0.99) 0%, rgba(22,33,62,0.99) 100%)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                boxShadow: `0 40px 100px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04), 0 0 60px ${glowColor}22`,
               }}
             >
-              {/* Accent top border */}
+              {/* Accent top stripe */}
               <div
-                className="h-[2px] w-full"
-                style={{ background: 'linear-gradient(90deg, #06b6d4, #6366f1, #8b5cf6)' }}
+                className="h-[3px] w-full"
+                style={{ background: `linear-gradient(90deg, ${glowColor}, #6366f1, #a78bfa)` }}
               />
 
-              <div className="p-6 sm:p-7">
-                {/* Label row */}
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/30 select-none">
-                    Reklama partnera
-                  </span>
-                  <div className="flex items-center gap-2">
-                    {/* Progress ring */}
-                    <svg width="18" height="18" className="text-indigo-400 -rotate-90">
-                      <circle cx="9" cy="9" r="7" fill="none" stroke="rgba(99,102,241,0.2)" strokeWidth="2" />
-                      <circle
-                        cx="9" cy="9" r="7" fill="none" stroke="currentColor" strokeWidth="2"
-                        strokeDasharray={`${2 * Math.PI * 7}`}
-                        strokeDashoffset={`${2 * Math.PI * 7 * (1 - progress / 100)}`}
-                        strokeLinecap="round"
-                        style={{ transition: 'stroke-dashoffset 300ms ease' }}
-                      />
-                    </svg>
-                    <span className="text-xs font-mono text-indigo-400/80">{Math.round(progress)}%</span>
-                  </div>
-                </div>
-
-                {/* Partner info */}
-                <div className="flex items-start gap-4 mb-5">
-                  <div
-                    className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 border border-white/8"
-                    style={{ background: 'rgba(255,255,255,0.04)' }}
+              {/* ── Partner illustration banner ── */}
+              <div className="relative w-full h-[130px] overflow-hidden">
+                <Image
+                  src={partner.image}
+                  alt={partner.name}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                {/* Gradient overlay so text reads over image */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background: 'linear-gradient(180deg, rgba(13,20,40,0.1) 0%, rgba(13,20,40,0.85) 100%)',
+                  }}
+                />
+                {/* Category badge over image */}
+                <div className="absolute top-3 left-3">
+                  <span
+                    className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full"
+                    style={{
+                      background: `${glowColor}25`,
+                      color: glowColor,
+                      border: `1px solid ${glowColor}45`,
+                    }}
                   >
-                    {partner.icon}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="text-white font-bold text-lg leading-tight mb-1">{partner.name}</div>
-                    <div className="text-white/55 text-sm leading-relaxed">{partner.description}</div>
-                    <div className="mt-1.5">
-                      <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/25">
-                        {partner.category}
+                    {partner.category}
+                  </span>
+                </div>
+                {/* "Partner reklamowy" label */}
+                <div className="absolute top-3 right-3">
+                  <span className="text-[9px] font-medium tracking-wider text-white/30 uppercase">
+                    Reklama
+                  </span>
+                </div>
+              </div>
+
+              {/* ── Body ── */}
+              <div className="px-6 pt-4 pb-6">
+                {/* Progress ring row — centrepiece */}
+                <div className="flex items-center gap-5 mb-5">
+                  {/* Large ring */}
+                  <div className="relative flex-shrink-0 flex items-center justify-center" style={{ width: 124, height: 124 }}>
+                    {/* Outer glow halo */}
+                    <div
+                      className="absolute inset-0 rounded-full blur-md opacity-30"
+                      style={{ background: glowColor }}
+                    />
+                    <svg
+                      width="124"
+                      height="124"
+                      viewBox="0 0 124 124"
+                      className="relative"
+                      style={{ filter: `drop-shadow(0 0 8px ${glowColor}88)` }}
+                    >
+                      {/* Track */}
+                      <circle
+                        cx="62" cy="62" r={RING_R}
+                        fill="none"
+                        stroke="rgba(255,255,255,0.06)"
+                        strokeWidth="8"
+                      />
+                      {/* Tick marks */}
+                      {Array.from({ length: 40 }).map((_, i) => {
+                        const angle = (i / 40) * 360 - 90
+                        const rad = (angle * Math.PI) / 180
+                        const r1 = RING_R + 10, r2 = RING_R + 13
+                        const x1 = 62 + r1 * Math.cos(rad), y1 = 62 + r1 * Math.sin(rad)
+                        const x2 = 62 + r2 * Math.cos(rad), y2 = 62 + r2 * Math.sin(rad)
+                        return (
+                          <line
+                            key={i}
+                            x1={x1} y1={y1} x2={x2} y2={y2}
+                            stroke="rgba(255,255,255,0.1)"
+                            strokeWidth="1"
+                          />
+                        )
+                      })}
+                      {/* Progress arc */}
+                      <circle
+                        cx="62" cy="62" r={RING_R}
+                        fill="none"
+                        stroke="url(#ringGrad)"
+                        strokeWidth="8"
+                        strokeLinecap="round"
+                        strokeDasharray={RING_CIRCUMFERENCE}
+                        strokeDashoffset={ringOffset}
+                        transform="rotate(-90 62 62)"
+                        style={{ transition: 'stroke-dashoffset 280ms ease-out' }}
+                      />
+                      {/* Leading dot */}
+                      {progress > 3 && (() => {
+                        const angle = ((progress / 100) * 360 - 90) * (Math.PI / 180)
+                        const dx = 62 + RING_R * Math.cos(angle)
+                        const dy = 62 + RING_R * Math.sin(angle)
+                        return (
+                          <circle cx={dx} cy={dy} r="5" fill={glowColor}>
+                            <animate attributeName="r" values="4;6;4" dur="1s" repeatCount="indefinite" />
+                          </circle>
+                        )
+                      })()}
+                      <defs>
+                        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stopColor={glowColor} />
+                          <stop offset="100%" stopColor="#a78bfa" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                    {/* Centre: percentage */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center">
+                      <span
+                        className="text-3xl font-black tabular-nums leading-none"
+                        style={{ color: glowColor, textShadow: `0 0 20px ${glowColor}99` }}
+                      >
+                        {Math.round(progress)}
                       </span>
+                      <span className="text-[11px] font-semibold text-white/40 mt-0.5 tracking-wider">%</span>
+                    </div>
+                  </div>
+
+                  {/* Partner info next to ring */}
+                  <div className="flex-1 min-w-0">
+                    <div className="text-xl font-black text-white leading-tight mb-1.5 truncate">
+                      {partner.name}
+                    </div>
+                    <p className="text-sm text-white/55 leading-relaxed">
+                      {partner.description}
+                    </p>
+                    <div className="mt-3 text-xs text-white/30 flex items-center gap-1.5">
+                      <div
+                        className="w-1.5 h-1.5 rounded-full animate-pulse"
+                        style={{ background: glowColor }}
+                      />
+                      Ładowanie strony…
                     </div>
                   </div>
                 </div>
 
-                {/* CTA */}
+                {/* CTA button */}
                 <a
                   href={partner.link}
                   target="_blank"
                   rel="noopener noreferrer sponsored"
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
-                  style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)' }}
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
+                  style={{
+                    background: `linear-gradient(135deg, ${glowColor}cc, #6366f1)`,
+                    boxShadow: `0 8px 24px ${glowColor}44`,
+                  }}
                 >
                   Odwiedź {partner.name}
                   <ExternalLink className="w-3.5 h-3.5 opacity-80" />
                 </a>
-
-                {/* Footer */}
-                <p className="text-center text-[10px] text-white/20 mt-3 select-none">
-                  VAT Faktura &mdash; Partner Reklamowy
-                </p>
               </div>
             </div>
           </div>
@@ -252,7 +341,11 @@ export function FuturisticLoader() {
       </div>
 
       <style>{`
-        @keyframes loader-shimmer {
+        .loader-shimmer-bar {
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55));
+          animation: loaderShimmer 1.5s ease-in-out infinite;
+        }
+        @keyframes loaderShimmer {
           0%   { opacity: 0; transform: translateX(-100%); }
           40%  { opacity: 1; }
           100% { opacity: 0; transform: translateX(200%); }
