@@ -1,8 +1,21 @@
 'use client'
 
 import Link from 'next/link'
+import { Metadata } from 'next'
 import { ArrowLeft, AlertCircle } from 'lucide-react'
 import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
+
+export const metadata: Metadata = {
+  title: 'Generator ZUS Z-15 - Zasiłek Opiekuńczy Online',
+  description: 'Bezpłatny generator formularza ZUS Z-15A/Z-15B. Wniosek o zasiłek opiekuńczy dla opieki nad dzieckiem. Wypełnij online, pobierz PDF.',
+  keywords: 'ZUS Z-15, zasiłek opiekuńczy, wniosek opiekuńczy, opieka nad dzieckiem',
+  openGraph: {
+    title: 'Generator ZUS Z-15 - Wniosek o Zasiłek Opiekuńczy',
+    description: 'Bezpłatny generator formularza zasiłku opiekuńczego ZUS',
+    type: 'website',
+    url: 'https://www.vatfaktura.pl/generator-zus-z15',
+  },
+}
 
 export default function GeneratorZUSZ15Page() {
   return (
