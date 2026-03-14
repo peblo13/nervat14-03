@@ -49,6 +49,9 @@ export default function Home() {
             </div>
             <nav className="hidden sm:flex items-center gap-1 md:gap-1.5">
               {/* Primary nav links */}
+              <Link href="/zaloz-firme" className="px-3 py-2 text-sm font-semibold text-purple-300 hover:text-purple-100 hover:bg-purple-500/15 rounded-lg transition-all duration-200">
+                Załóż firmę
+              </Link>
               <Link href="/dashboard" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
                 Faktura
               </Link>
@@ -283,6 +286,36 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <AdSenseDisplayAuto />
         </div>
+
+        {/* Business Setup Section */}
+        <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32 relative">
+          <div className="bg-gradient-to-r from-purple-600/30 to-pink-600/30 backdrop-blur-xl border border-purple-400/30 rounded-3xl p-8 sm:p-12 md:p-16 space-y-8 sm:space-y-10 md:space-y-12">
+            <div className="text-center space-y-4 sm:space-y-6">
+              <div className="inline-block px-4 sm:px-5 py-2 sm:py-3 bg-gradient-to-r from-purple-500/40 to-pink-500/40 border border-purple-400/60 rounded-full backdrop-blur-sm">
+                <span className="text-xs sm:text-sm font-bold tracking-wider text-purple-300 uppercase">Nowe: Załóż Firmę Online</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+                Gotowy założyć biznes?
+              </h2>
+              <p className="text-sm sm:text-base md:text-lg text-purple-200/80 max-w-3xl mx-auto leading-relaxed">
+                Kompletny przewodnik do założenia firmy online. Dowiedz się jakie kroki podjąć i jakie dokumenty przygotować.
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center">
+              <Link href="/zaloz-firme">
+                <Button className="min-h-[50px] sm:min-h-[52px] px-8 sm:px-10 md:px-12 py-3 text-base sm:text-lg font-bold bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 shadow-xl shadow-purple-500/50 hover:shadow-purple-500/80 transition-all duration-300 transform hover:scale-110 active:scale-95 text-white">
+                  Przeczytaj Przewodnik
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button variant="outline" className="min-h-[50px] sm:min-h-[52px] px-8 sm:px-10 md:px-12 py-3 text-base sm:text-lg font-bold border-2 border-purple-300/60 hover:border-purple-200 hover:bg-purple-500/20 text-purple-100 transition-all duration-300 transform hover:scale-110 active:scale-95">
+                  Zaloguj się
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* How it works - 3 kroków */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
