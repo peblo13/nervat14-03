@@ -47,14 +47,19 @@ export default function Home() {
               <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent truncate">VAT Faktura</h1>
             </div>
             <div className="hidden sm:flex items-center gap-2 md:gap-4">
-              <Link href="/faq">
-                <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-purple-500/30 hover:bg-purple-500/10 text-purple-300">
-                  ❓ FAQ
+              <Link href="/dashboard/pit">
+                <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-emerald-500/30 hover:bg-emerald-500/10 text-emerald-300 font-semibold">
+                  Rozlicz PIT
                 </Button>
               </Link>
-              <Link href="/blog">
+              <Link href="/faq#pit">
+                <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-purple-500/30 hover:bg-purple-500/10 text-purple-300">
+                  FAQ PIT
+                </Button>
+              </Link>
+              <Link href="/blog#pit">
                 <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-indigo-500/30 hover:bg-indigo-500/10 text-indigo-300">
-                  📝 Blog
+                  Blog PIT
                 </Button>
               </Link>
               <Link href="/#partners">
@@ -268,6 +273,95 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* PIT Section */}
+        <section id="pit" className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
+          <div className="text-center mb-12 sm:mb-16 space-y-4">
+            <div className="inline-block px-4 sm:px-5 py-2 bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-400/50 rounded-full">
+              <span className="text-xs sm:text-sm font-bold tracking-widest text-emerald-300 uppercase">Nowe — Rozliczenia PIT</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent px-4">
+              Rozlicz PIT bezpośrednio w VAT Faktura
+            </h2>
+            <p className="text-blue-200/70 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-4">
+              Wypełnij deklarację podatkową online, podpisz elektronicznie i wyślij bezpośrednio do urzędu skarbowego — wszystko w jednym miejscu, 100% bezpłatnie.
+            </p>
+          </div>
+
+          {/* PIT Forms Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-12">
+            {[
+              { name: 'PIT-37', desc: 'Pracownicy i zleceniobiorcy', color: 'from-emerald-600/20 to-teal-600/20', border: 'border-emerald-500/30 hover:border-emerald-400/60' },
+              { name: 'PIT-36', desc: 'Działalność gospodarcza', color: 'from-teal-600/20 to-cyan-600/20', border: 'border-teal-500/30 hover:border-teal-400/60' },
+              { name: 'PIT-36L', desc: 'Podatek liniowy 19%', color: 'from-cyan-600/20 to-blue-600/20', border: 'border-cyan-500/30 hover:border-cyan-400/60' },
+              { name: 'PIT-28', desc: 'Ryczałt ewidencjonowany', color: 'from-blue-600/20 to-indigo-600/20', border: 'border-blue-500/30 hover:border-blue-400/60' },
+              { name: 'PIT-38', desc: 'Kapitały pieniężne', color: 'from-indigo-600/20 to-purple-600/20', border: 'border-indigo-500/30 hover:border-indigo-400/60' },
+              { name: 'PIT-39', desc: 'Odpłatne zbycie nieruchomości', color: 'from-violet-600/20 to-purple-600/20', border: 'border-violet-500/30 hover:border-violet-400/60' },
+              { name: 'PIT-16A', desc: 'Karta podatkowa', color: 'from-purple-600/20 to-pink-600/20', border: 'border-purple-500/30 hover:border-purple-400/60' },
+              { name: 'PIT-19A', desc: 'Ulga prorodzinna', color: 'from-pink-600/20 to-rose-600/20', border: 'border-pink-500/30 hover:border-pink-400/60' },
+            ].map((pit) => (
+              <Link key={pit.name} href="/dashboard/pit">
+                <div className={`group bg-gradient-to-br ${pit.color} border ${pit.border} rounded-xl p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer`}>
+                  <div className="font-black text-xl sm:text-2xl text-white group-hover:text-emerald-300 transition-colors">{pit.name}</div>
+                  <div className="text-xs sm:text-sm text-blue-200/70 mt-1 leading-snug">{pit.desc}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* PIT Feature Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mb-10">
+            {[
+              {
+                title: 'Integracja z urzędem skarbowym',
+                desc: 'Deklaracja trafia bezpośrednio do systemu e-Deklaracje Ministerstwa Finansów — bez papierów, bez wizyt w urzędzie.',
+                color: 'from-emerald-600/20 to-teal-600/20',
+                border: 'border-emerald-500/30 hover:border-emerald-500/60',
+                icon: (
+                  <svg className="w-10 h-10 text-emerald-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-2 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                ),
+              },
+              {
+                title: 'Podpis elektroniczny',
+                desc: 'Podpisz deklarację kwalifikowanym podpisem elektronicznym lub Profilem Zaufanym — zgodnie z wymogami KAS.',
+                color: 'from-teal-600/20 to-cyan-600/20',
+                border: 'border-teal-500/30 hover:border-teal-500/60',
+                icon: (
+                  <svg className="w-10 h-10 text-teal-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                ),
+              },
+              {
+                title: 'Automatyczne obliczenia',
+                desc: 'System liczy podatek, ulgi i odliczenia za Ciebie — PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38, PIT-39 i więcej.',
+                color: 'from-cyan-600/20 to-blue-600/20',
+                border: 'border-cyan-500/30 hover:border-cyan-500/60',
+                icon: (
+                  <svg className="w-10 h-10 text-cyan-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                ),
+              },
+            ].map((card, idx) => (
+              <div key={idx} className={`group bg-gradient-to-br ${card.color} border ${card.border} rounded-xl p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}>
+                <div className="mb-4">{card.icon}</div>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">{card.title}</h3>
+                <p className="text-sm text-blue-200/70 leading-relaxed">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="/dashboard/pit">
+              <Button className="min-h-[48px] px-10 py-3 text-base font-bold bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-xl shadow-emerald-500/40 hover:shadow-emerald-500/60 transition-all duration-300 transform hover:scale-105">
+                Rozlicz PIT teraz — bezpłatnie
+              </Button>
+            </Link>
           </div>
         </section>
 

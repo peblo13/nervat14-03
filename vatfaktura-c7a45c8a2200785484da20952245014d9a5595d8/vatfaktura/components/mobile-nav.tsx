@@ -8,6 +8,21 @@ export function MobileNav() {
   const [open, setOpen] = useState(false)
 
   const navItems = [
+    {
+      href: '/dashboard/pit',
+      label: 'Rozlicz PIT',
+      emoji: '📋'
+    },
+    {
+      href: '/faq#pit',
+      label: 'FAQ PIT',
+      emoji: '❓'
+    },
+    {
+      href: '/blog#pit',
+      label: 'Blog PIT',
+      emoji: '📰'
+    },
     { 
       href: '/#partners', 
       label: 'Partnerzy',

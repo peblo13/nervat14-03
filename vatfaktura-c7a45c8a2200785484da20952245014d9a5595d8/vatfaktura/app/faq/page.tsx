@@ -6,12 +6,63 @@ import { ChevronDown } from 'lucide-react'
 import { AdSenseDisplayAuto, AdSenseDisplay300x250 } from '@/components/adsense-banner'
 
 export const metadata: Metadata = {
-  title: 'FAQ - VAT Faktura | 20 Odpowiedzi na Pytania o Fakturach, KSEF, Programie',
-  description: 'Kompletne FAQ VAT Faktura. 20 najczęściej zadawanych pytań dotyczących bezpłatnego programu do fakturowania, KSEF, bezpieczeństwa danych i integracji.',
-  keywords: 'FAQ fakturowanie, pytania i odpowiedzi, KSEF, VAT Faktura, e-faktury, bezpieczeństwo',
+  title: 'FAQ - VAT Faktura | Pytania o Fakturach, KSEF, PIT, Rozliczeniach Podatkowych',
+  description: 'Kompletne FAQ VAT Faktura. Pytania o bezpłatnym programie do fakturowania, KSEF, rozliczeniach PIT-37, PIT-36, PIT-28, podpisie elektronicznym i wysyłce do urzędu skarbowego.',
+  keywords: 'FAQ fakturowanie, pytania i odpowiedzi, KSEF, VAT Faktura, e-faktury, PIT-37, PIT-36, rozliczenie PIT, urząd skarbowy, podpis elektroniczny',
 }
 
 export default function FAQPage() {
+  const pitFaqs = [
+    {
+      question: 'Jakie formularze PIT mogę rozliczyć w VAT Faktura?',
+      answer: 'VAT Faktura obsługuje wszystkie główne deklaracje: PIT-37 (pracownicy, zleceniobiorcy), PIT-36 (działalność gospodarcza, skala), PIT-36L (podatek liniowy 19%), PIT-28 (ryczałt ewidencjonowany), PIT-38 (kapitały pieniężne, giełda), PIT-39 (zbycie nieruchomości), PIT-16A (karta podatkowa) oraz PIT-19A (ulga prorodzinna).'
+    },
+    {
+      question: 'Czy mogę wysłać deklarację PIT bezpośrednio do urzędu skarbowego?',
+      answer: 'Tak. Po wypełnieniu formularza i podpisaniu elektronicznym deklaracja jest wysyłana bezpośrednio do systemu e-Deklaracje Ministerstwa Finansów. Otrzymasz UPO (Urzędowe Potwierdzenie Odbioru) jako dowód złożenia zeznania.'
+    },
+    {
+      question: 'Jak działa podpis elektroniczny przy rozliczaniu PIT?',
+      answer: 'Możesz podpisać deklarację kwalifikowanym podpisem elektronicznym (certyfikat kwalifikowany) lub danymi autoryzującymi (kwota przychodu z roku poprzedniego). Obydwie metody są akceptowane przez Krajową Administrację Skarbową.'
+    },
+    {
+      question: 'Czy rozliczenie PIT w VAT Faktura jest bezpłatne?',
+      answer: 'Tak, rozliczanie wszystkich deklaracji PIT jest całkowicie bezpłatne — bez limitów, bez abonamentów, bez karty kredytowej. To część pakietu VAT Faktura dostępnego 100% za darmo.'
+    },
+    {
+      question: 'Kiedy jest termin złożenia PIT?',
+      answer: 'Standardowy termin złożenia PIT rocznego upływa 30 kwietnia roku następnego (np. PIT za 2025 rok należy złożyć do 30 kwietnia 2026 r.). Wyjątek: PIT-28 (ryczałt) do końca lutego. VAT Faktura wyświetla przypomnienia o zbliżających się terminach.'
+    },
+    {
+      question: 'Czy mogę rozliczyć PIT wspólnie z małżonkiem?',
+      answer: 'Tak, formularze PIT-37 i PIT-36 umożliwiają wspólne rozliczenie z małżonkiem. W VAT Faktura wystarczy zaznaczyć opcję "rozliczenie wspólne" i uzupełnić dane małżonka — system automatycznie wyliczy korzystniejszy wynik podatkowy.'
+    },
+    {
+      question: 'Jakie ulgi podatkowe uwzględnia VAT Faktura przy rozliczeniu PIT?',
+      answer: 'System obsługuje m.in.: ulgę na dziecko (prorodzinną), ulgę rehabilitacyjną, ulgę internetową, odliczenia IKZE, składki ZUS i NFZ, ulgę dla młodych (do 26 r.ż.), ulgę dla pracujących seniorów, 1,5% na OPP oraz kwotę zmniejszającą podatek.'
+    },
+    {
+      question: 'Co to jest UPO i jak je uzyskać po wysłaniu PIT?',
+      answer: 'UPO (Urzędowe Potwierdzenie Odbioru) to dokument potwierdzający, że urząd skarbowy przyjął Twoją deklarację. VAT Faktura automatycznie pobiera i wyświetla UPO zaraz po pomyślnym wysłaniu deklaracji — możesz je zapisać lub wydrukować.'
+    },
+    {
+      question: 'Czy VAT Faktura obsługuje rozliczenie PIT dla działalności gospodarczej?',
+      answer: 'Tak. PIT-36 (zasady ogólne, skala podatkowa 12%/32%) i PIT-36L (podatek liniowy 19%) są w pełni obsługiwane. Możesz wprowadzić przychody, koszty uzyskania, zapłacone zaliczki i odliczenia — system wyliczy należny podatek lub nadpłatę.'
+    },
+    {
+      question: 'Co zrobić, jeśli popełnię błąd w złożonej deklaracji PIT?',
+      answer: 'Możesz złożyć korektę deklaracji — formularz korygujący to ten sam typ PIT z zaznaczoną opcją "korekta zeznania". VAT Faktura obsługuje składanie korekt przez cały rok podatkowy. Korektę należy złożyć tak szybko jak to możliwe, szczególnie jeśli zaniżyłeś podatek.'
+    },
+    {
+      question: 'Czy mogę rozliczyć przychody z zagranicy w VAT Faktura?',
+      answer: 'Tak, PIT-36 obsługuje przychody z zagranicy z uwzględnieniem metody wyłączenia z progresją lub proporcjonalnego odliczenia (w zależności od umowy o unikaniu podwójnego opodatkowania z danym krajem).'
+    },
+    {
+      question: 'Jak VAT Faktura chroni moje dane przy rozliczeniu PIT?',
+      answer: 'Dane deklaracji PIT są szyfrowane i przesyłane bezpiecznie do systemu e-Deklaracje przez szyfrowane połączenie HTTPS. Nie są przechowywane na serwerach VAT Faktura — trafiają bezpośrednio do Ministerstwa Finansów.'
+    },
+  ]
+
   const faqs = [
     {
       question: 'Czy VAT Faktura jest naprawdę 100% bezpłatna?',
@@ -122,8 +173,43 @@ export default function FAQPage() {
           <p className="text-lg text-blue-200/80 mb-8">
             Wszystkie odpowiedzi na pytania dotyczące VAT Faktura, KSEF, bezpieczeństwa i funkcji
           </p>
-          <div className="inline-block px-4 py-2 bg-green-600/20 border border-green-500/50 rounded-full text-sm text-green-300 font-medium">
-            {faqs.length} najczęściej zadawanych pytań
+          <div className="flex flex-wrap justify-center gap-3">
+            <div className="inline-block px-4 py-2 bg-green-600/20 border border-green-500/50 rounded-full text-sm text-green-300 font-medium">
+              {faqs.length} pytań o fakturowaniu
+            </div>
+            <div className="inline-block px-4 py-2 bg-emerald-600/20 border border-emerald-500/50 rounded-full text-sm text-emerald-300 font-medium">
+              {pitFaqs.length} pytań o rozliczeniu PIT
+            </div>
+          </div>
+        </div>
+
+        {/* PIT FAQ Section */}
+        <div id="pit" className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-1.5 h-8 bg-gradient-to-b from-emerald-400 to-teal-400 rounded-full flex-shrink-0"></div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">Pytania o rozliczeniu PIT</h2>
+          </div>
+          <div className="space-y-4 mb-16">
+            {pitFaqs.map((faq, idx) => (
+              <Card key={idx} className="bg-emerald-900/20 backdrop-blur-sm border border-emerald-500/20 p-6 hover:border-emerald-500/50 transition-all group">
+                <div className="space-y-4">
+                  <div className="flex items-start justify-between gap-4 cursor-pointer">
+                    <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-emerald-300 transition-colors flex-1">
+                      {faq.question}
+                    </h3>
+                    <ChevronDown className="w-6 h-6 text-emerald-400 flex-shrink-0 mt-1 group-hover:rotate-180 transition-transform" />
+                  </div>
+                  <p className="text-blue-200/80 text-base leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-1.5 h-8 bg-gradient-to-b from-blue-400 to-cyan-400 rounded-full flex-shrink-0"></div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">Pytania ogólne o fakturowaniu</h2>
           </div>
         </div>
 
