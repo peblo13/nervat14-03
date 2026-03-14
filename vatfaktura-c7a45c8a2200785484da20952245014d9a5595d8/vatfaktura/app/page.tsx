@@ -58,6 +58,9 @@ export default function Home() {
               <Link href="/formularze-zus" className="px-3 py-2 text-sm font-semibold text-orange-300 hover:text-orange-100 hover:bg-orange-500/15 rounded-lg transition-all duration-200">
                 ZUS
               </Link>
+              <Link href="/otwórz-firmę" className="px-3 py-2 text-sm font-semibold text-pink-300 hover:text-pink-100 hover:bg-pink-500/15 rounded-lg transition-all duration-200">
+                Załóż firmę
+              </Link>
               <Link href="/faq" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
                 FAQ
               </Link>
@@ -498,6 +501,80 @@ export default function Home() {
           </div>
 
           {/* AdSense — dwa prostokąty 300x250 obok siebie po sekcji PIT */}
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
+            <AdSenseDisplay300x250 />
+            <AdSenseDisplay300x250 />
+          </div>
+        </section>
+
+        {/* Business Registration Section */}
+        <section id="zaloz-firme" className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
+          <div className="text-center mb-12 sm:mb-16 space-y-4">
+            <div className="inline-block px-4 sm:px-5 py-2 bg-gradient-to-r from-pink-500/20 to-purple-500/20 border border-pink-400/50 rounded-full">
+              <span className="text-xs sm:text-sm font-bold tracking-widest text-pink-300 uppercase">Nowe — Otwórz Firmę Online</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-pink-400 via-purple-300 to-pink-300 bg-clip-text text-transparent px-4">
+              Załóż firmę bez papierów
+            </h2>
+            <p className="text-blue-200/70 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-4">
+              Pełny przewodnik od wyboru formy prawnej, przez rejestrację w URE i ZUS, do wysyłania pierwszych faktur. Wszystko w jednym miejscu.
+            </p>
+          </div>
+
+          {/* Business Types Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
+            {[
+              {
+                title: 'Samozatrudnienie',
+                desc: 'Dla freelancerów i kontrahentów',
+                features: ['Szybka rejestracja', 'Niskie koszty', 'Elastyczne warunki'],
+                icon: '💼',
+                gradient: 'from-pink-600/20 to-purple-600/20',
+                border: 'border-pink-500/30'
+              },
+              {
+                title: 'Działalność gospodarcza',
+                desc: 'Dla małych firm i startupów',
+                features: ['Pełna niezależność', 'Wiele możliwości', 'Duża elastyczność'],
+                icon: '🏢',
+                gradient: 'from-purple-600/20 to-pink-600/20',
+                border: 'border-purple-500/30'
+              },
+              {
+                title: 'Spółka z o.o.',
+                desc: 'Dla większych przedsiębiorstw',
+                features: ['Ograniczona odpowiedzialność', 'Profesjonalizm', 'Wiarygodność'],
+                icon: '🏛️',
+                gradient: 'from-pink-600/20 to-rose-600/20',
+                border: 'border-pink-500/30'
+              }
+            ].map((type, idx) => (
+              <div key={idx} className={`group bg-gradient-to-br ${type.gradient} border ${type.border} hover:border-pink-400/60 rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}>
+                <div className="text-4xl mb-4">{type.icon}</div>
+                <h3 className="text-2xl font-bold text-white mb-2">{type.title}</h3>
+                <p className="text-blue-200/70 text-sm mb-6">{type.desc}</p>
+                <ul className="space-y-2">
+                  {type.features.map((feature, fidx) => (
+                    <li key={fidx} className="flex items-center gap-2 text-sm text-blue-100">
+                      <span className="w-1.5 h-1.5 rounded-full bg-pink-400"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="text-center">
+            <Link href="/otwórz-firmę">
+              <Button className="min-h-[48px] px-10 py-3 text-base font-bold bg-gradient-to-r from-pink-600 to-purple-600 hover:from-pink-500 hover:to-purple-500 shadow-xl shadow-pink-500/40 hover:shadow-pink-500/60 transition-all duration-300 transform hover:scale-105">
+                Odkryj jak otworzyć firmę
+              </Button>
+            </Link>
+          </div>
+
+          {/* AdSense */}
           <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
             <AdSenseDisplay300x250 />
             <AdSenseDisplay300x250 />
