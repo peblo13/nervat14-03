@@ -1,20 +1,28 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/hooks/useUser'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText, Users, Star, Award, LogIn, Edit3, Download } from 'lucide-react'
+import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText, Users, Star, Award, LogIn, Edit3, Download, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import { MobileNav } from '@/components/mobile-nav'
 import { PartnerPopup } from '@/components/partner-popup'
 import { SupportBanner } from '@/components/support-banner'
 import { AdSenseDisplay728x90, AdSenseDisplay300x250, AdSenseDisplayAuto } from '@/components/adsense-banner'
 import { NewsletterSignup } from '@/components/newsletter-signup'
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu'
 
 export default function Home() {
   const router = useRouter()
   const { user, isLoading } = useUser()
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   useEffect(() => {
     if (!isLoading && user) {
@@ -47,17 +55,48 @@ export default function Home() {
               </div>
               <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent truncate">VAT Faktura</h1>
             </div>
-            <nav className="hidden sm:flex items-center gap-1 md:gap-1.5">
-              {/* Primary nav links */}
-              <Link href="/dashboard" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-                Faktura
-              </Link>
-              <Link href="/dashboard/pit" className="px-3 py-2 text-sm font-semibold text-emerald-300 hover:text-emerald-100 hover:bg-emerald-500/15 rounded-lg transition-all duration-200">
-                PIT
-              </Link>
-              <Link href="/formularze-zus" className="px-3 py-2 text-sm font-semibold text-orange-300 hover:text-orange-100 hover:bg-orange-500/15 rounded-lg transition-all duration-200">
-                ZUS
-              </Link>
+            <nav className="hidden sm:flex items-center gap-1 md:gap-2">
+              {/* Dropdown menu for main functions */}
+              <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+                <DropdownMenuTrigger 
+                  asChild
+                  onMouseEnter={() => setIsDropdownOpen(true)}
+                  onMouseLeave={() => setIsDropdownOpen(false)}
+                >
+                  <button className="px-3 py-2 text-sm font-semibold text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 inline-flex items-center gap-1">
+                    Funkcje
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent 
+                  align="start" 
+                  className="w-48 bg-slate-800 border-white/10"
+                  onMouseEnter={() => setIsDropdownOpen(true)}
+                  onMouseLeave={() => setIsDropdownOpen(false)}
+                >
+                  <Link href="/zaloz-firme">
+                    <DropdownMenuItem className="flex items-center gap-2 text-purple-300 hover:text-purple-100 hover:bg-purple-500/15 cursor-pointer">
+                      <span>Załóż firmę</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/dashboard">
+                    <DropdownMenuItem className="flex items-center gap-2 text-blue-300 hover:text-blue-100 hover:bg-blue-500/15 cursor-pointer">
+                      <span>Faktura</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/dashboard/pit">
+                    <DropdownMenuItem className="flex items-center gap-2 text-emerald-300 hover:text-emerald-100 hover:bg-emerald-500/15 cursor-pointer">
+                      <span>Rozlicz PIT</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/formularze-zus">
+                    <DropdownMenuItem className="flex items-center gap-2 text-orange-300 hover:text-orange-100 hover:bg-orange-500/15 cursor-pointer">
+                      <span>Formularze ZUS</span>
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
               <Link href="/faq" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
                 FAQ
               </Link>
@@ -283,6 +322,36 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <AdSenseDisplayAuto />
         </div>
+
+        {/* Business Setup Section */}
+        <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32 relative">
+          <div className="bg-gradient-to-r from-purple-600/30 to-pink-600/30 backdrop-blur-xl border border-purple-400/30 rounded-3xl p-8 sm:p-12 md:p-16 space-y-8 sm:space-y-10 md:space-y-12">
+            <div className="text-center space-y-4 sm:space-y-6">
+              <div className="inline-block px-4 sm:px-5 py-2 sm:py-3 bg-gradient-to-r from-purple-500/40 to-pink-500/40 border border-purple-400/60 rounded-full backdrop-blur-sm">
+                <span className="text-xs sm:text-sm font-bold tracking-wider text-purple-300 uppercase">Nowe: Załóż Firmę Online</span>
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+                Gotowy założyć biznes?
+              </h2>
+              <p className="text-sm sm:text-base md:text-lg text-purple-200/80 max-w-3xl mx-auto leading-relaxed">
+                Kompletny przewodnik do założenia firmy online. Dowiedz się jakie kroki podjąć i jakie dokumenty przygotować.
+              </p>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center">
+              <Link href="/zaloz-firme">
+                <Button className="min-h-[50px] sm:min-h-[52px] px-8 sm:px-10 md:px-12 py-3 text-base sm:text-lg font-bold bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 shadow-xl shadow-purple-500/50 hover:shadow-purple-500/80 transition-all duration-300 transform hover:scale-110 active:scale-95 text-white">
+                  Przeczytaj Przewodnik
+                </Button>
+              </Link>
+              <Link href="/register">
+                <Button variant="outline" className="min-h-[50px] sm:min-h-[52px] px-8 sm:px-10 md:px-12 py-3 text-base sm:text-lg font-bold border-2 border-purple-300/60 hover:border-purple-200 hover:bg-purple-500/20 text-purple-100 transition-all duration-300 transform hover:scale-110 active:scale-95">
+                  Zaloguj się
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
 
         {/* How it works - 3 kroków */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">

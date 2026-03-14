@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X, FileText, Receipt, HelpCircle, BookOpen, Users, Tag, LogIn, UserPlus, ClipboardList } from 'lucide-react'
+import { Menu, X, FileText, Receipt, HelpCircle, BookOpen, Users, Tag, LogIn, UserPlus, ClipboardList, Building2 } from 'lucide-react'
 import Link from 'next/link'
 
 type NavGroup = {
@@ -16,6 +16,7 @@ export function MobileNav() {
     {
       label: 'Główne',
       items: [
+        { href: '/zaloz-firme', label: 'Załóż firmę', icon: <Building2 className="w-4 h-4" />, accent: 'purple' },
         { href: '/dashboard', label: 'Faktura', icon: <FileText className="w-4 h-4" /> },
         { href: '/dashboard/pit', label: 'Rozlicz PIT', icon: <Receipt className="w-4 h-4" />, accent: 'emerald' },
         { href: '/formularze-zus', label: 'Formularze ZUS', icon: <ClipboardList className="w-4 h-4" />, accent: 'orange' },
@@ -82,11 +83,13 @@ export function MobileNav() {
                             ? 'text-orange-300 hover:text-orange-100 hover:bg-orange-500/15'
                             : item.accent === 'green'
                             ? 'text-green-300 hover:text-green-100 hover:bg-green-500/15'
+                            : item.accent === 'purple'
+                            ? 'text-purple-300 hover:text-purple-100 hover:bg-purple-500/15'
                             : 'text-blue-200/80 hover:text-white hover:bg-white/8'
                         }`}
                       >
                         <span className={`flex-shrink-0 transition-transform duration-150 group-hover:scale-110 ${
-                          item.accent === 'emerald' ? 'text-emerald-400' : item.accent === 'orange' ? 'text-orange-400' : item.accent === 'green' ? 'text-green-400' : 'text-blue-400/70'
+                          item.accent === 'emerald' ? 'text-emerald-400' : item.accent === 'orange' ? 'text-orange-400' : item.accent === 'green' ? 'text-green-400' : item.accent === 'purple' ? 'text-purple-400' : 'text-blue-400/70'
                         }`}>
                           {item.icon}
                         </span>
