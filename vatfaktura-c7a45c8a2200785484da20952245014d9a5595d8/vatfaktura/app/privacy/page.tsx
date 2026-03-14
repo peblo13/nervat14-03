@@ -26,7 +26,7 @@ export default function PrivacyPage() {
               Administratorem danych osobowych jest <strong className="text-white">VAT Faktura</strong> (dalej: &quot;my&quot;, &quot;nas&quot;, &quot;nasze&quot;), dostępna pod adresem{' '}
               <a href="https://www.vatfaktura.pl" className="text-cyan-300 underline hover:text-cyan-200">www.vatfaktura.pl</a>.
               Kontakt w sprawach danych osobowych:{' '}
-              <a href="mailto:kontakt@vatfaktura.pl" className="text-cyan-300 underline hover:text-cyan-200">kontakt@vatfaktura.pl</a>.
+              <a href="mailto:pawsli2532@gmail.com" className="text-cyan-300 underline hover:text-cyan-200">pawsli2532@gmail.com</a>.
             </p>
           </section>
 
@@ -138,7 +138,7 @@ export default function PrivacyPage() {
               <li>Prawo do wycofania zgody w każdym czasie (bez wpływu na wcześniejsze przetwarzanie)</li>
               <li>Prawo do skargi do Prezesa UODO (<a href="https://uodo.gov.pl" target="_blank" rel="noopener noreferrer" className="text-cyan-300 underline">uodo.gov.pl</a>)</li>
             </ul>
-            <p>Aby skorzystać z praw, skontaktuj się: <a href="mailto:kontakt@vatfaktura.pl" className="text-cyan-300 underline">kontakt@vatfaktura.pl</a></p>
+            <p>Aby skorzystać z praw, skontaktuj się: <a href="mailto:pawsli2532@gmail.com" className="text-cyan-300 underline">pawsli2532@gmail.com</a></p>
           </section>
 
           <section className="space-y-3">
@@ -168,7 +168,7 @@ export default function PrivacyPage() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold text-white">11. Kontakt</h2>
             <p>W sprawach dotyczących prywatności i danych osobowych:</p>
-            <p>Email: <a href="mailto:kontakt@vatfaktura.pl" className="text-cyan-300 underline">kontakt@vatfaktura.pl</a></p>
+            <p>Email: <a href="mailto:pawsli2532@gmail.com" className="text-cyan-300 underline">pawsli2532@gmail.com</a></p>
             <p>Strona: <a href="https://www.vatfaktura.pl/contact" className="text-cyan-300 underline">www.vatfaktura.pl/contact</a></p>
           </section>
 

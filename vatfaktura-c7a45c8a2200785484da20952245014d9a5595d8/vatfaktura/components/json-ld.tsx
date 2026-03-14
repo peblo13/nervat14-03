@@ -119,7 +119,15 @@ export function JsonLd() {
         'contactPoint': {
           '@type': 'ContactPoint',
           'contactType': 'Customer Support',
-          'email': 'kontakt@vatfaktura.pl',
+          'email': 'pawsli2532@gmail.com',
+          'telephone': '+48727141252',
+          'address': {
+            '@type': 'PostalAddress',
+            'streetAddress': 'ul. Kościuszki 15e/2',
+            'addressLocality': 'Toruń',
+            'postalCode': '87-100',
+            'addressCountry': 'PL'
+          },
           'availableLanguage': 'Polish'
         }
       },

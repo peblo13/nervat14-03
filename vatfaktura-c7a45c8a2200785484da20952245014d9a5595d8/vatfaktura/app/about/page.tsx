@@ -153,7 +153,7 @@ export default function AboutPage() {
                 </p>
                 <div className="flex items-center gap-2 text-sm text-blue-300">
                   <Mail className="w-4 h-4" />
-                  <a href="mailto:kontakt@vatfaktura.pl" className="hover:text-cyan-300 transition-colors">kontakt@vatfaktura.pl</a>
+                  <a href="mailto:pawsli2532@gmail.com" className="hover:text-cyan-300 transition-colors">pawsli2532@gmail.com</a>
                 </div>
               </div>
             </div>
@@ -171,8 +171,8 @@ export default function AboutPage() {
                 <Mail className="w-5 h-5 text-cyan-300" />
                 <span className="font-semibold text-white">Email</span>
               </div>
-              <a href="mailto:kontakt@vatfaktura.pl" className="text-cyan-300 hover:text-cyan-200 transition-colors text-sm">
-                kontakt@vatfaktura.pl
+              <a href="mailto:pawsli2532@gmail.com" className="text-cyan-300 hover:text-cyan-200 transition-colors text-sm">
+                pawsli2532@gmail.com
               </a>
             </div>
             <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-6">
@@ -185,9 +185,10 @@ export default function AboutPage() {
             <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-6">
               <div className="flex items-center gap-3 mb-3">
                 <MapPin className="w-5 h-5 text-cyan-300" />
-                <span className="font-semibold text-white">Kraj</span>
+                <span className="font-semibold text-white">Adres</span>
               </div>
-              <p className="text-blue-200/70 text-sm">Polska</p>
+              <p className="text-blue-200/70 text-sm">ul. Kościuszki 15e/2</p>
+              <p className="text-blue-200/70 text-sm">87-100 Toruń</p>
             </div>
           </div>
         </div>

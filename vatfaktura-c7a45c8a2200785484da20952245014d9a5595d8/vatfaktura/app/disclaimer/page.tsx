@@ -104,7 +104,7 @@ export default function DisclaimerPage() {
           <section>
             <h2 className="text-2xl font-bold text-cyan-300 mb-4">Pytania?</h2>
             <p className="text-blue-200/80 leading-relaxed">
-              Jeśli masz pytania dotyczące tego disclaimer, skontaktuj się z nami na adres: <a href="mailto:kontakt@vatfaktura.pl" className="text-cyan-400 hover:text-cyan-300 underline">kontakt@vatfaktura.pl</a>
+              Jeśli masz pytania dotyczące tego disclaimer, skontaktuj się z nami na adres: <a href="mailto:pawsli2532@gmail.com" className="text-cyan-400 hover:text-cyan-300 underline">pawsli2532@gmail.com</a>
             </p>
           </section>
         </div>

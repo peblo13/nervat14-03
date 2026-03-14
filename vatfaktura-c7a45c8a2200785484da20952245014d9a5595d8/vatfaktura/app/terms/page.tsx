@@ -179,7 +179,8 @@ export default function TermsPage() {
           <section className="space-y-3">
             <h2 className="text-2xl font-bold text-white">15. Kontakt</h2>
             <p>Pytania dotyczące Regulaminu kieruj na:</p>
-            <p>Email: <a href="mailto:kontakt@vatfaktura.pl" className="text-cyan-300 underline hover:text-cyan-200">kontakt@vatfaktura.pl</a></p>
+            <p>Email: <a href="mailto:pawsli2532@gmail.com" className="text-cyan-300 underline hover:text-cyan-200">pawsli2532@gmail.com</a></p>
+            <p>Adres: ul. Kościuszki 15e/2, 87-100 Toruń</p>
           </section>
 
           <div className="pt-6 border-t border-blue-500/20 flex flex-wrap gap-4 items-center justify-between">
