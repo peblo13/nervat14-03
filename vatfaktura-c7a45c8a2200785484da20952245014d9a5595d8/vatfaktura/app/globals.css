@@ -146,6 +146,21 @@
   }
 }
 
+@keyframes faq-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-item {
+  animation: faq-enter 0.35s ease-out both;
+}
+
 @layer components {
   /* Mobile-first typography - xs breakpoint (320px) */
   @media (max-width: 374px) {

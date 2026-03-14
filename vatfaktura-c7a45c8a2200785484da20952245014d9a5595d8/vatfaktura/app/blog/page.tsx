@@ -7,9 +7,19 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react'
 import { AdSenseDisplayAuto, AdSenseDisplay300x250 } from '@/components/adsense-banner'
 
 export const metadata: Metadata = {
-  title: 'Blog - VAT Faktura | Poradniki Fakturowania, KSEF, Podatki 2026',
-  description: 'Poradniki, artykuły i wskazówki dotyczące fakturowania, KSEF, VAT, podatków dla freelancerów i firm. Wszystko czego potrzebujesz wiedzieć o e-fakturach.',
-  keywords: 'blog fakturowanie, KSEF poradnik, faktura VAT, podatki dla firm, e-faktury, poradniki',
+  title: 'Blog — Poradniki o Fakturach, KSEF i Rozliczeniu PIT 2026 | VAT Faktura',
+  description: 'Praktyczne poradniki o fakturowaniu, KSEF, PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38. Jak wypełnić i wysłać PIT online. Podpis elektroniczny, e-Deklaracje, ulgi podatkowe 2026.',
+  keywords: 'blog PIT, PIT-37 jak wypełnić, PIT-36 działalność gospodarcza, PIT-28 ryczałt, rozliczenie PIT 2026, KSEF poradnik, faktura VAT jak wystawić, podpis elektroniczny PIT, e-Deklaracje krok po kroku, ulgi podatkowe 2026',
+  alternates: {
+    canonical: 'https://www.vatfaktura.pl/blog',
+  },
+  openGraph: {
+    title: 'Blog — Poradniki o Fakturach, KSEF i Rozliczeniu PIT 2026 | VAT Faktura',
+    description: 'Praktyczne poradniki: PIT-37, PIT-36, PIT-28, PIT-38, KSEF, fakturowanie. Jak wypełnić PIT online i wysłać do urzędu skarbowego.',
+    url: 'https://www.vatfaktura.pl/blog',
+    type: 'website',
+    locale: 'pl_PL',
+  },
 }
 
 export default function BlogPage() {
@@ -39,8 +49,58 @@ export default function BlogPage() {
 
         {/* Articles Grid */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+          {/* PIT Articles Section */}
+          <div id="pit" className="mb-14">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1.5 h-8 bg-gradient-to-b from-emerald-400 to-teal-400 rounded-full flex-shrink-0"></div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">Artykuly o rozliczeniu PIT</h2>
+              <span className="ml-2 px-3 py-1 bg-emerald-500/20 border border-emerald-500/40 rounded-full text-xs font-semibold text-emerald-300 uppercase tracking-wider">Nowe</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              {articles.filter(a => a.category === 'PIT').map((article) => (
+                <Link key={article.id} href={`/blog/${article.slug}`}>
+                  <Card className="bg-emerald-900/20 backdrop-blur-sm border border-emerald-500/20 p-6 hover:border-emerald-500/50 transition-all h-full cursor-pointer group hover:-translate-y-2">
+                    <div className="space-y-4 h-full flex flex-col">
+                      <div>
+                        <span className="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-300 text-xs font-semibold rounded-full mb-3">
+                          {article.category}
+                        </span>
+                        <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors leading-tight">
+                          {article.title}
+                        </h3>
+                      </div>
+                      <p className="text-sm text-blue-200/70 flex-grow">{article.excerpt}</p>
+                      <div className="flex items-center justify-between text-xs text-blue-200/60 pt-4 border-t border-emerald-500/20">
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" />
+                          {article.readTime}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          {new Date(article.date).toLocaleDateString('pl-PL', { month: 'short', day: 'numeric' })}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1 pt-3">
+                        {article.keywords.slice(0, 2).map((keyword) => (
+                          <span key={keyword} className="text-xs text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded">
+                            #{keyword}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* All other articles */}
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-1.5 h-8 bg-gradient-to-b from-blue-400 to-cyan-400 rounded-full flex-shrink-0"></div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">Pozostałe artykuły</h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.map((article) => (
+            {articles.filter(a => a.category !== 'PIT').map((article) => (
               <Link key={article.id} href={`/blog/${article.slug}`}>
                 <Card className="bg-slate-800/40 backdrop-blur-sm border border-blue-500/20 p-6 hover:border-blue-500/50 transition-all h-full cursor-pointer group hover:-translate-y-2">
                   <div className="space-y-4 h-full flex flex-col">

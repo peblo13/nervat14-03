@@ -1,93 +1,101 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X, ChevronDown } from 'lucide-react'
+import { Menu, X, FileText, Receipt, HelpCircle, BookOpen, Users, Tag, LogIn, UserPlus } from 'lucide-react'
 import Link from 'next/link'
+
+type NavGroup = {
+  label: string
+  items: { href: string; label: string; icon: React.ReactNode; accent?: string }[]
+}
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
 
-  const navItems = [
-    { 
-      href: '/#partners', 
-      label: 'Partnerzy',
-      emoji: '💰'
+  const navGroups: NavGroup[] = [
+    {
+      label: 'Główne',
+      items: [
+        { href: '/dashboard', label: 'Faktura', icon: <FileText className="w-4 h-4" /> },
+        { href: '/dashboard/pit', label: 'Rozlicz PIT', icon: <Receipt className="w-4 h-4" />, accent: 'emerald' },
+        { href: '/faq', label: 'FAQ', icon: <HelpCircle className="w-4 h-4" /> },
+        { href: '/blog', label: 'Blog', icon: <BookOpen className="w-4 h-4" /> },
+      ],
     },
-    { 
-      href: '/partners', 
-      label: 'Wszystkie Partnerzy',
-      emoji: '🎯'
+    {
+      label: 'Więcej',
+      items: [
+        { href: '/pricing', label: 'Cennik', icon: <Tag className="w-4 h-4" /> },
+        { href: '/#partners', label: 'Partnerzy', icon: <Users className="w-4 h-4" /> },
+      ],
     },
-    { 
-      href: '/pricing', 
-      label: '100% Bezpłatnie',
-      emoji: '✨'
-    },
-    { 
-      href: '/login', 
-      label: 'Zaloguj się',
-      emoji: '🔐'
-    },
-    { 
-      href: '/register', 
-      label: 'Załóż konto',
-      emoji: '🚀'
+    {
+      label: 'Konto',
+      items: [
+        { href: '/login', label: 'Zaloguj się', icon: <LogIn className="w-4 h-4" /> },
+        { href: '/register', label: 'Załóż konto', icon: <UserPlus className="w-4 h-4" />, accent: 'green' },
+      ],
     },
   ]
 
   return (
     <div className="sm:hidden">
-      {/* Menu Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="inline-flex items-center justify-center w-10 h-10 rounded-lg text-blue-300 hover:text-blue-100 hover:bg-blue-500/20 transition-all duration-200"
-        aria-label="Menu"
+        className="inline-flex items-center justify-center w-10 h-10 rounded-lg text-blue-300 hover:text-white hover:bg-white/10 transition-all duration-200"
+        aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
       >
-        {open ? (
-          <X className="w-5 h-5" />
-        ) : (
-          <Menu className="w-5 h-5" />
-        )}
+        {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
 
-      {/* Dropdown Menu */}
       {open && (
-        <div className="absolute right-3 top-full mt-2 w-48 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-          {/* Menu Container */}
-          <div className="bg-slate-900/95 backdrop-blur-md border border-blue-500/30 rounded-lg shadow-xl overflow-hidden">
-            <nav className="py-2 space-y-0">
-              {navItems.map((item, idx) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block px-4 py-3 hover:bg-gradient-to-r hover:from-blue-500/20 hover:to-cyan-500/20 transition-colors duration-200 group"
-                >
-                  <div className="flex items-center gap-3 justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="text-lg group-hover:scale-110 transition-transform duration-200">{item.emoji}</span>
-                      <span className="text-sm font-medium text-blue-200 group-hover:text-white transition-colors">
-                        {item.label}
-                      </span>
-                    </div>
-                    <ChevronDown className="w-4 h-4 text-blue-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200" />
+        <>
+          {/* Backdrop */}
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setOpen(false)}
+          />
+
+          {/* Dropdown */}
+          <div className="absolute right-3 top-full mt-2 w-56 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+            {/* Arrow */}
+            <div className="absolute -top-1.5 right-4 w-3 h-3 bg-slate-900 border-t border-l border-white/10 transform rotate-45 z-10" />
+
+            <div className="bg-slate-900/98 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl overflow-hidden">
+              {navGroups.map((group, gi) => (
+                <div key={gi}>
+                  {gi > 0 && <div className="h-px bg-white/8 mx-3" />}
+                  <div className="px-3 pt-2.5 pb-1">
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-white/30">{group.label}</span>
                   </div>
-                </Link>
+                  <div className="px-2 pb-2 space-y-0.5">
+                    {group.items.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150 group ${
+                          item.accent === 'emerald'
+                            ? 'text-emerald-300 hover:text-emerald-100 hover:bg-emerald-500/15'
+                            : item.accent === 'green'
+                            ? 'text-green-300 hover:text-green-100 hover:bg-green-500/15'
+                            : 'text-blue-200/80 hover:text-white hover:bg-white/8'
+                        }`}
+                      >
+                        <span className={`flex-shrink-0 transition-transform duration-150 group-hover:scale-110 ${
+                          item.accent === 'emerald' ? 'text-emerald-400' : item.accent === 'green' ? 'text-green-400' : 'text-blue-400/70'
+                        }`}>
+                          {item.icon}
+                        </span>
+                        <span className="text-sm font-medium">{item.label}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               ))}
-            </nav>
+            </div>
           </div>
-
-          {/* Arrow pointer */}
-          <div className="absolute -top-1 right-4 w-2 h-2 bg-blue-500/30 border border-blue-500/30 transform rotate-45"></div>
-        </div>
-      )}
-
-      {/* Backdrop - click to close */}
-      {open && (
-        <div
-          className="fixed inset-0 z-40 sm:hidden"
-          onClick={() => setOpen(false)}
-        />
+        </>
       )}
     </div>
   )
