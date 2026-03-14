@@ -1,229 +1,263 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
+import { usePathname } from 'next/navigation'
+import { ExternalLink, X } from 'lucide-react'
+import { PARTNERS, type Partner } from '@/lib/partners'
+
+// Minimum time to show the ad so it's actually visible
+const MIN_SHOW_MS = 1200
+// How long the progress bar lingers at 100% before hiding
+const COMPLETE_LINGER_MS = 400
+
+function pickRandomPartner(): Partner {
+  return PARTNERS[Math.floor(Math.random() * PARTNERS.length)]
+}
 
 export function FuturisticLoader() {
+  const pathname = usePathname()
   const [progress, setProgress] = useState(0)
-  const [isVisible, setIsVisible] = useState(false)
+  const [phase, setPhase] = useState<'idle' | 'loading' | 'complete' | 'hiding'>('idle')
+  const [partner, setPartner] = useState<Partner | null>(null)
+  const [adVisible, setAdVisible] = useState(false)
 
-  useEffect(() => {
-    // Track page load progress
-    const handleStart = () => {
-      setIsVisible(true)
-      setProgress(10)
-    }
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const startTimeRef = useRef<number>(0)
+  const prevPathRef = useRef(pathname)
+  const completeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-    const handleComplete = () => {
-      setProgress(100)
-      setTimeout(() => setIsVisible(false), 1200)
-    }
-
-    // Simulate progress
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 90) return prev
-        const increment = Math.random() * 20
-        return Math.min(prev + increment, 89)
-      })
-    }, 300)
-
-    window.addEventListener('beforeunload', handleStart)
-
-    // Check if page is fully loaded
-    if (document.readyState === 'complete') {
-      handleComplete()
-    } else {
-      window.addEventListener('load', handleComplete)
-    }
-
-    return () => {
-      clearInterval(interval)
-      window.removeEventListener('beforeunload', handleStart)
-      window.removeEventListener('load', handleComplete)
-    }
+  const clearTimers = useCallback(() => {
+    if (intervalRef.current) clearInterval(intervalRef.current)
+    if (completeTimerRef.current) clearTimeout(completeTimerRef.current)
+    if (hideTimerRef.current) clearTimeout(hideTimerRef.current)
   }, [])
 
-  if (!isVisible && progress === 0) return null
+  const startLoading = useCallback(() => {
+    clearTimers()
+    setPartner(pickRandomPartner())
+    setProgress(8)
+    setPhase('loading')
+    setAdVisible(false)
+    startTimeRef.current = Date.now()
+
+    // Short delay before showing ad — feels intentional, not jarring
+    setTimeout(() => setAdVisible(true), 80)
+
+    // Eased progress increment — fast at first, slows down near 85
+    intervalRef.current = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 85) return prev
+        const remaining = 85 - prev
+        const increment = remaining * 0.12 + Math.random() * 3
+        return Math.min(prev + increment, 85)
+      })
+    }, 180)
+  }, [clearTimers])
+
+  const finishLoading = useCallback(() => {
+    clearTimers()
+
+    const elapsed = Date.now() - startTimeRef.current
+    const remaining = Math.max(0, MIN_SHOW_MS - elapsed)
+
+    completeTimerRef.current = setTimeout(() => {
+      setProgress(100)
+      setPhase('complete')
+
+      hideTimerRef.current = setTimeout(() => {
+        setAdVisible(false)
+        setPhase('hiding')
+        setTimeout(() => {
+          setPhase('idle')
+          setProgress(0)
+        }, 350)
+      }, COMPLETE_LINGER_MS)
+    }, remaining)
+  }, [clearTimers])
+
+  // Trigger on route change
+  useEffect(() => {
+    if (pathname !== prevPathRef.current) {
+      prevPathRef.current = pathname
+      // Route already changed, so we just finish
+      finishLoading()
+    }
+  }, [pathname, finishLoading])
+
+  // Intercept all link clicks and button clicks to start the loader
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      const anchor = target.closest('a')
+      const button = target.closest('button')
+
+      // Only trigger for internal navigation links
+      if (anchor) {
+        const href = anchor.getAttribute('href')
+        if (
+          href &&
+          !href.startsWith('#') &&
+          !href.startsWith('http') &&
+          !href.startsWith('mailto') &&
+          !href.startsWith('tel') &&
+          anchor.target !== '_blank'
+        ) {
+          startLoading()
+        }
+      } else if (button && !button.disabled) {
+        // Buttons that are likely to cause navigation (submit, etc.)
+        const type = button.getAttribute('type')
+        if (type === 'submit' || button.closest('form')) {
+          startLoading()
+        }
+      }
+    }
+
+    document.addEventListener('click', handleClick, true)
+    return () => document.removeEventListener('click', handleClick, true)
+  }, [startLoading])
+
+  // Safety net: if loading takes too long, auto-complete
+  useEffect(() => {
+    if (phase === 'loading') {
+      const safetyTimer = setTimeout(() => finishLoading(), 8000)
+      return () => clearTimeout(safetyTimer)
+    }
+  }, [phase, finishLoading])
+
+  if (phase === 'idle') return null
+
+  const isShowing = phase === 'loading' || phase === 'complete'
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-[9999] pointer-events-none">
-      {/* Container with backdrop blur */}
-      <div className="relative h-1.5 overflow-hidden bg-gradient-to-b from-slate-950 to-slate-900/80 backdrop-blur-sm border-b-2 border-blue-500/30">
-        
-        {/* Layer 1: Base glow background */}
-        <div
-          className="absolute inset-0 transition-all duration-300"
-          style={{
-            background: `linear-gradient(90deg, 
-              transparent 0%,
-              rgba(34, 211, 238, 0.15) ${Math.max(progress - 5, 0)}%,
-              rgba(34, 211, 238, 0.25) ${progress}%,
-              transparent ${progress + 10}%)`,
-            filter: 'blur(8px)',
-          }}
-        />
-
-        {/* Layer 2: Main progress bar with gradient */}
-        <div
-          className="h-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 transition-all duration-200 ease-out relative"
-          style={{
-            width: `${progress}%`,
-            boxShadow: `
-              0 0 20px rgba(34, 211, 238, 1),
-              0 0 40px rgba(59, 130, 246, 0.8),
-              0 0 60px rgba(168, 85, 247, 0.4),
-              inset 0 0 20px rgba(255, 255, 255, 0.5)
-            `,
-          }}
-        >
-          {/* Inner shimmer */}
+    <>
+      {/* ── Top progress bar ── */}
+      <div className="fixed top-0 left-0 right-0 z-[9999] pointer-events-none">
+        <div className="h-[3px] w-full bg-slate-900/60">
           <div
-            className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent"
+            className="h-full transition-all ease-out relative overflow-hidden"
             style={{
-              opacity: 0.4,
-              animation: 'shimmer 2s infinite',
+              width: `${progress}%`,
+              transitionDuration: progress === 100 ? '200ms' : '300ms',
+              background: 'linear-gradient(90deg, #06b6d4, #3b82f6, #8b5cf6)',
+              boxShadow: '0 0 12px rgba(99,102,241,0.7), 0 0 4px rgba(34,211,238,0.9)',
             }}
-          />
-        </div>
-
-        {/* Layer 3: Outer glow halo */}
-        <div
-          className="absolute top-0 h-full blur-lg"
-          style={{
-            width: `${progress + 5}%`,
-            background: `linear-gradient(90deg, 
-              transparent 0%,
-              rgba(34, 211, 238, 0.3) 80%,
-              transparent 100%)`,
-            filter: 'blur(12px)',
-          }}
-        />
-
-        {/* Layer 4: Animated scan line */}
-        <div
-          className="absolute top-0 h-full w-20 pointer-events-none"
-          style={{
-            left: `${progress}%`,
-            background: `linear-gradient(90deg,
-              transparent 0%,
-              rgba(255, 255, 255, 0.8) 50%,
-              transparent 100%)`,
-            filter: 'blur(4px)',
-            boxShadow: `0 0 15px rgba(255, 255, 255, 0.6)`,
-            opacity: progress > 0 && progress < 100 ? 1 : 0,
-            animation: progress < 100 ? 'scan-line 0.8s ease-in-out infinite' : 'none',
-          }}
-        />
-
-        {/* Layer 5: Energy particles */}
-        {progress > 0 && progress < 100 && (
-          <>
+          >
+            {/* Leading glow pulse */}
             <div
-              className="absolute top-1/2 h-1 bg-gradient-to-r from-cyan-300 via-blue-400 to-transparent rounded-full"
+              className="absolute right-0 top-0 h-full w-24"
               style={{
-                left: `${progress}%`,
-                width: '40px',
-                opacity: Math.sin(Date.now() / 100) * 0.5 + 0.5,
-                boxShadow: '0 0 10px rgba(34, 211, 238, 0.8)',
-                filter: 'blur(1px)',
-                transform: 'translateY(-50%)',
+                background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6))',
+                animation: phase === 'loading' ? 'loader-shimmer 1.4s ease-in-out infinite' : 'none',
               }}
             />
-          </>
-        )}
-
-        {/* Layer 6: Completion explosion */}
-        {progress === 100 && (
-          <>
-            <div className="absolute inset-0 h-full bg-gradient-to-r from-green-400 via-cyan-400 to-blue-500 animate-pulse" />
-            <div
-              className="absolute inset-0 h-full"
-              style={{
-                background: 'linear-gradient(90deg, rgba(34, 211, 238, 0.8), transparent)',
-                animation: 'completion-flash 0.8s ease-out forwards',
-              }}
-            />
-          </>
-        )}
-
-        {/* Futuristic corners */}
-        <div className="absolute top-0 left-0 w-6 h-1.5 pointer-events-none">
-          <div className="absolute top-0 left-0 w-full h-full border-l-2 border-t-2 border-cyan-400/60" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} />
-        </div>
-        <div className="absolute top-0 right-0 w-6 h-1.5 pointer-events-none">
-          <div className="absolute top-0 right-0 w-full h-full border-r-2 border-t-2 border-cyan-400/60" style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 0)' }} />
+          </div>
         </div>
       </div>
 
-      {/* Percentage counter */}
-      <div className="absolute top-4 right-4 flex items-center gap-2 pointer-events-auto select-none">
-        <span className="text-xs sm:text-sm font-mono font-bold">
-          <span
-            className="inline-block min-w-[2rem] text-right bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+      {/* ── Partner ad overlay ── */}
+      <div
+        className="fixed inset-0 z-[9998] flex items-center justify-center pointer-events-none"
+        style={{
+          backgroundColor: adVisible && isShowing ? 'rgba(2,6,23,0.75)' : 'transparent',
+          backdropFilter: adVisible && isShowing ? 'blur(6px)' : 'none',
+          transition: 'background-color 300ms ease, backdrop-filter 300ms ease',
+        }}
+      >
+        {partner && (
+          <div
+            className="pointer-events-auto"
             style={{
-              textShadow: '0 0 10px rgba(34, 211, 238, 0.5)',
+              opacity: adVisible && isShowing ? 1 : 0,
+              transform: adVisible && isShowing ? 'translateY(0) scale(1)' : 'translateY(16px) scale(0.97)',
+              transition: 'opacity 280ms ease, transform 280ms ease',
             }}
           >
-            {Math.min(Math.round(progress), 100)}%
-          </span>
-        </span>
-        <div
-          className="w-1 h-1 rounded-full bg-cyan-400"
-          style={{
-            boxShadow: '0 0 8px rgba(34, 211, 238, 0.8)',
-            animation: progress < 100 ? 'pulse 1s ease-in-out infinite' : 'none',
-          }}
-        />
+            {/* Card */}
+            <div
+              className="relative w-[340px] sm:w-[400px] rounded-2xl overflow-hidden border border-white/10"
+              style={{
+                background: 'linear-gradient(145deg, rgba(15,23,42,0.98) 0%, rgba(30,41,59,0.98) 100%)',
+                boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06)',
+              }}
+            >
+              {/* Accent top border */}
+              <div
+                className="h-[2px] w-full"
+                style={{ background: 'linear-gradient(90deg, #06b6d4, #6366f1, #8b5cf6)' }}
+              />
+
+              <div className="p-6 sm:p-7">
+                {/* Label row */}
+                <div className="flex items-center justify-between mb-5">
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-white/30 select-none">
+                    Reklama partnera
+                  </span>
+                  <div className="flex items-center gap-2">
+                    {/* Progress ring */}
+                    <svg width="18" height="18" className="text-indigo-400 -rotate-90">
+                      <circle cx="9" cy="9" r="7" fill="none" stroke="rgba(99,102,241,0.2)" strokeWidth="2" />
+                      <circle
+                        cx="9" cy="9" r="7" fill="none" stroke="currentColor" strokeWidth="2"
+                        strokeDasharray={`${2 * Math.PI * 7}`}
+                        strokeDashoffset={`${2 * Math.PI * 7 * (1 - progress / 100)}`}
+                        strokeLinecap="round"
+                        style={{ transition: 'stroke-dashoffset 300ms ease' }}
+                      />
+                    </svg>
+                    <span className="text-xs font-mono text-indigo-400/80">{Math.round(progress)}%</span>
+                  </div>
+                </div>
+
+                {/* Partner info */}
+                <div className="flex items-start gap-4 mb-5">
+                  <div
+                    className="w-14 h-14 rounded-xl flex items-center justify-center text-2xl flex-shrink-0 border border-white/8"
+                    style={{ background: 'rgba(255,255,255,0.04)' }}
+                  >
+                    {partner.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <div className="text-white font-bold text-lg leading-tight mb-1">{partner.name}</div>
+                    <div className="text-white/55 text-sm leading-relaxed">{partner.description}</div>
+                    <div className="mt-1.5">
+                      <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/25">
+                        {partner.category}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <a
+                  href={partner.link}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
+                  style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)' }}
+                >
+                  Odwiedź {partner.name}
+                  <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+                </a>
+
+                {/* Footer */}
+                <p className="text-center text-[10px] text-white/20 mt-3 select-none">
+                  VAT Faktura &mdash; Partner Reklamowy
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
 
       <style>{`
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-            opacity: 0;
-          }
-          50% {
-            opacity: 0.4;
-          }
-          100% {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-        }
-
-        @keyframes scan-line {
-          0%, 100% {
-            opacity: 0.3;
-            filter: blur(4px);
-          }
-          50% {
-            opacity: 1;
-            filter: blur(2px);
-          }
-        }
-
-        @keyframes completion-flash {
-          0% {
-            opacity: 1;
-            filter: blur(0px);
-          }
-          100% {
-            opacity: 0;
-            filter: blur(20px);
-          }
-        }
-
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 0.5;
-            transform: scale(1);
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.5);
-          }
+        @keyframes loader-shimmer {
+          0%   { opacity: 0; transform: translateX(-100%); }
+          40%  { opacity: 1; }
+          100% { opacity: 0; transform: translateX(200%); }
         }
       `}</style>
-    </div>
+    </>
   )
 }
