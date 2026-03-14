@@ -260,10 +260,8 @@ Prawidłowy system fakturowania to kluczowy element efektywności małej firmy. 
 
 ## Efektywność i oszczędności czasu
 
-Prawidłowy system zmniejsza czas na fakturowanie z 30 minut do 5 minut per faktura. To oszczędności 50+ godzin rocznie dla małej firmy!`
+Prawidłowy system zmniejsza czas na fakturowanie z 30 minut do 5 minut per faktura. To oszczędności 50+ godzin rocznie dla małej firmy!\`
   },
-]
-
   {
     id: 'pit37-guide',
     title: 'PIT-37 Online 2026 — Jak Wypełnić i Wysłać do Urzędu Skarbowego',
@@ -607,6 +605,7 @@ Wszystkie powyższe ulgi są wbudowane w formularze PIT w VAT Faktura. System:
 - Przenosi ulgi do odpowiednich rubryk deklaracji
 - Informuje jeśli ulga przekracza podatek (zwrot)`,
   },
+]
 
 export function getBlogPost(slug: string): BlogPost | undefined {
   return BLOG_POSTS.find(post => post.slug === slug)
