@@ -112,6 +112,10 @@ export function JsonLd() {
         'name': 'VAT Faktura',
         'url': 'https://www.vatfaktura.pl',
         'logo': 'https://www.vatfaktura.pl/icon.svg',
+        'founder': {
+          '@type': 'Person',
+          '@id': 'https://www.vatfaktura.pl/#founder'
+        },
         'sameAs': [
           'https://www.facebook.com/vatfaktura',
           'https://www.twitter.com/vatfaktura'
@@ -129,6 +133,25 @@ export function JsonLd() {
             'addressCountry': 'PL'
           },
           'availableLanguage': 'Polish'
+        }
+      },
+      {
+        '@type': 'Person',
+        '@id': 'https://www.vatfaktura.pl/#founder',
+        'name': 'Paweł Śliwiński',
+        'jobTitle': 'Założyciel i główny deweloper',
+        'image': 'https://www.vatfaktura.pl/images/pawel-sliwinski.png',
+        'email': 'pawsli2532@gmail.com',
+        'url': 'https://www.vatfaktura.pl/about',
+        'worksFor': {
+          '@type': 'Organization',
+          '@id': 'https://www.vatfaktura.pl/#organization'
+        },
+        'knowsAbout': ['Fakturowanie', 'KSEF', 'PIT', 'Programowanie', 'Podatki w Polsce'],
+        'address': {
+          '@type': 'PostalAddress',
+          'addressLocality': 'Toruń',
+          'addressCountry': 'PL'
         }
       },
       {
