@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/hooks/useUser'
 import { Button } from '@/components/ui/button'
@@ -22,6 +22,7 @@ import {
 export default function Home() {
   const router = useRouter()
   const { user, isLoading } = useUser()
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   useEffect(() => {
     if (!isLoading && user) {
@@ -56,14 +57,23 @@ export default function Home() {
             </div>
             <nav className="hidden sm:flex items-center gap-1 md:gap-2">
               {/* Dropdown menu for main functions */}
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
+              <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+                <DropdownMenuTrigger 
+                  asChild
+                  onMouseEnter={() => setIsDropdownOpen(true)}
+                  onMouseLeave={() => setIsDropdownOpen(false)}
+                >
                   <button className="px-3 py-2 text-sm font-semibold text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 inline-flex items-center gap-1">
                     Funkcje
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent align="start" className="w-48 bg-slate-800 border-white/10">
+                <DropdownMenuContent 
+                  align="start" 
+                  className="w-48 bg-slate-800 border-white/10"
+                  onMouseEnter={() => setIsDropdownOpen(true)}
+                  onMouseLeave={() => setIsDropdownOpen(false)}
+                >
                   <Link href="/zaloz-firme">
                     <DropdownMenuItem className="flex items-center gap-2 text-purple-300 hover:text-purple-100 hover:bg-purple-500/15 cursor-pointer">
                       <span>Załóż firmę</span>

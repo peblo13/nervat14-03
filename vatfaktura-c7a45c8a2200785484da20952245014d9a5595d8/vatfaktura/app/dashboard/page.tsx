@@ -25,6 +25,7 @@ export default function DashboardPage() {
   const [searchTerm, setSearchTerm] = useState('')
   const [filterStatus, setFilterStatus] = useState<'all' | 'draft' | 'sent' | 'paid'>('all')
   const [sortBy, setSortBy] = useState<'date' | 'amount' | 'client'>('date')
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
   useEffect(() => {
     if (!isLoading && !user) {
@@ -90,14 +91,23 @@ export default function DashboardPage() {
 
           <div className="hidden sm:flex items-center gap-1 md:gap-2 ml-2">
             {/* Dropdown menu for functions */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+            <DropdownMenu open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
+              <DropdownMenuTrigger 
+                asChild
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
+              >
                 <button className="px-3 py-2 text-xs sm:text-sm font-semibold text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all inline-flex items-center gap-1">
                   Funkcje
-                  <ChevronDown className="w-4 h-4" />
+                  <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`} />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-48 bg-slate-800 border-white/10">
+              <DropdownMenuContent 
+                align="end" 
+                className="w-48 bg-slate-800 border-white/10"
+                onMouseEnter={() => setIsDropdownOpen(true)}
+                onMouseLeave={() => setIsDropdownOpen(false)}
+              >
                 <Link href="/zaloz-firme">
                   <DropdownMenuItem className="flex items-center gap-2 text-purple-300 hover:text-purple-100 hover:bg-purple-500/15 cursor-pointer">
                     <span>Załóż firmę</span>
