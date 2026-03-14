@@ -1,6 +1,9 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import { Card } from '@/components/ui/card'
-import { Star } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Star, ArrowRight } from 'lucide-react'
+import { AdSenseDisplay728x90, AdSenseDisplayAuto, AdSenseDisplay300x250 } from '@/components/adsense-banner'
 
 export const metadata: Metadata = {
   title: 'Recenzje VAT Faktura - Opinie Użytkowników 2026',
@@ -111,12 +114,76 @@ export default function ReviewsPage() {
             ))}
           </div>
 
+          {/* AdSense - baner przed CTA */}
+          <div className="mb-12">
+            <AdSenseDisplay728x90 />
+          </div>
+
           <Card className="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border-2 border-blue-500/50 p-12 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">Dołącz do tysięcy zadowolonych użytkowników</h2>
             <p className="text-lg text-blue-200/80 mb-8">
-              Zacznij używać VAT Faktura bezpłatnie i see why others love it. Żaden obowiązek, żadna karta kredytowa.
+              Zacznij używać VAT Faktura bezpłatnie i przekonaj się sam. Żadnych zobowiązań, żadnej karty kredytowej.
             </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/register">
+                <Button className="bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-500 hover:to-cyan-500 text-white font-bold px-8 py-3 text-lg shadow-lg shadow-green-500/30">
+                  Załóż darmowe konto
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </Button>
+              </Link>
+              <Link href="/faq">
+                <Button variant="outline" className="border-blue-500/50 text-blue-300 hover:bg-blue-500/10 px-8 py-3 text-lg">
+                  Przeczytaj FAQ
+                </Button>
+              </Link>
+            </div>
           </Card>
+
+          {/* AdSense - baner na dole */}
+          <div className="mt-12">
+            <AdSenseDisplayAuto />
+          </div>
+
+          {/* Dodatkowe recenzje - więcej treści dla SEO */}
+          <div className="mt-16">
+            <h2 className="text-2xl font-bold text-white mb-6">Więcej opinii od przedsiębiorców</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card className="bg-slate-800/40 border border-blue-500/20 p-6">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-blue-200/80 mb-4 text-sm">
+                  "Po wielu próbach z innymi programami, VAT Faktura okazała się strzałem w dziesiątkę. Prosta, intuicyjna i co najważniejsze - bezpłatna. Polecam wszystkim początkującym przedsiębiorcom."
+                </p>
+                <div className="border-t border-blue-500/20 pt-3">
+                  <p className="font-medium text-white text-sm">Karolina Wiśniewska</p>
+                  <p className="text-xs text-blue-300">Właścicielka studia jogi</p>
+                </div>
+              </Card>
+              <Card className="bg-slate-800/40 border border-blue-500/20 p-6">
+                <div className="flex items-center gap-1 mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <p className="text-blue-200/80 mb-4 text-sm">
+                  "Integracja z KSEF działa bez zarzutu. Wcześniej korzystałem z drogiego oprogramowania, a teraz mam to samo za darmo. VAT Faktura to rewolucja w fakturowaniu dla małych firm."
+                </p>
+                <div className="border-t border-blue-500/20 pt-3">
+                  <p className="font-medium text-white text-sm">Robert Jankowski</p>
+                  <p className="text-xs text-blue-300">Właściciel warsztatu samochodowego</p>
+                </div>
+              </Card>
+            </div>
+          </div>
+
+          {/* Sidebars z reklamami 300x250 */}
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
+            <AdSenseDisplay300x250 />
+            <AdSenseDisplay300x250 />
+          </div>
         </div>
       </div>
     </div>

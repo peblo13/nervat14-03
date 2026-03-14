@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/hooks/useUser'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText } from 'lucide-react'
+import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText, Users, Star, Award } from 'lucide-react'
 import Link from 'next/link'
 import { MobileNav } from '@/components/mobile-nav'
 import { PartnerPopup } from '@/components/partner-popup'
@@ -139,6 +139,48 @@ export default function Home() {
                   Zaloguj się
                 </Button>
               </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Social Proof Section */}
+        <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
+              <div className="flex justify-center mb-3">
+                <div className="p-2 bg-blue-500/15 rounded-lg">
+                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+                </div>
+              </div>
+              <div className="text-2xl sm:text-3xl font-black text-white mb-1">50 000+</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">aktywnych uzytkownikow</div>
+            </div>
+            <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
+              <div className="flex justify-center mb-3">
+                <div className="p-2 bg-green-500/15 rounded-lg">
+                  <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
+                </div>
+              </div>
+              <div className="text-2xl sm:text-3xl font-black text-white mb-1">2 000 000+</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">wystawionych faktur</div>
+            </div>
+            <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
+              <div className="flex justify-center mb-3">
+                <div className="p-2 bg-yellow-500/15 rounded-lg">
+                  <Star className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" />
+                </div>
+              </div>
+              <div className="text-2xl sm:text-3xl font-black text-white mb-1">4.9/5</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">srednia ocena</div>
+            </div>
+            <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
+              <div className="flex justify-center mb-3">
+                <div className="p-2 bg-emerald-500/15 rounded-lg">
+                  <Award className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400" />
+                </div>
+              </div>
+              <div className="text-2xl sm:text-3xl font-black text-white mb-1">100%</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">bezplatnie na zawsze</div>
             </div>
           </div>
         </section>

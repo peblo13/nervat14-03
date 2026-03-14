@@ -21,6 +21,8 @@ export default function robots(): MetadataRoute.Robots {
           '/keywords',
           '/link-building',
           '/image-optimization',
+          '/kalkulator-vat',
+          '/kalkulator-pit',
           '/register',
           '/login',
           '/dashboard/pit',

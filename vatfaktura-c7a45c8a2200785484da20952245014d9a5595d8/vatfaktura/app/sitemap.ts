@@ -24,6 +24,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.95,
     },
+    // Calculator tools — high SEO value
+    {
+      url: `${BASE_URL}/kalkulator-vat`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/kalkulator-pit`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     // Content hubs
     {
       url: `${BASE_URL}/blog`,

@@ -1,7 +1,7 @@
 export interface Partner {
   name: string
   description: string
-  icon: string
+  icon: 'CreditCard' | 'Gem' | 'Banknote' | 'CircleDollarSign' | 'BarChart3' | 'Globe' | 'Mail' | 'MessageSquare' | 'Palette' | 'HardDrive' | 'KeyRound' | 'Zap'
   image: string
   color: string
   accentColor: string
@@ -14,7 +14,7 @@ export const PARTNERS: Partner[] = [
   {
     name: 'Wise',
     description: 'Przelewy międzynarodowe tanio i szybko. Bez ukrytych prowizji.',
-    icon: '💳',
+    icon: 'CreditCard',
     image: '/partners/wise.jpg',
     color: 'from-blue-600/20 to-cyan-600/20',
     accentColor: '#06b6d4',
@@ -25,7 +25,7 @@ export const PARTNERS: Partner[] = [
   {
     name: 'Revolut',
     description: 'Konto biznesowe nowej generacji. Wielowalutowe karty i przelewy.',
-    icon: '💎',
+    icon: 'Gem',
     image: '/partners/revolut.jpg',
     color: 'from-indigo-600/20 to-blue-600/20',
     accentColor: '#6366f1',
@@ -35,8 +35,8 @@ export const PARTNERS: Partner[] = [
   },
   {
     name: 'Stripe',
-    description: 'Płatności online dla Twojej firmy. API klasy światowej.',
-    icon: '💰',
+    description: 'Platnosci online dla Twojej firmy. API klasy swiatowej.',
+    icon: 'Banknote',
     image: '/partners/stripe.jpg',
     color: 'from-purple-600/20 to-pink-600/20',
     accentColor: '#8b5cf6',
@@ -46,8 +46,8 @@ export const PARTNERS: Partner[] = [
   },
   {
     name: 'PayPal',
-    description: 'Bezpieczne płatności i przelewy dla biznesu na całym świecie.',
-    icon: '🅿️',
+    description: 'Bezpieczne platnosci i przelewy dla biznesu na calym swiecie.',
+    icon: 'CircleDollarSign',
     image: '/partners/paypal.jpg',
     color: 'from-blue-700/20 to-sky-600/20',
     accentColor: '#0ea5e9',
@@ -57,8 +57,8 @@ export const PARTNERS: Partner[] = [
   },
   {
     name: 'Comarch',
-    description: 'Zaawansowane rozwiązania księgowe i ERP dla polskich firm.',
-    icon: '📊',
+    description: 'Zaawansowane rozwiazania ksiegowe i ERP dla polskich firm.',
+    icon: 'BarChart3',
     image: '/partners/comarch.jpg',
     color: 'from-green-600/20 to-emerald-600/20',
     accentColor: '#10b981',
@@ -69,7 +69,7 @@ export const PARTNERS: Partner[] = [
   {
     name: 'Namecheap',
     description: 'Domeny i hosting w niskich cenach. Certyfikaty SSL gratis.',
-    icon: '🌐',
+    icon: 'Globe',
     image: '/partners/namecheap.jpg',
     color: 'from-orange-600/20 to-red-600/20',
     accentColor: '#f97316',
@@ -79,8 +79,8 @@ export const PARTNERS: Partner[] = [
   },
   {
     name: 'Google Workspace',
-    description: 'Gmail, Dysk, Meet i narzędzia biurowe dla Twojego zespołu.',
-    icon: '📧',
+    description: 'Gmail, Dysk, Meet i narzedzia biurowe dla Twojego zespolu.',
+    icon: 'Mail',
     image: '/partners/google-workspace.jpg',
     color: 'from-red-600/20 to-rose-600/20',
     accentColor: '#ef4444',
@@ -90,8 +90,8 @@ export const PARTNERS: Partner[] = [
   },
   {
     name: 'Slack',
-    description: 'Komunikacja całego zespołu w jednym miejscu. Kanały i integracje.',
-    icon: '💬',
+    description: 'Komunikacja calego zespolu w jednym miejscu. Kanaly i integracje.',
+    icon: 'MessageSquare',
     image: '/partners/slack.jpg',
     color: 'from-pink-600/20 to-rose-600/20',
     accentColor: '#ec4899',
@@ -101,8 +101,8 @@ export const PARTNERS: Partner[] = [
   },
   {
     name: 'Canva',
-    description: 'Twórz profesjonalne materiały graficzne bez znajomości designu.',
-    icon: '🎨',
+    description: 'Tworz profesjonalne materialy graficzne bez znajomosci designu.',
+    icon: 'Palette',
     image: '/partners/canva.jpg',
     color: 'from-indigo-600/20 to-purple-600/20',
     accentColor: '#a78bfa',
@@ -112,8 +112,8 @@ export const PARTNERS: Partner[] = [
   },
   {
     name: 'IDrive',
-    description: 'Bezpieczny backup w chmurze. Chroń dane swojej firmy.',
-    icon: '🔒',
+    description: 'Bezpieczny backup w chmurze. Chron dane swojej firmy.',
+    icon: 'HardDrive',
     image: '/partners/idrive.jpg',
     color: 'from-cyan-600/20 to-teal-600/20',
     accentColor: '#14b8a6',
@@ -123,8 +123,8 @@ export const PARTNERS: Partner[] = [
   },
   {
     name: 'LastPass',
-    description: 'Manager haseł dla zespołu. Jedno hasło do wszystkiego.',
-    icon: '🔐',
+    description: 'Manager hasel dla zespolu. Jedno haslo do wszystkiego.',
+    icon: 'KeyRound',
     image: '/partners/lastpass.jpg',
     color: 'from-red-700/20 to-red-600/20',
     accentColor: '#dc2626',
@@ -134,8 +134,8 @@ export const PARTNERS: Partner[] = [
   },
   {
     name: 'Zapier',
-    description: 'Automatyzuj powtarzalne zadania. Połącz swoje aplikacje bez kodu.',
-    icon: '⚡',
+    description: 'Automatyzuj powtarzalne zadania. Polacz swoje aplikacje bez kodu.',
+    icon: 'Zap',
     image: '/partners/zapier.jpg',
     color: 'from-yellow-600/20 to-orange-600/20',
     accentColor: '#f59e0b',
