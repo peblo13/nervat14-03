@@ -1,5 +1,6 @@
 import { PIT_BLOG_POSTS } from './blog-posts-pit'
 import { EXTRA_BLOG_POSTS } from './blog-posts-extra'
+import { ZUS_BLOG_POSTS } from './blog-posts-zus'
 
 export interface BlogPost {
   id: string
@@ -245,7 +246,7 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 ]
 
-const ALL_POSTS: BlogPost[] = [...BLOG_POSTS, ...PIT_BLOG_POSTS, ...EXTRA_BLOG_POSTS]
+const ALL_POSTS: BlogPost[] = [...BLOG_POSTS, ...PIT_BLOG_POSTS, ...EXTRA_BLOG_POSTS, ...ZUS_BLOG_POSTS]
 
 export function getBlogPost(slug: string): BlogPost | undefined {
   return ALL_POSTS.find(post => post.slug === slug)

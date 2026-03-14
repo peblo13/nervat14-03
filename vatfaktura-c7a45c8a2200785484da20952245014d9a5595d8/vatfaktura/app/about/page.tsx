@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { CheckCircle2, Mail, MapPin, Clock, Users, Shield, Zap, Star } from 'lucide-react'
+import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
 
 export const metadata: Metadata = {
   title: 'O nas — VAT Faktura | Darmowy Program do Fakturowania i Rozliczenia PIT',
@@ -142,8 +144,15 @@ export default function AboutPage() {
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-8">Twórca projektu</h2>
           <div className="bg-slate-800/50 border border-cyan-500/20 rounded-2xl p-8">
             <div className="flex flex-col sm:flex-row gap-6 items-start">
-              <div className="flex-shrink-0 w-20 h-20 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-black text-2xl">
-                PS
+              <div className="flex-shrink-0 w-28 h-28 rounded-xl overflow-hidden border-2 border-cyan-500/30 shadow-lg shadow-cyan-500/10">
+                <Image
+                  src="/images/pawel-sliwinski.png"
+                  alt="Paweł Śliwiński - Założyciel VAT Faktura"
+                  width={112}
+                  height={112}
+                  className="w-full h-full object-cover"
+                  priority
+                />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-white mb-1">Paweł Śliwiński</h3>
@@ -194,6 +203,13 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* AdSense - baner przed CTA */}
+      <section className="py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          <AdSenseDisplay728x90 />
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto text-center bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border border-blue-500/30 rounded-2xl p-10">
@@ -215,6 +231,13 @@ export default function AboutPage() {
               Skontaktuj się z nami
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* AdSense - baner na dole */}
+      <section className="py-8 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          <AdSenseDisplayAuto />
         </div>
       </section>
 

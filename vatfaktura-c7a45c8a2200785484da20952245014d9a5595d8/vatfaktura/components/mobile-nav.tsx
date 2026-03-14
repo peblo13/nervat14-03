@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X, FileText, Receipt, HelpCircle, BookOpen, Users, Tag, LogIn, UserPlus } from 'lucide-react'
+import { Menu, X, FileText, Receipt, HelpCircle, BookOpen, Users, Tag, LogIn, UserPlus, ClipboardList } from 'lucide-react'
 import Link from 'next/link'
 
 type NavGroup = {
@@ -18,6 +18,7 @@ export function MobileNav() {
       items: [
         { href: '/dashboard', label: 'Faktura', icon: <FileText className="w-4 h-4" /> },
         { href: '/dashboard/pit', label: 'Rozlicz PIT', icon: <Receipt className="w-4 h-4" />, accent: 'emerald' },
+        { href: '/formularze-zus', label: 'Formularze ZUS', icon: <ClipboardList className="w-4 h-4" />, accent: 'orange' },
         { href: '/faq', label: 'FAQ', icon: <HelpCircle className="w-4 h-4" /> },
         { href: '/blog', label: 'Blog', icon: <BookOpen className="w-4 h-4" /> },
       ],
@@ -77,13 +78,15 @@ export function MobileNav() {
                         className={`flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-150 group ${
                           item.accent === 'emerald'
                             ? 'text-emerald-300 hover:text-emerald-100 hover:bg-emerald-500/15'
+                            : item.accent === 'orange'
+                            ? 'text-orange-300 hover:text-orange-100 hover:bg-orange-500/15'
                             : item.accent === 'green'
                             ? 'text-green-300 hover:text-green-100 hover:bg-green-500/15'
                             : 'text-blue-200/80 hover:text-white hover:bg-white/8'
                         }`}
                       >
                         <span className={`flex-shrink-0 transition-transform duration-150 group-hover:scale-110 ${
-                          item.accent === 'emerald' ? 'text-emerald-400' : item.accent === 'green' ? 'text-green-400' : 'text-blue-400/70'
+                          item.accent === 'emerald' ? 'text-emerald-400' : item.accent === 'orange' ? 'text-orange-400' : item.accent === 'green' ? 'text-green-400' : 'text-blue-400/70'
                         }`}>
                           {item.icon}
                         </span>

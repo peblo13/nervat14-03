@@ -6,7 +6,23 @@ import { ALL_PARTNERS } from '@/lib/partners'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
-import { ArrowRight, Copy, Check } from 'lucide-react'
+import { ArrowRight, Copy, Check, CreditCard, Gem, Banknote, CircleDollarSign, BarChart3, Globe, Mail, MessageSquare, Palette, HardDrive, KeyRound, Zap } from 'lucide-react'
+import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
+
+const iconMap = {
+  CreditCard: CreditCard,
+  Gem: Gem,
+  Banknote: Banknote,
+  CircleDollarSign: CircleDollarSign,
+  BarChart3: BarChart3,
+  Globe: Globe,
+  Mail: Mail,
+  MessageSquare: MessageSquare,
+  Palette: Palette,
+  HardDrive: HardDrive,
+  KeyRound: KeyRound,
+  Zap: Zap,
+}
 
 export default function PartnersPage() {
   const { user } = useUser()
@@ -138,6 +154,11 @@ export default function PartnersPage() {
           </div>
         )}
 
+        {/* AdSense - baner po nagłówku */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+          <AdSenseDisplay728x90 />
+        </div>
+
         {/* Category Filter */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
           <div className="flex flex-wrap gap-2 sm:gap-3">
@@ -154,7 +175,7 @@ export default function PartnersPage() {
         </div>
 
         {/* Partners Grid */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPartners.map((partner, index) => (
               <a
@@ -167,7 +188,12 @@ export default function PartnersPage() {
                 <div className={`absolute inset-0 bg-gradient-to-br ${partner.color} rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110`}></div>
                 <Card className={`relative h-full bg-slate-800/40 backdrop-blur-xl rounded-2xl p-8 border-2 ${partner.borderColor} transition-all duration-500 group-hover:bg-slate-800/80 group-hover:shadow-2xl group-hover:shadow-blue-500/30 transform group-hover:-translate-y-3 flex flex-col gap-6`}>
                   <div className="flex items-start justify-between">
-                    <div className="text-5xl">{partner.icon}</div>
+                    <div className="p-3 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-xl border border-blue-500/30">
+                      {(() => {
+                        const IconComponent = iconMap[partner.icon as keyof typeof iconMap]
+                        return IconComponent ? <IconComponent className="w-8 h-8 text-cyan-300" /> : null
+                      })()}
+                    </div>
                     <span className="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-semibold rounded-full">
                       {partner.category}
                     </span>
@@ -209,6 +235,11 @@ export default function PartnersPage() {
                 </Card>
               </a>
             ))}
+          </div>
+
+          {/* AdSense - baner na dole */}
+          <div className="mt-12">
+            <AdSenseDisplayAuto />
           </div>
         </div>
       </div>

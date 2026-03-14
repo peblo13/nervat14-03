@@ -4,12 +4,13 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/hooks/useUser'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText } from 'lucide-react'
+import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText, Users, Star, Award, LogIn, Edit3, Download } from 'lucide-react'
 import Link from 'next/link'
 import { MobileNav } from '@/components/mobile-nav'
 import { PartnerPopup } from '@/components/partner-popup'
 import { SupportBanner } from '@/components/support-banner'
-import { AdSenseDisplayAuto, AdSenseDisplay728x90 } from '@/components/adsense-banner'
+import { AdSenseDisplay728x90, AdSenseDisplay300x250, AdSenseDisplayAuto } from '@/components/adsense-banner'
+import { NewsletterSignup } from '@/components/newsletter-signup'
 
 export default function Home() {
   const router = useRouter()
@@ -53,6 +54,9 @@ export default function Home() {
               </Link>
               <Link href="/dashboard/pit" className="px-3 py-2 text-sm font-semibold text-emerald-300 hover:text-emerald-100 hover:bg-emerald-500/15 rounded-lg transition-all duration-200">
                 PIT
+              </Link>
+              <Link href="/formularze-zus" className="px-3 py-2 text-sm font-semibold text-orange-300 hover:text-orange-100 hover:bg-orange-500/15 rounded-lg transition-all duration-200">
+                ZUS
               </Link>
               <Link href="/faq" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
                 FAQ
@@ -143,15 +147,57 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Affiliate Disclosure */}
-        <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-12">
-          <p className="text-sm text-yellow-200/80 text-center">
-            <span className="font-semibold">Ujawnienie:</span> VAT Faktura zawiera linki partnerskie. Jeśli dokonasz zakupu poprzez te linki, możemy otrzymać prowizję bez dodatkowych kosztów dla Ciebie. <a href="/disclaimer" className="text-yellow-300 hover:text-yellow-200 underline">Więcej informacji</a>
-          </p>
-        </div>
+        {/* Social Proof Section */}
+        <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 pb-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
+              <div className="flex justify-center mb-3">
+                <div className="p-2 bg-blue-500/15 rounded-lg">
+                  <Users className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
+                </div>
+              </div>
+              <div className="text-2xl sm:text-3xl font-black text-white mb-1">50 000+</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">aktywnych uzytkownikow</div>
+            </div>
+            <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
+              <div className="flex justify-center mb-3">
+                <div className="p-2 bg-green-500/15 rounded-lg">
+                  <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-green-400" />
+                </div>
+              </div>
+              <div className="text-2xl sm:text-3xl font-black text-white mb-1">2 000 000+</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">wystawionych faktur</div>
+            </div>
+            <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
+              <div className="flex justify-center mb-3">
+                <div className="p-2 bg-yellow-500/15 rounded-lg">
+                  <Star className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400" />
+                </div>
+              </div>
+              <div className="text-2xl sm:text-3xl font-black text-white mb-1">4.9/5</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">srednia ocena</div>
+            </div>
+            <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
+              <div className="flex justify-center mb-3">
+                <div className="p-2 bg-emerald-500/15 rounded-lg">
+                  <Award className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400" />
+                </div>
+              </div>
+              <div className="text-2xl sm:text-3xl font-black text-white mb-1">100%</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">bezplatnie na zawsze</div>
+            </div>
+          </div>
+        </section>
 
-        {/* AdSense Banner - Below Affiliate Disclosure */}
+        {/* Affiliate Disclosure */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
+            <p className="text-sm text-yellow-200/80 text-center">
+              <span className="font-semibold">Ujawnienie:</span> VAT Faktura zawiera linki partnerskie. Jeśli dokonasz zakupu poprzez te linki, możemy otrzymać prowizję bez dodatkowych kosztów dla Ciebie. <a href="/disclaimer" className="text-yellow-300 hover:text-yellow-200 underline">Więcej informacji</a>
+            </p>
+          </div>
+
+          {/* AdSense — Leaderboard pod hero */}
           <AdSenseDisplay728x90 />
         </div>
 
@@ -232,6 +278,96 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* AdSense — Auto responsive po sekcji Features */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <AdSenseDisplayAuto />
+        </div>
+
+        {/* How it works - 3 kroków */}
+        <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
+          <div className="text-center mb-16 sm:mb-20 md:mb-24">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-300 bg-clip-text text-transparent mb-4">
+              Jak to działa?
+            </h2>
+            <p className="text-blue-200/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+              Zaledwie 3 proste kroki, aby zacząć wystawiać faktury za darmo
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 relative">
+            {/* Connecting line - hidden on mobile */}
+            <div className="hidden md:block absolute top-20 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500/0 via-blue-500/50 to-blue-500/0"></div>
+
+            {/* Step 1 */}
+            <div className="relative">
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-6 z-10">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-blue-600 to-cyan-600 flex items-center justify-center border-4 border-slate-900 shadow-2xl shadow-blue-500/50">
+                    <LogIn className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                  <span className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm border-2 border-slate-900">
+                    1
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Załóż konto</h3>
+                <p className="text-blue-200/70 text-sm sm:text-base leading-relaxed">
+                  Załóż bezpłatne konto w ciągu 30 sekund. Nie potrzebujesz karty kredytowej ani jakichkolwiek danych.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="relative">
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-6 z-10">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center border-4 border-slate-900 shadow-2xl shadow-purple-500/50">
+                    <Edit3 className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                  <span className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm border-2 border-slate-900">
+                    2
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Utwórz fakturę</h3>
+                <p className="text-blue-200/70 text-sm sm:text-base leading-relaxed">
+                  Wypełnij dane odbiorcy, towary/usługi i gotowe. System automatycznie obliczy VAT i sumy.
+                </p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative">
+              <div className="flex flex-col items-center text-center">
+                <div className="relative mb-6 z-10">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-emerald-600 to-teal-600 flex items-center justify-center border-4 border-slate-900 shadow-2xl shadow-emerald-500/50">
+                    <Download className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                  </div>
+                  <span className="absolute -top-2 -right-2 w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm border-2 border-slate-900">
+                    3
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Pobierz i wyślij</h3>
+                <p className="text-blue-200/70 text-sm sm:text-base leading-relaxed">
+                  Pobierz fakturę jako PDF lub wyślij bezpośrednio do klienta. Wszystko w kilka kliknięć.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="mt-16 sm:mt-20 text-center">
+            <Link href="/register">
+              <Button className="bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-500 hover:to-cyan-500 text-white font-bold px-8 sm:px-10 py-3 sm:py-4 text-base sm:text-lg shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all">
+                Zacznij za darmo teraz
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* AdSense - baner po How it works */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <AdSenseDisplay728x90 />
+        </div>
 
         {/* kSEF Highlight */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
@@ -360,7 +496,99 @@ export default function Home() {
               </Button>
             </Link>
           </div>
+
+          {/* AdSense — dwa prostokąty 300x250 obok siebie po sekcji PIT */}
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
+            <AdSenseDisplay300x250 />
+            <AdSenseDisplay300x250 />
+          </div>
         </section>
+
+        {/* ZUS Section */}
+        <section id="zus" className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
+          <div className="text-center mb-12 sm:mb-16 space-y-4">
+            <div className="inline-block px-4 sm:px-5 py-2 bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-400/50 rounded-full">
+              <span className="text-xs sm:text-sm font-bold tracking-widest text-orange-300 uppercase">Nowe — Formularze ZUS</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-orange-400 via-red-300 to-orange-300 bg-clip-text text-transparent px-4">
+              Generatory formularzy ZUS online
+            </h2>
+            <p className="text-blue-200/70 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-4">
+              Wypełnij formularze ZUS online, oblicz zasiłki i pobierz gotowe PDF do wysłania przez PUE ZUS — wszystko bezpłatnie.
+            </p>
+          </div>
+
+          {/* ZUS Tools Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-12">
+            {[
+              { name: 'ZUS Z-3', desc: 'Zaświadczenie chorobowe', href: '/generator-zus-z3' },
+              { name: 'ZUS Z-15', desc: 'Zasiłek opiekuńczy', href: '/generator-zus-z15' },
+              { name: 'Zasiłek chorobowy', desc: 'Kalkulator', href: '/kalkulator-zasilek-chorobowy' },
+              { name: 'Zasiłek macierzyński', desc: 'Kalkulator', href: '/kalkulator-zasilek-macierzynski' },
+              { name: 'Składki ZUS', desc: 'Kalkulator', href: '/kalkulator-zus' },
+              { name: 'Kalendarz ZUS', desc: 'Terminy', href: '/kalendarz-zus' },
+            ].map((tool) => (
+              <Link key={tool.name} href={tool.href}>
+                <div className="group bg-gradient-to-br from-orange-600/20 to-red-600/20 border border-orange-500/30 hover:border-orange-400/60 rounded-xl p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer h-full">
+                  <div className="font-bold text-base sm:text-lg text-white group-hover:text-orange-300 transition-colors">{tool.name}</div>
+                  <div className="text-xs sm:text-sm text-blue-200/70 mt-1 leading-snug">{tool.desc}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* ZUS Feature Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mb-10">
+            {[
+              {
+                title: 'Generatory formularzy',
+                desc: 'Wypełnij ZUS Z-3, Z-15 i inne formularze online. Pobierz gotowy PDF do wysłania przez PUE ZUS.',
+                icon: (
+                  <svg className="w-10 h-10 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                ),
+              },
+              {
+                title: 'Kalkulatory zasiłków',
+                desc: 'Oblicz zasiłek chorobowy, macierzyński i opiekuńczy. Sprawdź ile otrzymasz od ZUS.',
+                icon: (
+                  <svg className="w-10 h-10 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                ),
+              },
+              {
+                title: 'Poradnik PUE ZUS',
+                desc: 'Krok po kroku jak logować się do PUE i wysyłać formularze do ZUS online.',
+                icon: (
+                  <svg className="w-10 h-10 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                ),
+              },
+            ].map((feature, idx) => (
+              <div key={idx} className="bg-gradient-to-br from-orange-600/20 to-red-600/20 border border-orange-500/30 hover:border-orange-500/60 rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 group">
+                <div className="mb-4 sm:mb-5">{feature.icon}</div>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 group-hover:text-orange-300 transition-colors">{feature.title}</h3>
+                <p className="text-sm sm:text-base text-blue-200/70 leading-relaxed">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="/formularze-zus">
+              <Button className="min-h-[48px] px-10 py-3 text-base font-bold bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 shadow-xl shadow-orange-500/40 hover:shadow-orange-500/60 transition-all duration-300 transform hover:scale-105">
+                Wszystkie narzędzia ZUS
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* AdSense - baner po sekcji ZUS */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <AdSenseDisplay728x90 />
+        </div>
 
         {/* Keywords Section */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32" id="keywords">
@@ -535,6 +763,11 @@ export default function Home() {
           </div>
         </section>
 
+        {/* AdSense — Leaderboard przed finalnym CTA */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <AdSenseDisplay728x90 />
+        </div>
+
         {/* CTA Final */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32 relative">
           <div className="relative group">
@@ -564,82 +797,25 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="border-t border-white/10 backdrop-blur-sm mt-24 bg-slate-900/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-12 mb-8">
-              {/* About */}
-              <div>
-                <h4 className="text-white font-semibold mb-4">O nas</h4>
-                <p className="text-sm text-blue-200/60 leading-relaxed">
-                  Bezpłatne narzędzie do fakturowania z integracją kSEF. Stworzony dla małych firm i przedsiębiorców.
+        {/* Newsletter Section */}
+        <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-3xl blur-3xl opacity-50"></div>
+            <div className="relative bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-3xl p-8 sm:p-12 md:p-16 backdrop-blur-xl">
+              <div className="max-w-2xl mx-auto text-center">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
+                  Pozostań w kontakcie
+                </h3>
+                <p className="text-blue-200/80 text-sm sm:text-base mb-6 sm:mb-8">
+                  Subskrybuj nasz newsletter i otrzymuj tips do podatkowe, nowości i aktualizacje bezpłatnie
                 </p>
+                <NewsletterSignup />
               </div>
-
-              {/* Product */}
-              <div>
-                <h4 className="text-white font-semibold mb-4">Produkt</h4>
-                <ul className="space-y-2 text-sm">
-                  <li><a href="/#features" className="text-blue-300 hover:text-blue-100 transition">Funkcje</a></li>
-                  <li><a href="/pricing" className="text-blue-300 hover:text-blue-100 transition">Cennik</a></li>
-                  <li><a href="/#partners" className="text-blue-300 hover:text-blue-100 transition">Partnerzy</a></li>
-                  <li><a href="/blog" className="text-blue-300 hover:text-blue-100 transition">Blog</a></li>
-                </ul>
-              </div>
-
-              {/* Resources */}
-              <div>
-                <h4 className="text-white font-semibold mb-4">Zasoby</h4>
-                <ul className="space-y-2 text-sm">
-                  <li><a href="/faq" className="text-blue-300 hover:text-blue-100 transition">FAQ</a></li>
-                  <li><a href="/blog" className="text-blue-300 hover:text-blue-100 transition">Poradniki</a></li>
-                  <li><a href="/reviews" className="text-blue-300 hover:text-blue-100 transition">Recenzje</a></li>
-                  <li><a href="/keywords" className="text-blue-300 hover:text-blue-100 transition">Słowa kluczowe</a></li>
-                  <li><a href="/image-optimization" className="text-blue-300 hover:text-blue-100 transition">Optymalizacja</a></li>
-                </ul>
-              </div>
-
-              {/* Partners */}
-              <div>
-                <h4 className="text-white font-semibold mb-4">Polecane</h4>
-                <ul className="space-y-2 text-sm">
-                  <li><a href="https://wise.com" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-100 transition">Wise - Przelewy</a></li>
-                  <li><a href="https://stripe.com" target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:text-blue-100 transition">Stripe - Płatności</a></li>
-                  <li><a href="/partners" className="text-blue-300 hover:text-blue-100 transition">Wszystkie partnerzy</a></li>
-                </ul>
-              </div>
-
-              {/* Legal */}
-              <div>
-                <h4 className="text-white font-semibold mb-4">SEO & Link Building</h4>
-                <ul className="space-y-2 text-sm">
-                  <li><a href="/link-building" className="text-blue-300 hover:text-blue-100 transition">Artykuły</a></li>
-                  <li><a href="/reviews" className="text-blue-300 hover:text-blue-100 transition">Opinie</a></li>
-                  <li><a href="/porownanie" className="text-blue-300 hover:text-blue-100 transition">Porównanie</a></li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="border-t border-white/10 pt-8 text-center text-sm text-blue-200/60">
-              <p>&copy; 2026 VAT Faktura. Wszystkie prawa zastrzeżone.</p>
-              <div className="flex flex-wrap justify-center gap-4 mt-4 text-xs">
-                <a href="/about" className="text-blue-300 hover:text-blue-100 transition">O nas</a>
-                <span className="text-blue-500/30">•</span>
-                <a href="/privacy" className="text-blue-300 hover:text-blue-100 transition">Polityka Prywatności</a>
-                <span className="text-blue-500/30">•</span>
-                <a href="/terms" className="text-blue-300 hover:text-blue-100 transition">Warunki Użytkowania</a>
-                <span className="text-blue-500/30">•</span>
-                <a href="/disclaimer" className="text-blue-300 hover:text-blue-100 transition">Disclaimer</a>
-                <span className="text-blue-500/30">•</span>
-                <a href="/contact" className="text-blue-300 hover:text-blue-100 transition">Kontakt</a>
-              </div>
-              <p className="text-xs mt-4 text-blue-200/50">
-                Strona zawiera reklamy Google AdSense oraz linki partnerskie, z których możemy otrzymywać prowizję.
-                Nie wpływa to na treść ani bezstronność naszych usług.
-              </p>
             </div>
           </div>
-        </footer>
+        </section>
+
+
       </div>
 
       <style jsx>{`

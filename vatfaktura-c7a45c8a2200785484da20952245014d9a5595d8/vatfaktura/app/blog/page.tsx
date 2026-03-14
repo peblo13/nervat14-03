@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { getAllBlogPosts } from '@/lib/blog-posts'
 import { ArrowRight, Calendar, Clock } from 'lucide-react'
-import { AdSenseDisplayAuto, AdSenseDisplay300x250 } from '@/components/adsense-banner'
+import { AdSenseDisplayAuto, AdSenseDisplay728x90 } from '@/components/adsense-banner'
 
 export const metadata: Metadata = {
   title: 'Blog — Poradniki o Fakturach, KSEF i Rozliczeniu PIT 2026 | VAT Faktura',
@@ -94,13 +94,68 @@ export default function BlogPage() {
             </div>
           </div>
 
+          {/* AdSense — Leaderboard między sekcjami PIT i ZUS */}
+          <div className="mb-14">
+            <AdSenseDisplay728x90 />
+          </div>
+
+          {/* ZUS Articles Section */}
+          <div id="zus" className="mb-14">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1.5 h-8 bg-gradient-to-b from-orange-400 to-red-400 rounded-full flex-shrink-0"></div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">Artykuły o ZUS i Formularach</h2>
+              <span className="ml-2 px-3 py-1 bg-orange-500/20 border border-orange-500/40 rounded-full text-xs font-semibold text-orange-300 uppercase tracking-wider">Nowe</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              {articles.filter(a => a.category === 'ZUS').map((article) => (
+                <Link key={article.id} href={`/blog/${article.slug}`}>
+                  <Card className="bg-orange-900/20 backdrop-blur-sm border border-orange-500/20 p-6 hover:border-orange-500/50 transition-all h-full cursor-pointer group hover:-translate-y-2">
+                    <div className="space-y-4 h-full flex flex-col">
+                      <div>
+                        <span className="inline-block px-3 py-1 bg-orange-500/20 text-orange-300 text-xs font-semibold rounded-full mb-3">
+                          {article.category}
+                        </span>
+                        <h3 className="text-lg font-bold text-white group-hover:text-orange-300 transition-colors leading-tight">
+                          {article.title}
+                        </h3>
+                      </div>
+                      <p className="text-sm text-blue-200/70 flex-grow">{article.excerpt}</p>
+                      <div className="flex items-center justify-between text-xs text-blue-200/60 pt-4 border-t border-orange-500/20">
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" />
+                          {article.readTime}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          {new Date(article.date).toLocaleDateString('pl-PL', { month: 'short', day: 'numeric' })}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1 pt-3">
+                        {article.keywords.slice(0, 2).map((keyword) => (
+                          <span key={keyword} className="text-xs text-orange-400 bg-orange-500/10 px-2 py-1 rounded">
+                            #{keyword}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* AdSense — Leaderboard między sekcjami ZUS i pozostałe */}
+          <div className="mb-14">
+            <AdSenseDisplay728x90 />
+          </div>
+
           {/* All other articles */}
           <div className="flex items-center gap-3 mb-6">
             <div className="w-1.5 h-8 bg-gradient-to-b from-blue-400 to-cyan-400 rounded-full flex-shrink-0"></div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Pozostałe artykuły</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {articles.filter(a => a.category !== 'PIT').map((article) => (
+            {articles.filter(a => a.category !== 'PIT' && a.category !== 'ZUS').map((article) => (
               <Link key={article.id} href={`/blog/${article.slug}`}>
                 <Card className="bg-slate-800/40 backdrop-blur-sm border border-blue-500/20 p-6 hover:border-blue-500/50 transition-all h-full cursor-pointer group hover:-translate-y-2">
                   <div className="space-y-4 h-full flex flex-col">

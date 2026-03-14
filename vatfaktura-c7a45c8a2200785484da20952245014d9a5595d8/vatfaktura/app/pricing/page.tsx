@@ -5,6 +5,7 @@ import { Check } from 'lucide-react'
 import { useUser } from '@/hooks/useUser'
 import { SUBSCRIPTION_PLANS } from '@/lib/stripe'
 import Link from 'next/link'
+import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
 
 export default function PricingPage() {
   const { user } = useUser()
@@ -127,10 +128,15 @@ export default function PricingPage() {
           </div>
         </div>
 
+        {/* AdSense - baner przed CTA */}
+        <div className="mt-12">
+          <AdSenseDisplay728x90 />
+        </div>
+
         {/* Footer CTA */}
         {!user && (
           <div className="text-center mt-12">
-            <p className="text-slate-300 mb-4">Gotów zacząć za darmo?</p>
+            <p className="text-slate-300 mb-4">Gotow zacząć za darmo?</p>
             <Link href="/register">
               <Button className="bg-green-600 hover:bg-green-700 text-white h-12 px-8 text-lg font-semibold">
                 Zarejestruj się za darmo
@@ -138,6 +144,11 @@ export default function PricingPage() {
             </Link>
           </div>
         )}
+
+        {/* AdSense - baner na dole */}
+        <div className="mt-12">
+          <AdSenseDisplayAuto />
+        </div>
       </div>
     </div>
   )

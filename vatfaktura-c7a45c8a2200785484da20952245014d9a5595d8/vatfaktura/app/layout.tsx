@@ -9,6 +9,8 @@ import { CursorTrail } from '@/components/cursor-trail'
 import { FuturisticLoader } from '@/components/futuristic-loader'
 import { JsonLd } from '@/components/json-ld'
 import { PerformanceOptimizations } from '@/components/performance-optimizations'
+import { Footer } from '@/components/footer'
+import { StickyHeaderCTA } from '@/components/sticky-header-cta'
 import './globals.css'
 
 const geist = Geist({ subsets: ["latin"] });
@@ -118,13 +120,17 @@ export default function RootLayout({
         */}
         {/* <meta name="google-site-verification" content="YOUR_TOKEN" /> */}
       </head>
-      <body className="font-sans antialiased bg-background text-foreground">
+      <body className="font-sans antialiased bg-background text-foreground min-h-screen flex flex-col">
         <CursorTrail />
         <FuturisticLoader />
         <AuthProvider>
           <InvoiceProvider>
             <InitDemo />
-            {children}
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+            <StickyHeaderCTA />
             <CookieConsent />
             <Analytics />
           </InvoiceProvider>
