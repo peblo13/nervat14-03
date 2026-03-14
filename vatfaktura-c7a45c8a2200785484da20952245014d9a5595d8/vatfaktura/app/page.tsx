@@ -55,6 +55,9 @@ export default function Home() {
               <Link href="/dashboard/pit" className="px-3 py-2 text-sm font-semibold text-emerald-300 hover:text-emerald-100 hover:bg-emerald-500/15 rounded-lg transition-all duration-200">
                 PIT
               </Link>
+              <Link href="/formularze-zus" className="px-3 py-2 text-sm font-semibold text-orange-300 hover:text-orange-100 hover:bg-orange-500/15 rounded-lg transition-all duration-200">
+                ZUS
+              </Link>
               <Link href="/faq" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
                 FAQ
               </Link>
@@ -500,6 +503,92 @@ export default function Home() {
             <AdSenseDisplay300x250 />
           </div>
         </section>
+
+        {/* ZUS Section */}
+        <section id="zus" className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
+          <div className="text-center mb-12 sm:mb-16 space-y-4">
+            <div className="inline-block px-4 sm:px-5 py-2 bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-400/50 rounded-full">
+              <span className="text-xs sm:text-sm font-bold tracking-widest text-orange-300 uppercase">Nowe — Formularze ZUS</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-orange-400 via-red-300 to-orange-300 bg-clip-text text-transparent px-4">
+              Generatory formularzy ZUS online
+            </h2>
+            <p className="text-blue-200/70 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-4">
+              Wypełnij formularze ZUS online, oblicz zasiłki i pobierz gotowe PDF do wysłania przez PUE ZUS — wszystko bezpłatnie.
+            </p>
+          </div>
+
+          {/* ZUS Tools Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-12">
+            {[
+              { name: 'ZUS Z-3', desc: 'Zaświadczenie chorobowe', href: '/generator-zus-z3' },
+              { name: 'ZUS Z-15', desc: 'Zasiłek opiekuńczy', href: '/generator-zus-z15' },
+              { name: 'Zasiłek chorobowy', desc: 'Kalkulator', href: '/kalkulator-zasilek-chorobowy' },
+              { name: 'Zasiłek macierzyński', desc: 'Kalkulator', href: '/kalkulator-zasilek-macierzynski' },
+              { name: 'Składki ZUS', desc: 'Kalkulator', href: '/kalkulator-zus' },
+              { name: 'Kalendarz ZUS', desc: 'Terminy', href: '/kalendarz-zus' },
+            ].map((tool) => (
+              <Link key={tool.name} href={tool.href}>
+                <div className="group bg-gradient-to-br from-orange-600/20 to-red-600/20 border border-orange-500/30 hover:border-orange-400/60 rounded-xl p-4 sm:p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-pointer h-full">
+                  <div className="font-bold text-base sm:text-lg text-white group-hover:text-orange-300 transition-colors">{tool.name}</div>
+                  <div className="text-xs sm:text-sm text-blue-200/70 mt-1 leading-snug">{tool.desc}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          {/* ZUS Feature Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mb-10">
+            {[
+              {
+                title: 'Generatory formularzy',
+                desc: 'Wypełnij ZUS Z-3, Z-15 i inne formularze online. Pobierz gotowy PDF do wysłania przez PUE ZUS.',
+                icon: (
+                  <svg className="w-10 h-10 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                ),
+              },
+              {
+                title: 'Kalkulatory zasiłków',
+                desc: 'Oblicz zasiłek chorobowy, macierzyński i opiekuńczy. Sprawdź ile otrzymasz od ZUS.',
+                icon: (
+                  <svg className="w-10 h-10 text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                ),
+              },
+              {
+                title: 'Poradnik PUE ZUS',
+                desc: 'Krok po kroku jak logować się do PUE i wysyłać formularze do ZUS online.',
+                icon: (
+                  <svg className="w-10 h-10 text-orange-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                ),
+              },
+            ].map((feature, idx) => (
+              <div key={idx} className="bg-gradient-to-br from-orange-600/20 to-red-600/20 border border-orange-500/30 hover:border-orange-500/60 rounded-2xl p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 group">
+                <div className="mb-4 sm:mb-5">{feature.icon}</div>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 group-hover:text-orange-300 transition-colors">{feature.title}</h3>
+                <p className="text-sm sm:text-base text-blue-200/70 leading-relaxed">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="/formularze-zus">
+              <Button className="min-h-[48px] px-10 py-3 text-base font-bold bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 shadow-xl shadow-orange-500/40 hover:shadow-orange-500/60 transition-all duration-300 transform hover:scale-105">
+                Wszystkie narzędzia ZUS
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* AdSense - baner po sekcji ZUS */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <AdSenseDisplay728x90 />
+        </div>
 
         {/* Keywords Section */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32" id="keywords">
