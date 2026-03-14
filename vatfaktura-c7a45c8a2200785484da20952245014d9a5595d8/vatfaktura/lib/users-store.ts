@@ -1,5 +1,7 @@
 import crypto from 'crypto'
 
+export type AccountType = 'private' | 'business'
+
 export interface UserSubscription {
   plan: 'free' | 'pro' | 'enterprise'
   stripeCustomerId?: string
@@ -13,8 +15,14 @@ export interface User {
   id: string
   email: string
   password: string
+  accountType: AccountType
+  // Business fields
   company: string
   nip: string
+  // Private person fields
+  firstName: string
+  lastName: string
+  pesel?: string
   createdAt: Date
   subscription: UserSubscription
   ksefToken?: string
@@ -25,8 +33,18 @@ export interface User {
 let users: Map<string, any> = (globalThis as any).usersStore || new Map()
 ;(globalThis as any).usersStore = users
 
-// Helper functions
-export function registerUser(email: string, password: string, company: string, nip: string) {
+export function registerUser(
+  email: string,
+  password: string,
+  options: {
+    accountType: AccountType
+    company?: string
+    nip?: string
+    firstName?: string
+    lastName?: string
+    pesel?: string
+  }
+) {
   if (users.has(email)) {
     throw new Error('Ten email jest już zarejestrowany')
   }
@@ -37,20 +55,40 @@ export function registerUser(email: string, password: string, company: string, n
     .digest('hex')
 
   const userId = crypto.randomUUID()
-  users.set(email, {
+
+  const displayName =
+    options.accountType === 'private'
+      ? `${options.firstName || ''} ${options.lastName || ''}`.trim()
+      : options.company || ''
+
+  const user = {
     id: userId,
     email,
     password: hashedPassword,
-    company,
-    nip,
+    accountType: options.accountType,
+    company: displayName,
+    nip: options.nip || '',
+    firstName: options.firstName || '',
+    lastName: options.lastName || '',
+    pesel: options.pesel || '',
     createdAt: new Date(),
     subscription: {
       plan: 'free',
       invoicesUsedThisMonth: 0,
     } as UserSubscription,
-  })
+  }
 
-  return { userId, email, company, nip }
+  users.set(email, user)
+
+  return {
+    userId,
+    email,
+    company: user.company,
+    nip: user.nip,
+    accountType: user.accountType,
+    firstName: user.firstName,
+    lastName: user.lastName,
+  }
 }
 
 export function loginUser(email: string, password: string) {
