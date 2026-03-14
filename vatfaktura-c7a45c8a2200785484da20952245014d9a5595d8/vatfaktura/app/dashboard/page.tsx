@@ -6,7 +6,7 @@ import { useUser } from '@/hooks/useUser'
 import { useInvoices } from '../invoice-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Plus, LogOut, FileText, CreditCard, Search, Filter, X, Calculator, Shield } from 'lucide-react'
+import { Plus, LogOut, FileText, CreditCard, Search, Filter, X, Calculator, Shield, Zap } from 'lucide-react'
 import Link from 'next/link'
 import InvoicesList from '@/components/invoices-list'
 import DashboardStats from '@/components/dashboard-stats'
@@ -120,6 +120,24 @@ export default function DashboardPage() {
           </div>
         )}
 
+        {/* ZUS Banner */}
+        <div className="mt-2 p-4 rounded-xl bg-gradient-to-r from-orange-900/60 to-red-900/60 border border-orange-500/30 flex flex-col sm:flex-row items-start sm:items-center gap-3 justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center flex-shrink-0">
+              <Zap className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="text-white font-semibold text-sm">Zarządzaj rozliczeniami ZUS</p>
+              <p className="text-orange-300/70 text-xs">Generuj formularze, oblicz składki i śledź terminy płatności</p>
+            </div>
+          </div>
+          <Link href="/dashboard/zus" className="flex-shrink-0">
+            <Button className="min-h-[40px] bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 text-xs sm:text-sm shadow-lg shadow-orange-500/30 whitespace-nowrap">
+              Narzędzia ZUS
+            </Button>
+          </Link>
+        </div>
+
         {/* PIT Banner */}
         <div className="mt-2 p-4 rounded-xl bg-gradient-to-r from-blue-900/60 to-cyan-900/60 border border-blue-500/30 flex flex-col sm:flex-row items-start sm:items-center gap-3 justify-between">
           <div className="flex items-center gap-3">
@@ -139,7 +157,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="mt-4 sm:mt-6 grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
+        <div className="mt-4 sm:mt-6 grid grid-cols-2 sm:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
           <Link href="/dashboard/create-invoice" className="group">
             <Button className="w-full min-h-[44px] text-xs sm:text-sm font-medium bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 shadow-lg shadow-blue-500/50 group-hover:shadow-blue-500/75 transition-all">
               <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
@@ -156,6 +174,13 @@ export default function DashboardPage() {
               </Button>
             </Link>
           )}
+          <Link href="/dashboard/zus" className="group">
+            <Button variant="outline" className="w-full min-h-[44px] text-xs sm:text-sm font-medium border-orange-500/30 hover:bg-orange-500/10 text-orange-300 group-hover:border-orange-500/50 transition-all">
+              <Zap className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">ZUS</span>
+              <span className="sm:hidden">ZUS</span>
+            </Button>
+          </Link>
           <Link href="/dashboard/pit" className="group">
             <Button variant="outline" className="w-full min-h-[44px] text-xs sm:text-sm font-medium border-cyan-500/30 hover:bg-cyan-500/10 text-cyan-300 group-hover:border-cyan-500/50 transition-all">
               <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
@@ -166,7 +191,8 @@ export default function DashboardPage() {
           <Link href="/dashboard/billing" className="group">
             <Button variant="outline" className="w-full min-h-[44px] text-xs sm:text-sm font-medium border-blue-500/30 hover:bg-blue-500/10 text-blue-300 group-hover:border-blue-500/50 transition-all">
               <CreditCard className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-              <span>Plan</span>
+              <span className="hidden sm:inline">Plan</span>
+              <span className="sm:hidden">Pl</span>
             </Button>
           </Link>
           <Link href="/dashboard/settings" className="group">
