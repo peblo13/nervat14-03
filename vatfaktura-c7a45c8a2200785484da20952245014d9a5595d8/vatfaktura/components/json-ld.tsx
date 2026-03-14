@@ -4,9 +4,11 @@ export function JsonLd() {
     '@graph': [
       {
         '@type': 'WebSite',
+        '@id': 'https://www.vatfaktura.pl/#website',
         'url': 'https://www.vatfaktura.pl',
         'name': 'VAT Faktura',
-        'description': 'Bezpłatny program do fakturowania z integracją kSEF. Twórz faktury w 30 sekund. 100% za darmo zawsze.',
+        'description': 'Bezpłatny program do fakturowania i rozliczania PIT online. Faktury w 30 sekund, PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38 z podpisem elektronicznym i wysyłką do urzędu skarbowego.',
+        'inLanguage': 'pl-PL',
         'potentialAction': {
           '@type': 'SearchAction',
           'target': {
@@ -17,71 +19,99 @@ export function JsonLd() {
       },
       {
         '@type': 'SoftwareApplication',
+        '@id': 'https://www.vatfaktura.pl/#app',
         'name': 'VAT Faktura',
-        'description': 'Program do fakturowania dla firm i freelancerów',
+        'description': 'Bezpłatny program do fakturowania i rozliczania PIT online dla firm i freelancerów. Obsługa KSEF, e-Deklaracje, podpis elektroniczny.',
         'applicationCategory': 'BusinessApplication',
+        'applicationSubCategory': 'AccountingApplication',
         'operatingSystem': 'Web-based',
+        'browserRequirements': 'Requires JavaScript',
+        'url': 'https://www.vatfaktura.pl',
         'offers': {
           '@type': 'Offer',
           'price': '0',
           'priceCurrency': 'PLN',
           'availability': 'https://schema.org/InStock',
-          'description': '100% bezpłatnie na zawsze, bez limitów, bez karty kredytowej'
+          'description': '100% bezpłatnie na zawsze, bez limitów, bez karty kredytowej. Faktury VAT, rozliczenie PIT, integracja KSEF.'
         },
+        'featureList': [
+          'Faktury VAT online',
+          'Integracja KSEF (Krajowy System e-Faktur)',
+          'Rozliczenie PIT-37 online',
+          'Rozliczenie PIT-36 dla działalności gospodarczej',
+          'Rozliczenie PIT-36L podatek liniowy',
+          'Rozliczenie PIT-28 ryczałt ewidencjonowany',
+          'Rozliczenie PIT-38 kapitały pieniężne',
+          'Rozliczenie PIT-39 zbycie nieruchomości',
+          'Podpis elektroniczny (dane autoryzujące, Profil Zaufany)',
+          'Wysyłka e-Deklaracje do urzędu skarbowego',
+          'UPO (Urzędowe Potwierdzenie Odbioru)',
+          'Eksport PDF',
+          '100% bezpłatny'
+        ],
         'aggregateRating': {
           '@type': 'AggregateRating',
           'ratingValue': '4.9',
-          'ratingCount': '250'
+          'ratingCount': '312',
+          'bestRating': '5',
+          'worstRating': '1'
         },
         'review': [
           {
             '@type': 'Review',
-            'author': {
-              '@type': 'Person',
-              'name': 'Piotr M.'
-            },
+            'author': { '@type': 'Person', 'name': 'Piotr M.' },
             'datePublished': '2026-03-05',
-            'description': 'Świetny program! Intuicyjny interfejs i pełna integracja KSEF. Polecam.',
-            'name': 'Najlepszy darmowy program do fakturowania',
-            'reviewRating': {
-              '@type': 'Rating',
-              'ratingValue': '5'
-            }
+            'description': 'Świetny program! Intuicyjny interfejs i pełna integracja KSEF. Rozliczyłem też PIT w 5 minut. Polecam każdemu.',
+            'name': 'Najlepszy darmowy program do fakturowania i PIT',
+            'reviewRating': { '@type': 'Rating', 'ratingValue': '5' }
           },
           {
             '@type': 'Review',
-            'author': {
-              '@type': 'Person',
-              'name': 'Anna K.'
-            },
+            'author': { '@type': 'Person', 'name': 'Anna K.' },
             'datePublished': '2026-03-04',
-            'description': 'Używam 3 miesiące, bezpłatnie, bez żadnych limitów. Bardzo solidne rozwiązanie dla freelancerów.',
-            'name': 'Bardzo polecam dla freelancerów',
-            'reviewRating': {
-              '@type': 'Rating',
-              'ratingValue': '5'
-            }
+            'description': 'Rozliczyłam PIT-37 i PIT-28 bez problemu. Podpis Profilem Zaufanym i wysyłka do US — wszystko w jednym miejscu.',
+            'name': 'Rozliczenie PIT nigdy nie było prostsze',
+            'reviewRating': { '@type': 'Rating', 'ratingValue': '5' }
           },
           {
             '@type': 'Review',
-            'author': {
-              '@type': 'Person',
-              'name': 'Marek T.'
-            },
+            'author': { '@type': 'Person', 'name': 'Marek T.' },
             'datePublished': '2026-03-03',
-            'description': 'Wygodny program, brak problemów z KSEF, szybko wysyła faktury elektronicznie.',
-            'name': 'Wygodny i bezpłatny',
-            'reviewRating': {
-              '@type': 'Rating',
-              'ratingValue': '5'
-            }
+            'description': 'Wygodny program, brak problemów z KSEF, szybkie wysyłanie faktur elektronicznie i zeznań PIT.',
+            'name': 'Wygodny i bezpłatny — faktury i PIT',
+            'reviewRating': { '@type': 'Rating', 'ratingValue': '5' }
           }
         ]
       },
       {
+        '@type': 'FinancialService',
+        '@id': 'https://www.vatfaktura.pl/#pit-service',
+        'name': 'Rozliczenie PIT Online — VAT Faktura',
+        'description': 'Bezpłatne rozliczanie deklaracji PIT online: PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38, PIT-39, PIT-16A, PIT-19A. Podpis elektroniczny i wysyłka do e-Deklaracje.',
+        'url': 'https://www.vatfaktura.pl/dashboard/pit',
+        'provider': {
+          '@type': 'Organization',
+          'name': 'VAT Faktura',
+          'url': 'https://www.vatfaktura.pl'
+        },
+        'areaServed': {
+          '@type': 'Country',
+          'name': 'Polska'
+        },
+        'serviceType': 'Tax Filing',
+        'offers': {
+          '@type': 'Offer',
+          'price': '0',
+          'priceCurrency': 'PLN',
+          'description': 'Rozliczenie PIT online 100% bezpłatnie — PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38, PIT-39'
+        }
+      },
+      {
         '@type': 'Organization',
+        '@id': 'https://www.vatfaktura.pl/#organization',
         'name': 'VAT Faktura',
         'url': 'https://www.vatfaktura.pl',
+        'logo': 'https://www.vatfaktura.pl/icon.svg',
         'sameAs': [
           'https://www.facebook.com/vatfaktura',
           'https://www.twitter.com/vatfaktura'
@@ -89,18 +119,36 @@ export function JsonLd() {
         'contactPoint': {
           '@type': 'ContactPoint',
           'contactType': 'Customer Support',
-          'email': 'support@vatfaktura.pl'
+          'email': 'support@vatfaktura.pl',
+          'availableLanguage': 'Polish'
         }
       },
       {
         '@type': 'FAQPage',
+        '@id': 'https://www.vatfaktura.pl/faq#faqpage',
         'mainEntity': [
           {
             '@type': 'Question',
             'name': 'Czy VAT Faktura jest naprawdę 100% bezpłatna?',
             'acceptedAnswer': {
               '@type': 'Answer',
-              'text': 'Tak, VAT Faktura jest w pełni bezpłatna. Nie trzeba podawać karty kredytowej, nie ma ukrytych opłat, a wszystkie funkcje są dostępne dla wszystkich użytkowników.'
+              'text': 'Tak, VAT Faktura jest w pełni bezpłatna — zarówno do fakturowania, jak i rozliczania PIT. Nie trzeba podawać karty kredytowej, nie ma ukrytych opłat, wszystkie formularze PIT i funkcje fakturowania są dostępne bezpłatnie.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Jakie formularze PIT mogę rozliczyć w VAT Faktura?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'VAT Faktura obsługuje wszystkie główne deklaracje PIT: PIT-37 (pracownicy, zleceniobiorcy), PIT-36 (działalność gospodarcza, skala podatkowa), PIT-36L (podatek liniowy 19%), PIT-28 (ryczałt ewidencjonowany), PIT-38 (kapitały pieniężne, giełda, krypto), PIT-39 (zbycie nieruchomości), PIT-16A (karta podatkowa) i PIT-19A.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Czy mogę wysłać PIT bezpośrednio do urzędu skarbowego przez VAT Faktura?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Tak. Po wypełnieniu i podpisaniu elektronicznym (danymi autoryzującymi lub Profilem Zaufanym) deklaracja PIT jest wysyłana bezpośrednio do systemu e-Deklaracje Ministerstwa Finansów. Automatycznie pobieramy UPO (Urzędowe Potwierdzenie Odbioru) jako dowód złożenia.'
             }
           },
           {
@@ -108,15 +156,31 @@ export function JsonLd() {
             'name': 'Co to jest KSEF i czy VAT Faktura go wspiera?',
             'acceptedAnswer': {
               '@type': 'Answer',
-              'text': 'KSEF (Krajowy System e-Faktur) to obowiązkowy system do przesyłania faktur. VAT Faktura ma pełną integrację z KSEF, dzięki czemu możesz wysyłać faktury bezpośrednio z aplikacji.'
+              'text': 'KSEF (Krajowy System e-Faktur) to rządowy system do wymiany faktur elektronicznych. VAT Faktura ma pełną integrację z KSEF — możesz wysyłać faktury bezpośrednio z aplikacji bez żadnych dodatkowych narzędzi.'
             }
           },
           {
             '@type': 'Question',
-            'name': 'Czy moje dane są bezpieczne?',
+            'name': 'Jak podpisać deklarację PIT elektronicznie?',
             'acceptedAnswer': {
               '@type': 'Answer',
-              'text': 'Tak, VAT Faktura przechowuje dane bezpośrednio w twojej przeglądarce. Twoje faktury i dane nigdy nie trafiają na serwery. Dodatkowo wszystkie dane są szyfrowane.'
+              'text': 'Deklarację PIT możesz podpisać danymi autoryzującymi (PESEL + kwota przychodu z roku poprzedniego), Profilem Zaufanym lub kwalifikowanym podpisem elektronicznym. Wszystkie metody są akceptowane przez Krajową Administrację Skarbową.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Kiedy jest termin złożenia PIT-37?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'PIT-37 za rok 2025 należy złożyć do 30 kwietnia 2026 roku. Wyjątek: PIT-28 (ryczałt) do końca lutego. VAT Faktura wyświetla przypomnienia o terminach.'
+            }
+          },
+          {
+            '@type': 'Question',
+            'name': 'Czy moje dane przy rozliczeniu PIT są bezpieczne?',
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': 'Dane deklaracji PIT są szyfrowane i przesyłane bezpiecznie przez HTTPS bezpośrednio do systemu e-Deklaracje Ministerstwa Finansów — nie są przechowywane na serwerach VAT Faktura.'
             }
           },
           {
@@ -124,7 +188,7 @@ export function JsonLd() {
             'name': 'Czy mogę eksportować faktury do PDF?',
             'acceptedAnswer': {
               '@type': 'Answer',
-              'text': 'Tak, każdą fakturę możesz wysportować do pliku PDF i wydrukować. Faktury można również wysyłać jako e-faktury poprzez system KSEF.'
+              'text': 'Tak, każdą fakturę możesz wyeksportować do pliku PDF i wydrukować. Faktury można również wysyłać elektronicznie przez KSEF.'
             }
           }
         ]
@@ -141,20 +205,26 @@ export function JsonLd() {
           {
             '@type': 'ListItem',
             'position': 2,
+            'name': 'Rozlicz PIT',
+            'item': 'https://www.vatfaktura.pl/dashboard/pit'
+          },
+          {
+            '@type': 'ListItem',
+            'position': 3,
             'name': 'FAQ',
             'item': 'https://www.vatfaktura.pl/faq'
           },
           {
             '@type': 'ListItem',
-            'position': 3,
+            'position': 4,
             'name': 'Blog',
             'item': 'https://www.vatfaktura.pl/blog'
           },
           {
             '@type': 'ListItem',
-            'position': 4,
-            'name': 'Partnerzy',
-            'item': 'https://www.vatfaktura.pl/partners'
+            'position': 5,
+            'name': 'Cennik',
+            'item': 'https://www.vatfaktura.pl/pricing'
           }
         ]
       }

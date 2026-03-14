@@ -7,9 +7,19 @@ import { ArrowRight, Calendar, Clock } from 'lucide-react'
 import { AdSenseDisplayAuto, AdSenseDisplay300x250 } from '@/components/adsense-banner'
 
 export const metadata: Metadata = {
-  title: 'Blog - VAT Faktura | Poradniki Fakturowania, KSEF, PIT, Podatki 2026',
-  description: 'Poradniki, artykuły i wskazówki o fakturowaniu, KSEF, PIT-37, PIT-36, PIT-28, podpisie elektronicznym i wysyłce do urzędu skarbowego. Wszystko o e-fakturach i rozliczeniach podatkowych.',
-  keywords: 'blog fakturowanie, KSEF poradnik, PIT-37, PIT-36, PIT-28, rozliczenie PIT, podatki dla firm, e-faktury, podpis elektroniczny, urząd skarbowy',
+  title: 'Blog — Poradniki o Fakturach, KSEF i Rozliczeniu PIT 2026 | VAT Faktura',
+  description: 'Praktyczne poradniki o fakturowaniu, KSEF, PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38. Jak wypełnić i wysłać PIT online. Podpis elektroniczny, e-Deklaracje, ulgi podatkowe 2026.',
+  keywords: 'blog PIT, PIT-37 jak wypełnić, PIT-36 działalność gospodarcza, PIT-28 ryczałt, rozliczenie PIT 2026, KSEF poradnik, faktura VAT jak wystawić, podpis elektroniczny PIT, e-Deklaracje krok po kroku, ulgi podatkowe 2026',
+  alternates: {
+    canonical: 'https://www.vatfaktura.pl/blog',
+  },
+  openGraph: {
+    title: 'Blog — Poradniki o Fakturach, KSEF i Rozliczeniu PIT 2026 | VAT Faktura',
+    description: 'Praktyczne poradniki: PIT-37, PIT-36, PIT-28, PIT-38, KSEF, fakturowanie. Jak wypełnić PIT online i wysłać do urzędu skarbowego.',
+    url: 'https://www.vatfaktura.pl/blog',
+    type: 'website',
+    locale: 'pl_PL',
+  },
 }
 
 export default function BlogPage() {

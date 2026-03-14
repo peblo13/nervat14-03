@@ -15,10 +15,10 @@ const geist = Geist({ subsets: ["latin"] });
 const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'VAT Faktura - Program do Fakturowania 100% Za Darmo | KSEF | Faktury Online',
-  description: 'Najlepszy bezpłatny program do fakturowania z integracją kSEF. Twórz faktury w 30 sekund. 100% za darmo zawsze. Nie wymaga karty kredytowej. Dla freelancerów i firm.',
+  title: 'VAT Faktura - Faktury i Rozliczenie PIT Online 100% Za Darmo | KSEF',
+  description: 'Bezpłatny program do fakturowania i rozliczania PIT online. Faktury w 30 sekund, PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38 z podpisem elektronicznym i wysyłką do urzędu skarbowego. KSEF. 100% za darmo.',
   generator: 'v0.app',
-  keywords: 'program do fakturowania, faktury za darmo, fakturowanie online, KSEF, generator faktur, faktury VAT, program faktura, aplikacja do faktur, fakturowanie dla firm, e-faktura, kSEF integracja, szybkie faktury, najlepszy program do fakturowania, darmowe fakturowanie',
+  keywords: 'program do fakturowania, faktury za darmo, fakturowanie online, KSEF, generator faktur, faktury VAT, rozliczenie PIT, PIT-37 online, PIT-36 online, PIT-28 ryczałt, PIT-38 giełda, PIT-36L podatek liniowy, rozlicz PIT za darmo, e-deklaracje, urząd skarbowy online, podpis elektroniczny PIT, e-faktura, kSEF integracja, darmowe fakturowanie',
   metadataBase: new URL('https://www.vatfaktura.pl'),
   robots: {
     index: true,
@@ -48,24 +48,25 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
   openGraph: {
-    title: 'VAT Faktura - Program do Fakturowania 100% Za Darmo',
-    description: 'Bezpłatny program do fakturowania z kSEF. Faktury w 30 sekund. 100% darmowy zawsze. Integracja z Krajowym Systemem e-Faktur.',
+    title: 'VAT Faktura - Faktury i Rozliczenie PIT Online Za Darmo | KSEF',
+    description: 'Bezpłatny program do fakturowania i rozliczania PIT. Faktury w 30 sekund. PIT-37, PIT-36, PIT-28, PIT-38 z e-podpisem i wysyłką do US. KSEF. 100% bezpłatnie.',
     url: 'https://www.vatfaktura.pl',
     type: 'website',
     locale: 'pl_PL',
+    siteName: 'VAT Faktura',
     images: [
       {
         url: 'https://www.vatfaktura.pl/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'VAT Faktura - Program do Fakturowania',
+        alt: 'VAT Faktura - Faktury i Rozliczenie PIT Online Za Darmo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VAT Faktura - Fakturowanie 100% Za Darmo',
-    description: 'Program do fakturowania z integracją kSEF. Faktury w 30 sekund. Bez opłat.',
+    title: 'VAT Faktura - Faktury i PIT Za Darmo',
+    description: 'Faktury online + rozliczenie PIT-37, PIT-36, PIT-28, PIT-38 z e-podpisem. KSEF. 100% bezpłatnie.',
     creator: '@vatfaktura',
   },
   verification: {
