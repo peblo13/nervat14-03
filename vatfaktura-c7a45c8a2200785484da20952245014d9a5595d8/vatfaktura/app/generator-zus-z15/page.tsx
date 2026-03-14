@@ -1,48 +1,74 @@
-'use client'
-
 import Link from 'next/link'
 import { Metadata } from 'next'
-import { ArrowLeft, AlertCircle } from 'lucide-react'
-import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
+import { HowToSchema } from '@/components/how-to-schema'
+import { BreadcrumbSchema } from '@/components/breadcrumb-schema'
 
 export const metadata: Metadata = {
-  title: 'Generator ZUS Z-15 - Zasiłek Opiekuńczy Online',
-  description: 'Bezpłatny generator formularza ZUS Z-15A/Z-15B. Wniosek o zasiłek opiekuńczy dla opieki nad dzieckiem. Wypełnij online, pobierz PDF.',
-  keywords: 'ZUS Z-15, zasiłek opiekuńczy, wniosek opiekuńczy, opieka nad dzieckiem',
+  title: 'Generator ZUS Z-15 - Zasiłek Opiekuńczy Z-15A/Z-15B Online',
+  description: 'Bezpłatny generator formularza ZUS Z-15A/Z-15B dla zasiłku opiekuńczego. Wniosek o zasiłek opiekuńczy do opieki nad dzieckiem, rodzicem, osobą bliską. Wypełnij online, pobierz PDF.',
+  keywords: 'ZUS Z-15, zasiłek opiekuńczy, Z-15A, Z-15B, wniosek opiekuńczy, opieka nad dzieckiem, zasiłek opiekuńczy, generator',
   openGraph: {
     title: 'Generator ZUS Z-15 - Wniosek o Zasiłek Opiekuńczy',
-    description: 'Bezpłatny generator formularza zasiłku opiekuńczego ZUS',
+    description: 'Wygeneruj wniosek o zasiłek opiekuńczy ZUS Z-15A/Z-15B w 5 minut bez rejestracji',
     type: 'website',
     url: 'https://www.vatfaktura.pl/generator-zus-z15',
+    images: [{ url: 'https://www.vatfaktura.pl/og-image.png' }],
   },
 }
+
+const howToSteps = [
+  {
+    name: 'Wybierz typ zasiłku',
+    description: 'Kliknij na Z-15A (dziecko) lub Z-15B (inna osoba). Wybierz rodzaj zasiłku opiekuńczego.',
+  },
+  {
+    name: 'Wpisz dane osobowe',
+    description: 'Dodaj PESEL, imię, nazwisko, datę urodzenia i dane kontaktowe.',
+  },
+  {
+    name: 'Wpisz dane osoby, nad którą będzie opieka',
+    description: 'PESEL, imię, nazwisko i datę urodzenia osoby wymagającej opieki.',
+  },
+  {
+    name: 'Dodaj okresy opiekuńczego',
+    description: 'Podaj daty początkowe i końcowe, gdy sprawować będziesz opiekę.',
+  },
+  {
+    name: 'Pobierz PDF',
+    description: 'Kliknij przycisk pobrania, aby wygenerować formularz w pliku PDF.',
+  },
+  {
+    name: 'Wyślij przez PUE ZUS',
+    description: 'Zaloguj się na pue.zus.pl i wyślij formularz w wyznaczonym terminie.',
+  }
+]
+
+const breadcrumbs = [
+  { name: 'Strona główna', url: 'https://www.vatfaktura.pl' },
+  { name: 'Formularze ZUS', url: 'https://www.vatfaktura.pl/formularze-zus' },
+  { name: 'Generator Z-15', url: 'https://www.vatfaktura.pl/generator-zus-z15' }
+]
 
 export default function GeneratorZUSZ15Page() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-blue-900 pt-20 pb-20">
+      <HowToSchema
+        title="Jak wypełnić wniosek o zasiłek opiekuńczy ZUS Z-15"
+        description="Instrukcja krok po kroku do wygenerowania formularza zasiłku opiekuńczego ZUS Z-15A/Z-15B"
+        image="https://www.vatfaktura.pl/og-image.png"
+        author="VAT Faktura"
+        datePublished="2024-01-01"
+        steps={howToSteps}
+      />
+      <BreadcrumbSchema items={breadcrumbs} />
       <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Header */}
-        <div className="flex items-center gap-4 mb-8">
-          <Link href="/formularze-zus" className="inline-flex items-center gap-2 text-blue-300 hover:text-blue-100 transition">
-            <ArrowLeft className="w-5 h-5" />
-            Wróć do formularzy
-          </Link>
-        </div>
-
         <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-300 bg-clip-text text-transparent mb-4">
             Generator zasiłku opiekuńczego - ZUS Z-15
           </h1>
           <p className="text-blue-200/70 text-sm sm:text-base">
             Wniosek o zasiłek opiekuńczy (Z-15A/Z-15B) do wysyłki przez PUE ZUS
-          </p>
-        </div>
-
-        {/* Info Box */}
-        <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4 sm:p-6 mb-12 flex gap-4">
-          <AlertCircle className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-1" />
-          <p className="text-yellow-200/80 text-sm">
-            Ten narzędzie do wygenerowania wniosku o zasiłek opiekuńczy jest w opracowaniu. Obecnie możesz pobrać formularz bezpośrednio z oficjalnej strony ZUS.
           </p>
         </div>
 
@@ -102,13 +128,8 @@ export default function GeneratorZUSZ15Page() {
           </div>
         </div>
 
-        {/* AdSense */}
-        <div className="mb-12">
-          <AdSenseDisplay728x90 />
-        </div>
-
         {/* Next Steps */}
-        <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/20 rounded-xl p-8 mb-12">
+        <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/20 rounded-xl p-8">
           <h3 className="text-2xl font-bold text-white mb-6">Co dalej?</h3>
           <div className="space-y-3">
             <Link href="/poradnik-pue-zus" className="block p-4 bg-slate-800/50 border border-purple-500/20 hover:border-purple-500/50 rounded-lg transition">
@@ -120,11 +141,6 @@ export default function GeneratorZUSZ15Page() {
               <p className="text-sm text-blue-200/70">Inne kalkulatory i generatory ZUS</p>
             </Link>
           </div>
-        </div>
-
-        {/* AdSense */}
-        <div>
-          <AdSenseDisplayAuto />
         </div>
       </div>
     </div>
