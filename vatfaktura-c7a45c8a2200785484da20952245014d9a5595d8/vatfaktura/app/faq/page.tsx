@@ -6,6 +6,41 @@ import { Button } from '@/components/ui/button'
 import { ChevronDown, FileText, Receipt, HelpCircle } from 'lucide-react'
 import { AdSenseDisplayAuto } from '@/components/adsense-banner'
 
+const zusFaqs = [
+  {
+    question: 'Co to jest formularz ZUS Z-3?',
+    answer: 'Formularz ZUS Z-3 to zaświadczenie o niezdolności do pracy wydawane przez lekarza. Jest wymagane do złożenia wniosku o zasiłek chorobowy w ZUS. Mamy darmowy generator Z-3 w naszym serwisie.'
+  },
+  {
+    question: 'Ile wynosi zasiłek chorobowy w 2025 roku?',
+    answer: 'Zasiłek chorobowy wynosi 80% średniej pensji przez pierwsze 33 dni absencji, a 100% od 34 dnia. Minimalna wysokość to ok. 50 PLN dziennie, maksymalna ok. 200 PLN dziennie. Użyj naszego kalkulatora zasiłku chorobowego.'
+  },
+  {
+    question: 'Jaki jest termin na złożenie Z-3 do ZUS?',
+    answer: 'Formularz Z-3 należy złożyć w ciągu 7 dni od zakończenia choroby. Po tym terminie ZUS może nie honorować zasiłku. Przez PUE ZUS można wysłać elektronicznie — pokaż mu nasz poradnik PUE.'
+  },
+  {
+    question: 'Jak się zalogować do PUE ZUS i wysłać formularz?',
+    answer: 'Potrzebujesz Profilu Zaufanego lub e-Dowodu. Zaloguj się na portal ZUS, przejdź do sekcji formularzy, załaduj PDF i wyślij. Mamy szczegółowy poradnik krok po kroku jak wysyłać do ZUS.'
+  },
+  {
+    question: 'Ile wynosi zasiłek macierzyński?',
+    answer: 'Zasiłek macierzyński wynosi 100% średniej pensji i przysługuje przez 20 tygodni (28 dla matki). Zasiłek porodu to ryczałt 1000 PLN. Użyj naszego kalkulatora zasiłku macierzyńskiego.'
+  },
+  {
+    question: 'Jak się zarejestrować w ZUS jako przedsiębiorca?',
+    answer: 'Potrzebujesz zaświadczenia z CEIDG. Następnie możesz złożyć wniosek przez Profil Zaufany lub osobiście w ZUS. Składki wynoszą ok. 30% przychodu. Mamy szczegółowy poradnik rejestracji w ZUS.'
+  },
+  {
+    question: 'Czy są ulgi na start w ZUS?',
+    answer: 'Tak, "ulga na start" zwalnia nowych przedsiębiorców z niektórych składek przez 24 miesiące. Dodatkowo jest program "Mały ZUS Plus" ze składkami proporcjonalnymi do przychodu. Obliczymy to dla Ciebie naszym kalkulatorem ZUS.'
+  },
+  {
+    question: 'Gdzie znaleźć generator formularzy ZUS?',
+    answer: 'Mamy kompletny hub z generatorami formularzy ZUS. Tam znajdziesz generatory Z-3, Z-3a, Z-3b, Z-15, kalkulatory zasiłków i poradnik PUE ZUS. Wszystko darmowe i gotowe do druku.'
+  },
+]
+
 const pitFaqs = [
   {
     question: 'Jakie formularze PIT mogę rozliczyć w VAT Faktura?',
@@ -323,6 +358,39 @@ export default function FAQPage() {
             <Link href="/dashboard/pit">
               <Button className="h-9 px-5 text-sm bg-emerald-600 hover:bg-emerald-500 text-white font-semibold flex-shrink-0">
                 Rozlicz PIT
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* ZUS FAQ */}
+        <section id="zus" className="scroll-mt-20 mb-16">
+          <SectionHeader
+            id="zus-header"
+            icon={<FileText className="w-5 h-5" />}
+            title="Formularze i Zasiłki ZUS"
+            count={zusFaqs.length}
+            accent="blue"
+          />
+          <div className="space-y-2">
+            {zusFaqs.map((faq, idx) => (
+              <AccordionItem
+                key={idx}
+                question={faq.question}
+                answer={faq.answer}
+                index={idx}
+                accent="blue"
+              />
+            ))}
+          </div>
+          <div className="mt-6 p-4 rounded-xl bg-blue-500/8 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-blue-300">Potrzebujesz formularza ZUS?</p>
+              <p className="text-xs text-blue-200/60 mt-0.5">Mamy bezpłatne generatory Z-3, kalkulatory zasiłków i porady.</p>
+            </div>
+            <Link href="/formularze-zus">
+              <Button className="h-9 px-5 text-sm bg-blue-600 hover:bg-blue-500 text-white font-semibold flex-shrink-0">
+                Generatory ZUS
               </Button>
             </Link>
           </div>
