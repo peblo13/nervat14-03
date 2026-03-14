@@ -46,48 +46,45 @@ export default function Home() {
               </div>
               <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent truncate">VAT Faktura</h1>
             </div>
-            <div className="hidden sm:flex items-center gap-2 md:gap-4">
-              <Link href="/dashboard/pit">
-                <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-emerald-500/30 hover:bg-emerald-500/10 text-emerald-300 font-semibold">
-                  Rozlicz PIT
-                </Button>
+            <nav className="hidden sm:flex items-center gap-1 md:gap-1.5">
+              {/* Primary nav links */}
+              <Link href="/dashboard" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
+                Faktura
               </Link>
-              <Link href="/faq#pit">
-                <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-purple-500/30 hover:bg-purple-500/10 text-purple-300">
-                  FAQ PIT
-                </Button>
+              <Link href="/dashboard/pit" className="px-3 py-2 text-sm font-semibold text-emerald-300 hover:text-emerald-100 hover:bg-emerald-500/15 rounded-lg transition-all duration-200">
+                PIT
               </Link>
-              <Link href="/blog#pit">
-                <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-indigo-500/30 hover:bg-indigo-500/10 text-indigo-300">
-                  Blog PIT
-                </Button>
+              <Link href="/faq" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
+                FAQ
               </Link>
-              <Link href="/#partners">
-                <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-amber-500/30 hover:bg-amber-500/10 text-amber-300">
-                  💰 Partnerzy
-                </Button>
+              <Link href="/blog" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
+                Blog
               </Link>
-              <Link href="/partners">
-                <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-orange-500/30 hover:bg-orange-500/10 text-orange-300">
-                  🎯 Wszystkie
-                </Button>
+
+              {/* Divider */}
+              <div className="w-px h-5 bg-white/15 mx-1" />
+
+              <Link href="/pricing" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
+                Cennik
               </Link>
-              <Link href="/pricing">
-                <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-green-500/30 hover:bg-green-500/10 text-green-300">
-                  100% Bezpłatnie
-                </Button>
+              <Link href="/#partners" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
+                Partnerzy
               </Link>
+
+              {/* Divider */}
+              <div className="w-px h-5 bg-white/15 mx-1" />
+
               <Link href="/login">
-                <Button variant="outline" className="min-h-[44px] text-sm md:text-base border-blue-500/30 hover:bg-blue-500/10 text-blue-300">
-                  Zaloguj się
+                <Button variant="outline" className="h-9 px-4 text-sm border-blue-500/40 hover:bg-blue-500/10 text-blue-300">
+                  Zaloguj
                 </Button>
               </Link>
               <Link href="/register">
-                <Button className="min-h-[44px] text-sm md:text-base bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-700 hover:to-cyan-700 shadow-lg shadow-green-500/50">
-                  Załóż konto
+                <Button className="h-9 px-4 text-sm bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-500 hover:to-cyan-500 shadow-lg shadow-green-500/30 font-semibold">
+                  Rejestracja
                 </Button>
               </Link>
-            </div>
+            </nav>
             <MobileNav />
           </div>
         </header>
