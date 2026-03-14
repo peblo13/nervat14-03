@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { MobileNav } from '@/components/mobile-nav'
 import { PartnerPopup } from '@/components/partner-popup'
 import { SupportBanner } from '@/components/support-banner'
-import { AdSenseDisplayAuto, AdSenseDisplay728x90 } from '@/components/adsense-banner'
+import { AdSenseDisplay728x90, AdSenseDisplay300x250, AdSenseDisplayAuto } from '@/components/adsense-banner'
 
 export default function Home() {
   const router = useRouter()
@@ -144,14 +144,14 @@ export default function Home() {
         </section>
 
         {/* Affiliate Disclosure */}
-        <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-12">
-          <p className="text-sm text-yellow-200/80 text-center">
-            <span className="font-semibold">Ujawnienie:</span> VAT Faktura zawiera linki partnerskie. Jeśli dokonasz zakupu poprzez te linki, możemy otrzymać prowizję bez dodatkowych kosztów dla Ciebie. <a href="/disclaimer" className="text-yellow-300 hover:text-yellow-200 underline">Więcej informacji</a>
-          </p>
-        </div>
-
-        {/* AdSense Banner - Below Affiliate Disclosure */}
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
+            <p className="text-sm text-yellow-200/80 text-center">
+              <span className="font-semibold">Ujawnienie:</span> VAT Faktura zawiera linki partnerskie. Jeśli dokonasz zakupu poprzez te linki, możemy otrzymać prowizję bez dodatkowych kosztów dla Ciebie. <a href="/disclaimer" className="text-yellow-300 hover:text-yellow-200 underline">Więcej informacji</a>
+            </p>
+          </div>
+
+          {/* AdSense — Leaderboard pod hero */}
           <AdSenseDisplay728x90 />
         </div>
 
@@ -232,6 +232,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* AdSense — Auto responsive po sekcji Features */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <AdSenseDisplayAuto />
+        </div>
 
         {/* kSEF Highlight */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
@@ -359,6 +364,12 @@ export default function Home() {
                 Rozlicz PIT teraz — bezpłatnie
               </Button>
             </Link>
+          </div>
+
+          {/* AdSense — dwa prostokąty 300x250 obok siebie po sekcji PIT */}
+          <div className="flex flex-col sm:flex-row justify-center gap-6 mt-12">
+            <AdSenseDisplay300x250 />
+            <AdSenseDisplay300x250 />
           </div>
         </section>
 
@@ -534,6 +545,11 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* AdSense — Leaderboard przed finalnym CTA */}
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <AdSenseDisplay728x90 />
+        </div>
 
         {/* CTA Final */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32 relative">

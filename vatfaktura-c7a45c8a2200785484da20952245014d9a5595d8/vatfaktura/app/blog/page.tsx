@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { getAllBlogPosts } from '@/lib/blog-posts'
 import { ArrowRight, Calendar, Clock } from 'lucide-react'
-import { AdSenseDisplayAuto, AdSenseDisplay300x250 } from '@/components/adsense-banner'
+import { AdSenseDisplayAuto, AdSenseDisplay728x90 } from '@/components/adsense-banner'
 
 export const metadata: Metadata = {
   title: 'Blog — Poradniki o Fakturach, KSEF i Rozliczeniu PIT 2026 | VAT Faktura',
@@ -92,6 +92,11 @@ export default function BlogPage() {
                 </Link>
               ))}
             </div>
+          </div>
+
+          {/* AdSense — Leaderboard między sekcjami PIT i pozostałe */}
+          <div className="mb-14">
+            <AdSenseDisplay728x90 />
           </div>
 
           {/* All other articles */}
