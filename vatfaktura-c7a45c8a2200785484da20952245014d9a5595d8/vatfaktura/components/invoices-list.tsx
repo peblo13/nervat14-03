@@ -5,7 +5,7 @@ import { Invoice } from '@/app/invoice-context'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Download, Eye, Trash2, Search, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Download, Eye, Trash2, Search, ChevronLeft, ChevronRight, Shield, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 import DeleteInvoiceButton from './delete-invoice-button'
 
@@ -123,6 +123,7 @@ export default function InvoicesList({ invoices }: InvoicesListProps) {
                       <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-blue-300">Klient</th>
                       <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-blue-300">Data</th>
                       <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-blue-300">Status</th>
+                      <th className="px-4 sm:px-6 py-3 sm:py-4 text-left text-xs font-semibold text-blue-300">KSeF</th>
                       <th className="px-4 sm:px-6 py-3 sm:py-4 text-right text-xs font-semibold text-blue-300">Akcje</th>
                     </tr>
                   </thead>
@@ -139,6 +140,16 @@ export default function InvoicesList({ invoices }: InvoicesListProps) {
                             <span className={`inline-block px-2 sm:px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(invoice.status)}`}>
                               {getStatusLabel(invoice.status)}
                             </span>
+                          )}
+                        </td>
+                        <td className="px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm">
+                          {invoice.ksef?.status === 'accepted' ? (
+                            <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs bg-green-500/20 text-green-300 border border-green-500/30">
+                              <CheckCircle2 className="w-3 h-3" />
+                              KSeF
+                            </span>
+                          ) : (
+                            <span className="text-slate-500 text-xs">-</span>
                           )}
                         </td>
                         <td className="px-4 sm:px-6 py-3 sm:py-4 text-right">
@@ -183,9 +194,17 @@ export default function InvoicesList({ invoices }: InvoicesListProps) {
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-blue-300/60">
-                    {new Date(invoice.issueDate).toLocaleDateString('pl-PL')}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <p className="text-xs text-blue-300/60">
+                      {new Date(invoice.issueDate).toLocaleDateString('pl-PL')}
+                    </p>
+                    {invoice.ksef?.status === 'accepted' && (
+                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs bg-green-500/20 text-green-300 border border-green-500/30">
+                        <CheckCircle2 className="w-3 h-3" />
+                        KSeF
+                      </span>
+                    )}
+                  </div>
                   <div className="flex items-center gap-2 pt-2">
                     <Link href={`/dashboard/invoices/${invoice.id}`} className="flex-1">
                       <button className="w-full px-3 py-2 flex items-center justify-center gap-2 bg-blue-500/20 hover:bg-blue-500/30 rounded-lg text-blue-300 hover:text-blue-200 transition-all border border-blue-500/30 hover:border-blue-500/50 text-xs font-medium min-h-[36px]">
