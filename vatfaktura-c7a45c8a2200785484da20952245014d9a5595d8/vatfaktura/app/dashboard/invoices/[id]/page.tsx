@@ -347,17 +347,23 @@ export default function InvoiceViewPage() {
         <Card className="bg-slate-800/50 backdrop-blur-sm border-blue-500/20 p-8 shadow-lg print:shadow-none">
           {/* Invoice Header */}
           <div className="grid grid-cols-2 gap-8 mb-8 pb-8 border-b border-blue-500/20">
-            <div>
-              <h2 className="text-xs text-blue-300 font-semibold mb-2">WYSTAWIAJĄCY</h2>
-              <p className="text-lg font-semibold text-white">{user.company}</p>
-              <p className="text-sm text-blue-200/70">NIP: {user.nip}</p>
-            </div>
-            <div className="text-right">
-              <h2 className="text-xs text-blue-300 font-semibold mb-2">NABYWCA</h2>
-              <p className="text-lg font-semibold text-white">{invoice.client.name}</p>
-              <p className="text-sm text-blue-200/70">{invoice.client.address}</p>
-              <p className="text-sm text-blue-200/70">NIP: {invoice.client.nip}</p>
-            </div>
+<div>
+                <h2 className="text-xs text-blue-300 font-semibold mb-2">WYSTAWIAJĄCY</h2>
+                <p className="text-lg font-semibold text-white">{user.company}</p>
+                {user.accountType === 'private' ? (
+                  <p className="text-sm text-blue-200/70">Osoba prywatna (bez NIP)</p>
+                ) : (
+                  <p className="text-sm text-blue-200/70">NIP: {user.nip}</p>
+                )}
+              </div>
+              <div className="text-right">
+                <h2 className="text-xs text-blue-300 font-semibold mb-2">NABYWCA</h2>
+                <p className="text-lg font-semibold text-white">{invoice.client.name}</p>
+                <p className="text-sm text-blue-200/70">{invoice.client.address}</p>
+                {invoice.client.nip && (
+                  <p className="text-sm text-blue-200/70">NIP: {invoice.client.nip}</p>
+                )}
+              </div>
           </div>
 
           {/* Invoice Details */}

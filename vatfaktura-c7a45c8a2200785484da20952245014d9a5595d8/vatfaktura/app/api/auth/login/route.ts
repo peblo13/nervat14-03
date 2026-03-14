@@ -23,6 +23,9 @@ export async function POST(request: NextRequest) {
       email: user.email,
       company: user.company,
       nip: user.nip,
+      accountType: user.accountType || 'business',
+      firstName: user.firstName,
+      lastName: user.lastName,
     })
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Błąd serwera'

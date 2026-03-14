@@ -18,6 +18,15 @@ export interface StatusChange {
   changedBy: string
 }
 
+export interface KSeFStatus {
+  status: 'not_sent' | 'pending' | 'accepted' | 'rejected' | 'error'
+  ksefNumber?: string // Numer referencyjny KSeF
+  upo?: string // Urzędowe Poświadczenie Odbioru
+  sentAt?: string
+  acceptedAt?: string
+  errorMessage?: string
+}
+
 export interface Invoice {
   id: string
   number: string
@@ -37,6 +46,7 @@ export interface Invoice {
   notes: string
   template: string
   userId: string
+  ksef?: KSeFStatus
 }
 
 interface InvoiceContextType {

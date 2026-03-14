@@ -5,14 +5,20 @@ import { useRouter } from 'next/navigation'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import { Eye, EyeOff, AlertCircle, FileText } from 'lucide-react'
+import { Eye, EyeOff, AlertCircle, FileText, Building2, User } from 'lucide-react'
 import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
 
+type AccountType = 'private' | 'business'
+
 export default function RegisterPage() {
   const router = useRouter()
+  const [accountType, setAccountType] = useState<AccountType>('private')
   const [email, setEmail] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [pesel, setPesel] = useState('')
   const [nip, setNip] = useState('')
   const [company, setCompany] = useState('')
   const [password, setPassword] = useState('')
@@ -36,13 +42,23 @@ export default function RegisterPage() {
       return
     }
 
+    if (accountType === 'private' && !pesel && !firstName) {
+      setError('Podaj imię i nazwisko')
+      return
+    }
+
     setIsLoading(true)
 
     try {
+      const body =
+        accountType === 'private'
+          ? { email, password, accountType, firstName, lastName, pesel, company: `${firstName} ${lastName}`, nip: '' }
+          : { email, password, accountType, company, nip, firstName: '', lastName: '', pesel: '' }
+
       const response = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, nip, company, password }),
+        body: JSON.stringify(body),
       })
 
       const data = await response.json()
@@ -58,11 +74,13 @@ export default function RegisterPage() {
           email: data.email,
           company: data.company,
           nip: data.nip,
+          accountType: data.accountType,
+          firstName: data.firstName,
+          lastName: data.lastName,
         }))
         localStorage.setItem('vatfaktura_auth_token', data.token)
       }
 
-      // Force a small delay to ensure localStorage is written before redirect
       await new Promise(resolve => setTimeout(resolve, 100))
       router.push('/dashboard')
     } catch (err) {
@@ -74,14 +92,12 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 flex items-center justify-center px-3 sm:px-4 py-6 sm:py-8 relative overflow-hidden">
-      {/* Background Blobs - Hidden on mobile */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="hidden sm:block absolute top-20 right-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl opacity-50" />
         <div className="hidden sm:block absolute -bottom-20 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl opacity-50" />
       </div>
 
       <div className="w-full max-w-md relative z-10">
-        {/* Trust Signals */}
         <div className="mb-6 sm:mb-8 space-y-2 text-center">
           <div className="inline-block px-3 sm:px-4 py-1 sm:py-2 bg-green-500/20 border border-green-500/50 rounded-full">
             <span className="text-xs sm:text-sm font-semibold text-green-300">100% BEZPŁATNIE • ZAWSZE</span>
@@ -97,10 +113,44 @@ export default function RegisterPage() {
               </div>
             </div>
             <CardTitle className="text-white text-2xl sm:text-3xl font-bold">Rejestracja</CardTitle>
-            <CardDescription className="text-sm text-blue-200/60 mt-2">Załóż darmowe konto i zacznij fakturować</CardDescription>
+            <CardDescription className="text-sm text-blue-200/60 mt-2">Wybierz typ konta i załóż je bezpłatnie</CardDescription>
           </CardHeader>
 
           <CardContent className="px-6 pb-6">
+            {/* Account type selector */}
+            <div className="grid grid-cols-2 gap-3 mb-6">
+              <button
+                type="button"
+                onClick={() => setAccountType('private')}
+                className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
+                  accountType === 'private'
+                    ? 'border-blue-500 bg-blue-500/20 text-blue-300'
+                    : 'border-blue-500/20 bg-slate-700/30 text-slate-400 hover:border-blue-500/40 hover:bg-slate-700/50'
+                }`}
+              >
+                <User className="w-6 h-6" />
+                <div className="text-center">
+                  <p className="text-sm font-semibold">Osoba prywatna</p>
+                  <p className="text-xs opacity-70 mt-0.5">Bez NIP</p>
+                </div>
+              </button>
+              <button
+                type="button"
+                onClick={() => setAccountType('business')}
+                className={`flex flex-col items-center gap-2 p-4 rounded-xl border-2 transition-all ${
+                  accountType === 'business'
+                    ? 'border-cyan-500 bg-cyan-500/20 text-cyan-300'
+                    : 'border-blue-500/20 bg-slate-700/30 text-slate-400 hover:border-cyan-500/40 hover:bg-slate-700/50'
+                }`}
+              >
+                <Building2 className="w-6 h-6" />
+                <div className="text-center">
+                  <p className="text-sm font-semibold">Firma / Działalność</p>
+                  <p className="text-xs opacity-70 mt-0.5">Z NIP</p>
+                </div>
+              </button>
+            </div>
+
             {error && (
               <div className="flex items-center gap-2 p-3 rounded-lg bg-rose-500/20 border border-rose-500/30 mb-4 animate-in fade-in slide-in-from-top-2">
                 <AlertCircle className="w-4 h-4 text-rose-400 flex-shrink-0" />
@@ -121,29 +171,74 @@ export default function RegisterPage() {
                 />
               </div>
 
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-blue-300 mb-2">NIP</label>
-                <Input
-                  type="text"
-                  placeholder="1234567890"
-                  value={nip}
-                  onChange={(e) => setNip(e.target.value)}
-                  required
-                  className="min-h-[44px] bg-blue-500/10 border-blue-500/30 text-white placeholder:text-blue-300/50 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-blue-300 mb-2">Nazwa firmy</label>
-                <Input
-                  type="text"
-                  placeholder="Twoja firma"
-                  value={company}
-                  onChange={(e) => setCompany(e.target.value)}
-                  required
-                  className="min-h-[44px] bg-blue-500/10 border-blue-500/30 text-white placeholder:text-blue-300/50 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 transition-all"
-                />
-              </div>
+              {accountType === 'private' ? (
+                <>
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-xs sm:text-sm font-medium text-blue-300 mb-2">Imię</label>
+                      <Input
+                        type="text"
+                        placeholder="Jan"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                        required
+                        className="min-h-[44px] bg-blue-500/10 border-blue-500/30 text-white placeholder:text-blue-300/50 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 transition-all"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs sm:text-sm font-medium text-blue-300 mb-2">Nazwisko</label>
+                      <Input
+                        type="text"
+                        placeholder="Kowalski"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                        required
+                        className="min-h-[44px] bg-blue-500/10 border-blue-500/30 text-white placeholder:text-blue-300/50 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 transition-all"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="block text-xs sm:text-sm font-medium text-blue-300 mb-2">
+                      PESEL <span className="text-blue-300/50 font-normal">(opcjonalnie)</span>
+                    </label>
+                    <Input
+                      type="text"
+                      placeholder="12345678901"
+                      value={pesel}
+                      onChange={(e) => setPesel(e.target.value)}
+                      maxLength={11}
+                      className="min-h-[44px] bg-blue-500/10 border-blue-500/30 text-white placeholder:text-blue-300/50 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 transition-all"
+                    />
+                    <p className="text-xs text-blue-300/40 mt-1">Potrzebny do podpisu elektronicznego PIT</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <label className="block text-xs sm:text-sm font-medium text-blue-300 mb-2">NIP</label>
+                    <Input
+                      type="text"
+                      placeholder="1234567890"
+                      value={nip}
+                      onChange={(e) => setNip(e.target.value)}
+                      required
+                      maxLength={10}
+                      className="min-h-[44px] bg-blue-500/10 border-blue-500/30 text-white placeholder:text-blue-300/50 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs sm:text-sm font-medium text-blue-300 mb-2">Nazwa firmy</label>
+                    <Input
+                      type="text"
+                      placeholder="Twoja Firma Sp. z o.o."
+                      value={company}
+                      onChange={(e) => setCompany(e.target.value)}
+                      required
+                      className="min-h-[44px] bg-blue-500/10 border-blue-500/30 text-white placeholder:text-blue-300/50 focus:border-blue-500/60 focus:ring-1 focus:ring-blue-500/30 transition-all"
+                    />
+                  </div>
+                </>
+              )}
 
               <div>
                 <label className="block text-xs sm:text-sm font-medium text-blue-300 mb-1">Hasło</label>

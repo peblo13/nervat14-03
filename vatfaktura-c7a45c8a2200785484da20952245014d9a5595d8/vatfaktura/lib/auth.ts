@@ -12,11 +12,17 @@ export interface UserSubscription {
   invoicesUsedThisMonth: number
 }
 
+export type AccountType = 'private' | 'business'
+
 export interface User {
   id: string
   email: string
+  accountType: AccountType
   company: string
   nip: string
+  firstName?: string
+  lastName?: string
+  pesel?: string
   address?: string
   city?: string
   postalCode?: string

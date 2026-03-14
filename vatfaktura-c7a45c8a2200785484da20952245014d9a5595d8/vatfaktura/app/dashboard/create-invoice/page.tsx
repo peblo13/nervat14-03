@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
 import { SubscriptionLimitAlert } from '@/components/subscription-limit-alert'
 import { checkSubscriptionLimit, getInvoiceCountThisMonth } from '@/lib/subscription-limits'
-import { Plus, Trash2, ChevronLeft, Eye, Download, Printer } from 'lucide-react'
+import { Plus, Trash2, ChevronLeft, Eye, Download, Printer, User, Building2, Info } from 'lucide-react'
 import Link from 'next/link'
 
 export default function CreateInvoicePage() {
@@ -23,11 +23,16 @@ export default function CreateInvoicePage() {
     limit: 5,
   })
 
+  // Client type: 'business' (firma z NIP) or 'private' (osoba prywatna bez NIP)
+  const [clientType, setClientType] = useState<'business' | 'private'>('business')
+  
   const [formData, setFormData] = useState({
     number: '',
     issueDate: new Date().toISOString().split('T')[0],
     dueDate: '',
     clientName: '',
+    clientFirstName: '',
+    clientLastName: '',
     clientEmail: '',
     clientAddress: '',
     clientNip: '',
@@ -122,6 +127,11 @@ export default function CreateInvoicePage() {
 
     const nextNumber = `FV-${Date.now().toString().slice(-6)}`
 
+    // Determine client name based on type
+    const clientName = clientType === 'private' 
+      ? `${formData.clientFirstName} ${formData.clientLastName}`.trim()
+      : formData.clientName
+
     const invoice: Invoice = {
       id: Math.random().toString(36).substr(2, 9),
       number: formData.number || nextNumber,
@@ -134,10 +144,10 @@ export default function CreateInvoicePage() {
         changedBy: user?.email || 'system',
       }],
       client: {
-        name: formData.clientName,
+        name: clientName,
         email: formData.clientEmail,
         address: formData.clientAddress,
-        nip: formData.clientNip,
+        nip: clientType === 'business' ? formData.clientNip : '', // No NIP for private clients
       },
       items,
       notes: formData.notes,
@@ -225,23 +235,110 @@ export default function CreateInvoicePage() {
           {/* Client Info */}
           <Card className="bg-slate-800/50 backdrop-blur-sm border-blue-500/20 p-6 shadow-lg">
             <h2 className="text-lg font-semibold text-white mb-4">Dane odbiorcy</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-blue-300 mb-1">Nazwa firmy</label>
-                <Input
-                  type="text"
-                  placeholder="ABC Sp. z o.o."
-                  value={formData.clientName}
-                  onChange={(e) => setFormData({...formData, clientName: e.target.value})}
-                  className="min-h-[44px]"
-                  required
-                />
+            
+            {/* Client Type Selector */}
+            <div className="mb-6">
+              <label className="block text-sm font-medium text-blue-300 mb-3">Typ odbiorcy</label>
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setClientType('business')}
+                  className={`p-4 rounded-xl border-2 transition-all flex items-center gap-3 ${
+                    clientType === 'business'
+                      ? 'border-blue-500 bg-blue-500/20 text-white'
+                      : 'border-blue-500/30 bg-slate-900/30 text-blue-300 hover:border-blue-500/50'
+                  }`}
+                >
+                  <Building2 className="w-5 h-5" />
+                  <div className="text-left">
+                    <p className="font-semibold">Firma</p>
+                    <p className="text-xs opacity-70">Z NIP</p>
+                  </div>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setClientType('private')}
+                  className={`p-4 rounded-xl border-2 transition-all flex items-center gap-3 ${
+                    clientType === 'private'
+                      ? 'border-cyan-500 bg-cyan-500/20 text-white'
+                      : 'border-blue-500/30 bg-slate-900/30 text-blue-300 hover:border-blue-500/50'
+                  }`}
+                >
+                  <User className="w-5 h-5" />
+                  <div className="text-left">
+                    <p className="font-semibold">Osoba prywatna</p>
+                    <p className="text-xs opacity-70">Bez NIP</p>
+                  </div>
+                </button>
               </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {clientType === 'business' ? (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-blue-300 mb-1">Nazwa firmy</label>
+                    <Input
+                      type="text"
+                      placeholder="ABC Sp. z o.o."
+                      value={formData.clientName}
+                      onChange={(e) => setFormData({...formData, clientName: e.target.value})}
+                      className="min-h-[44px]"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-blue-300 mb-1">
+                      NIP nabywcy {autofillingNip && <span className="inline animate-spin ml-1">...</span>}
+                    </label>
+                    <div className="relative">
+                      <Input
+                        type="text"
+                        placeholder="956-19-57-119 lub 9561957119"
+                        value={formatNipDisplay(formData.clientNip)}
+                        onChange={(e) => handleClientNipChange(e.target.value)}
+                        className="min-h-[44px]"
+                      />
+                      {autofillingNip && (
+                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                          <div className="animate-spin rounded-full h-4 w-4 border border-blue-500/30 border-t-blue-500"></div>
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-xs text-blue-200/50 mt-2">Wpisz NIP - dane z GUS uzupelnią się automatycznie</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <label className="block text-sm font-medium text-blue-300 mb-1">Imię</label>
+                    <Input
+                      type="text"
+                      placeholder="Jan"
+                      value={formData.clientFirstName}
+                      onChange={(e) => setFormData({...formData, clientFirstName: e.target.value})}
+                      className="min-h-[44px]"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-blue-300 mb-1">Nazwisko</label>
+                    <Input
+                      type="text"
+                      placeholder="Kowalski"
+                      value={formData.clientLastName}
+                      onChange={(e) => setFormData({...formData, clientLastName: e.target.value})}
+                      className="min-h-[44px]"
+                      required
+                    />
+                  </div>
+                </>
+              )}
               <div>
                 <label className="block text-sm font-medium text-blue-300 mb-1">Email</label>
                 <Input
                   type="email"
-                  placeholder="kontakt@abc.pl"
+                  placeholder={clientType === 'business' ? 'kontakt@abc.pl' : 'jan.kowalski@email.pl'}
                   value={formData.clientEmail}
                   onChange={(e) => setFormData({...formData, clientEmail: e.target.value})}
                   className="min-h-[44px]"
@@ -258,27 +355,22 @@ export default function CreateInvoicePage() {
                   required
                 />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-blue-300 mb-1">
-                  NIP nabywcy {autofillingNip && <span className="inline animate-spin ml-1">⏳</span>}
-                </label>
-                <div className="relative">
-                  <Input
-                    type="text"
-                    placeholder="956-19-57-119 lub 9561957119"
-                    value={formatNipDisplay(formData.clientNip)}
-                    onChange={(e) => handleClientNipChange(e.target.value)}
-                    className="min-h-[44px]"
-                  />
-                  {autofillingNip && (
-                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                      <div className="animate-spin rounded-full h-4 w-4 border border-blue-500/30 border-t-blue-500"></div>
-                    </div>
-                  )}
-                </div>
-                <p className="text-xs text-blue-200/50 mt-2">Wpisz NIP (z myślnikami lub bez) → dane z GUS uzupełnią się automatycznie</p>
-              </div>
             </div>
+
+            {/* Info for private person invoices */}
+            {user?.accountType === 'private' && (
+              <div className="mt-4 p-4 rounded-lg bg-cyan-500/10 border border-cyan-500/30 flex items-start gap-3">
+                <Info className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                <div className="text-sm text-cyan-200">
+                  <p className="font-semibold mb-1">Faktura od osoby prywatnej</p>
+                  <p className="text-cyan-200/70">
+                    Jako osoba fizyczna nieprowadząca działalności gospodarczej możesz wystawiać faktury 
+                    (np. na ryczałcie, umowa zlecenie). Twoja faktura nie będzie zawierała NIP sprzedawcy - 
+                    zgodnie z polskim prawem nie jest wymagany.
+                  </p>
+                </div>
+              </div>
+            )}
           </Card>
 
           {/* Items */}

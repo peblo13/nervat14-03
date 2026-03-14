@@ -6,7 +6,7 @@ import { useUser } from '@/hooks/useUser'
 import { useInvoices } from '../invoice-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Plus, LogOut, FileText, CreditCard, Search, Filter, X } from 'lucide-react'
+import { Plus, LogOut, FileText, CreditCard, Search, Filter, X, Calculator, Shield } from 'lucide-react'
 import Link from 'next/link'
 import InvoicesList from '@/components/invoices-list'
 import DashboardStats from '@/components/dashboard-stats'
@@ -100,8 +100,46 @@ export default function DashboardPage() {
         {/* Stats */}
         <DashboardStats invoices={userInvoices} />
 
+        {/* KSeF Banner - only for business accounts */}
+        {user.accountType === 'business' && (
+          <div className="mt-2 p-4 rounded-xl bg-gradient-to-r from-green-900/40 to-cyan-900/40 border border-green-500/30 flex flex-col sm:flex-row items-start sm:items-center gap-3 justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+                <Shield className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <p className="text-white font-semibold text-sm">Integracja z KSeF</p>
+                <p className="text-green-300/70 text-xs">Wysyłaj faktury do Krajowego Systemu e-Faktur przez Profil Zaufany</p>
+              </div>
+            </div>
+            <Link href="/dashboard/ksef" className="flex-shrink-0">
+              <Button className="min-h-[40px] bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-700 hover:to-cyan-700 text-xs sm:text-sm shadow-lg shadow-green-500/30 whitespace-nowrap">
+                Połącz z KSeF
+              </Button>
+            </Link>
+          </div>
+        )}
+
+        {/* PIT Banner */}
+        <div className="mt-2 p-4 rounded-xl bg-gradient-to-r from-blue-900/60 to-cyan-900/60 border border-blue-500/30 flex flex-col sm:flex-row items-start sm:items-center gap-3 justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+              <Calculator className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="text-white font-semibold text-sm">Rozlicz PIT za rok 2024</p>
+              <p className="text-blue-300/70 text-xs">Wypełnij PIT-37 lub PIT-36, podpisz elektronicznie i wyślij do US</p>
+            </div>
+          </div>
+          <Link href="/dashboard/pit" className="flex-shrink-0">
+            <Button className="min-h-[40px] bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-xs sm:text-sm shadow-lg shadow-blue-500/30 whitespace-nowrap">
+              Rozlicz PIT
+            </Button>
+          </Link>
+        </div>
+
         {/* Action Buttons */}
-        <div className="mt-6 sm:mt-8 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+        <div className="mt-4 sm:mt-6 grid grid-cols-2 sm:grid-cols-5 gap-2 sm:gap-3 md:gap-4">
           <Link href="/dashboard/create-invoice" className="group">
             <Button className="w-full min-h-[44px] text-xs sm:text-sm font-medium bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 shadow-lg shadow-blue-500/50 group-hover:shadow-blue-500/75 transition-all">
               <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
@@ -109,11 +147,20 @@ export default function DashboardPage() {
               <span className="sm:hidden">Nowa</span>
             </Button>
           </Link>
-          <Link href="/dashboard/templates" className="group">
-            <Button variant="outline" className="w-full min-h-[44px] text-xs sm:text-sm font-medium border-blue-500/30 hover:bg-blue-500/10 text-blue-300 group-hover:border-blue-500/50 transition-all">
-              <FileText className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-              <span className="hidden sm:inline">Szablony</span>
-              <span className="sm:hidden">Sza</span>
+          {user.accountType === 'business' && (
+            <Link href="/dashboard/ksef" className="group">
+              <Button variant="outline" className="w-full min-h-[44px] text-xs sm:text-sm font-medium border-green-500/30 hover:bg-green-500/10 text-green-300 group-hover:border-green-500/50 transition-all">
+                <Shield className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">KSeF</span>
+                <span className="sm:hidden">KSeF</span>
+              </Button>
+            </Link>
+          )}
+          <Link href="/dashboard/pit" className="group">
+            <Button variant="outline" className="w-full min-h-[44px] text-xs sm:text-sm font-medium border-cyan-500/30 hover:bg-cyan-500/10 text-cyan-300 group-hover:border-cyan-500/50 transition-all">
+              <Calculator className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Rozlicz PIT</span>
+              <span className="sm:hidden">PIT</span>
             </Button>
           </Link>
           <Link href="/dashboard/billing" className="group">

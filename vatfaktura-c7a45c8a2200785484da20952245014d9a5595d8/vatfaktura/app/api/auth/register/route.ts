@@ -3,11 +3,25 @@ import { registerUser } from '@/lib/users-store'
 
 export async function POST(request: NextRequest) {
   try {
-    const { email, password, company, nip } = await request.json()
+    const { email, password, accountType, company, nip, firstName, lastName, pesel } = await request.json()
 
-    if (!email || !password || !company || !nip) {
+    if (!email || !password || !accountType) {
       return NextResponse.json(
-        { error: 'Wszystkie pola są wymagane' },
+        { error: 'Email, hasło i typ konta są wymagane' },
+        { status: 400 }
+      )
+    }
+
+    if (accountType === 'business' && (!company || !nip)) {
+      return NextResponse.json(
+        { error: 'Dla konta firmowego wymagane są NIP i nazwa firmy' },
+        { status: 400 }
+      )
+    }
+
+    if (accountType === 'private' && (!firstName || !lastName)) {
+      return NextResponse.json(
+        { error: 'Dla konta osoby prywatnej wymagane są imię i nazwisko' },
         { status: 400 }
       )
     }
@@ -19,12 +33,29 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const user = registerUser(email, password, company, nip)
+    const user = registerUser(email, password, {
+      accountType,
+      company,
+      nip,
+      firstName,
+      lastName,
+      pesel,
+    })
 
     const token = Buffer.from(JSON.stringify({ userId: user.userId, email })).toString('base64')
 
     return NextResponse.json(
-      { message: 'Rejestracja udana', token, userId: user.userId, email, company, nip },
+      {
+        message: 'Rejestracja udana',
+        token,
+        userId: user.userId,
+        email,
+        company: user.company,
+        nip: user.nip,
+        accountType: user.accountType,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      },
       { status: 201 }
     )
   } catch (error) {
