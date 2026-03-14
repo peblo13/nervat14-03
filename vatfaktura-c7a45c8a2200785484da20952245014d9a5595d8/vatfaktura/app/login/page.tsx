@@ -41,6 +41,9 @@ export default function LoginPage() {
           email: data.email,
           company: data.company,
           nip: data.nip,
+          accountType: data.accountType || 'business',
+          firstName: data.firstName,
+          lastName: data.lastName,
         }))
         localStorage.setItem('vatfaktura_auth_token', data.token)
       }

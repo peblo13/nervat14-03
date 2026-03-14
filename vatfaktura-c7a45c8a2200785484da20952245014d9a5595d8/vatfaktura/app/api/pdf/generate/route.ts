@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
               <div class="party-title">Sprzedawca</div>
               <div class="party-text">
                 <strong>${user.company}</strong><br>
-                NIP: ${user.nip}<br>
+                ${user.accountType === 'private' ? 'Osoba prywatna (bez NIP)' : `NIP: ${user.nip}`}<br>
               </div>
             </div>
             <div class="party">
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
               <div class="party-text">
                 <strong>${invoice.client.name}</strong><br>
                 ${invoice.client.address}<br>
-                NIP: ${invoice.client.nip}
+                ${invoice.client.nip ? `NIP: ${invoice.client.nip}` : ''}
               </div>
             </div>
           </div>
