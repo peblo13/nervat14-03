@@ -77,10 +77,9 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  minimumScale: 1,
+  // NOTE: Do NOT set maximumScale or userScalable:false — Google penalises it
+  // and it blocks accessibility tools. Required for AdSense / Core Web Vitals.
   themeColor: '#0066cc',
-  userScalable: false,
   viewportFit: 'cover',
 }
 
@@ -95,25 +94,22 @@ export default function RootLayout({
         <PerformanceOptimizations />
         <JsonLd />
         
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX" />
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }} />
-        
-        {/* Google Search Console */}
-        <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
-        
-        {/* Google AdSense */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9110227480064306"
-          crossOrigin="anonymous" />
+        {/*
+          IMPORTANT — replace placeholders before submitting AdSense application:
+          1. Replace GA_MEASUREMENT_ID with your real Google Analytics 4 ID (e.g. G-ABC123)
+          2. Replace ADSENSE_PUBLISHER_ID with your real AdSense publisher ID (e.g. ca-pub-1234567890)
+          3. Replace SEARCH_CONSOLE_CODE with your Search Console verification token
+        */}
+
+        {/* Google Analytics 4 — replace GA_MEASUREMENT_ID */}
+        {/* <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID" /> */}
+        {/* <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');` }} /> */}
+
+        {/* Google Search Console — replace SEARCH_CONSOLE_CODE */}
+        {/* <meta name="google-site-verification" content="SEARCH_CONSOLE_CODE" /> */}
+
+        {/* Google AdSense — uncomment ONLY after account is approved */}
+        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ADSENSE_PUBLISHER_ID" crossOrigin="anonymous" /> */}
       </head>
       <body className="font-sans antialiased bg-background text-foreground">
         <CursorTrail />

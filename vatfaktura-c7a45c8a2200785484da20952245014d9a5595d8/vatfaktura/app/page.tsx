@@ -633,8 +633,9 @@ export default function Home() {
                 <span className="text-blue-500/30">•</span>
                 <a href="/contact" className="text-blue-300 hover:text-blue-100 transition">Kontakt</a>
               </div>
-              <p className="text-xs mt-4">
-                Zarabiamy prowizje z linków partnerskich. Dzięki za wsparcie naszego projektu.
+              <p className="text-xs mt-4 text-blue-200/50">
+                Strona zawiera reklamy Google AdSense oraz linki partnerskie, z których możemy otrzymywać prowizję.
+                Nie wpływa to na treść ani bezstronność naszych usług.
               </p>
             </div>
           </div>
