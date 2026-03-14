@@ -4,6 +4,9 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowLeft, AlertCircle, Clock } from 'lucide-react'
 import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
+import { EventSchema } from '@/components/event-schema'
+import { BreadcrumbSchema } from '@/components/breadcrumb-schema'
+import { FAQSchema } from '@/components/faq-schema'
 
 export const metadata: Metadata = {
   title: 'Kalendarz Terminów ZUS 2025 - Ważne Daty',
@@ -18,6 +21,31 @@ export const metadata: Metadata = {
 }
 
 export default function KalendarzZUSPage() {
+  const faqItems = [
+    {
+      question: 'Jaki jest termin na wysłanie zaświadczenia Z-3?',
+      answer: 'Zaświadczenie Z-3 o niezdolności do pracy należy wysłać w ciągu 7 dni od daty wystawienia przez lekarza.'
+    },
+    {
+      question: 'Do kiedy mogę zapłacić składki ZUS?',
+      answer: 'Składki ZUS za miesiąc poprzedni należy zapłacić do 20. dnia każdego miesiąca. Przekroczenie terminu grozi odsetkami i karami.'
+    },
+    {
+      question: 'Kiedy się rozpoczyna i kończy wypłata zasiłku chorobowego?',
+      answer: 'Zasiłek chorobowy zaczyna się od 4. dnia niezdolności do pracy, maksymalnie na 183 dni w roku kalendarzowym.'
+    },
+    {
+      question: 'Jakie terminy należy pamiętać w 2025 roku?',
+      answer: 'Najważniejsze to: wpłaty składek do 20. każdego miesiąca, wysyłka deklaracji w wyznaczonych czasach, zgłoszenia zmian w ZUS w ciągu 7 dni.'
+    }
+  ]
+
+  const breadcrumbs = [
+    { name: 'Strona główna', url: 'https://www.vatfaktura.pl' },
+    { name: 'Formularze ZUS', url: 'https://www.vatfaktura.pl/formularze-zus' },
+    { name: 'Kalendarz ZUS', url: 'https://www.vatfaktura.pl/kalendarz-zus' }
+  ]
+
   const events = [
     {
       event: 'Zaświadczenie o niezdolności (Z-3)',
@@ -117,6 +145,15 @@ export default function KalendarzZUSPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-blue-900 pt-20 pb-20">
+      <EventSchema
+        name="Kalendarz Terminów ZUS 2025"
+        description="Ważne daty, terminy i deadliny dotyczące ZUS na rok 2025"
+        startDate="2025-01-01"
+        endDate="2025-12-31"
+        url="https://www.vatfaktura.pl/kalendarz-zus"
+      />
+      <BreadcrumbSchema items={breadcrumbs} />
+      <FAQSchema items={faqItems} />
       <div className="max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">

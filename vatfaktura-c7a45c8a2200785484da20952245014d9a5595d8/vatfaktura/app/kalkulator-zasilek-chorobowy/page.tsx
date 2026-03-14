@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { ArrowLeft, AlertCircle } from 'lucide-react'
 import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
+import { CalculatorSchema } from '@/components/calculator-schema'
+import { BreadcrumbSchema } from '@/components/breadcrumb-schema'
 
 export const metadata: Metadata = {
   title: 'Kalkulator Zasiłku Chorobowego 2025 - ZUS Obliczenia',
@@ -32,8 +34,20 @@ export default function KalkulatorZasilkuChorobowegoPage() {
   const selectedZasilek = rodzaj === '80' ? zasilek80 : zasilek100
   const dziennie = rodzaj === '80' ? dziennie80 : dziennie100
 
+  const breadcrumbs = [
+    { name: 'Strona główna', url: 'https://www.vatfaktura.pl' },
+    { name: 'Formularze ZUS', url: 'https://www.vatfaktura.pl/formularze-zus' },
+    { name: 'Kalkulator Zasiłku Chorobowego', url: 'https://www.vatfaktura.pl/kalkulator-zasilek-chorobowy' }
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-blue-900 pt-20 pb-20">
+      <CalculatorSchema 
+        title="Kalkulator Zasiłku Chorobowego"
+        description="Oblicz wysokość zasiłku chorobowego ZUS - 80% lub 100% podstawy obliczeniowej"
+        url="https://www.vatfaktura.pl/kalkulator-zasilek-chorobowy"
+      />
+      <BreadcrumbSchema items={breadcrumbs} />
       <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">

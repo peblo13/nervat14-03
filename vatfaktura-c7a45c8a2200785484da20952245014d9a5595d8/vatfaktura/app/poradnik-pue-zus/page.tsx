@@ -4,6 +4,9 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { ArrowLeft, CheckCircle2 } from 'lucide-react'
 import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
+import { ArticleSchema } from '@/components/article-schema'
+import { BreadcrumbSchema } from '@/components/breadcrumb-schema'
+import { HowToSchema } from '@/components/how-to-schema'
 
 export const metadata: Metadata = {
   title: 'Poradnik PUE ZUS - Jak Wysyłać Formularze Online',
@@ -18,6 +21,48 @@ export const metadata: Metadata = {
 }
 
 export default function PoradnikPUEZUSPage() {
+  const howToSteps = [
+    {
+      name: 'Zaloguj się do PUE ZUS',
+      description: 'Przejdź na stronę pue.zus.pl i zaloguj się Profilem Zaufanym, mBankingiem lub e-Dowodem.'
+    },
+    {
+      name: 'Przejdź do sekcji Usług',
+      description: 'W menu głównym wybierz "Moje usługi" i poszukaj sekcji dla Twojego dokumentu.'
+    },
+    {
+      name: 'Uploaduj lub wpisz dane',
+      description: 'Wgraj plik PDF lub wpisz dane ręcznie w dostępnym formularzu.'
+    },
+    {
+      name: 'Podpisz elektronicznie',
+      description: 'Podpisz dokument bezpieczeństwem, np. Profilem Zaufanym lub kwalifikowanym podpisem.'
+    },
+    {
+      name: 'Wyślij dokument',
+      description: 'Kliknij "Wyślij" i poczekaj na potwierdzenie wysłania (UPO).'
+    }
+  ]
+
+  const breadcrumbs = [
+    { name: 'Strona główna', url: 'https://www.vatfaktura.pl' },
+    { name: 'Formularze ZUS', url: 'https://www.vatfaktura.pl/formularze-zus' },
+    { name: 'Poradnik PUE', url: 'https://www.vatfaktura.pl/poradnik-pue-zus' }
+  ]
+
+  const articleData = {
+    id: 'poradnik-pue-zus',
+    title: 'Poradnik PUE ZUS - Jak wysyłać formularze online',
+    slug: 'poradnik-pue-zus',
+    excerpt: 'Krok po kroku instrukcja jak logować się do PUE ZUS i wysyłać formularze online',
+    content: 'Poradnik zawiera szczegółowe instrukcje do wysyłania formularzy ZUS przez Portal Usług Elektronicznych',
+    author: 'VAT Faktura',
+    date: '2024-01-01',
+    category: 'ZUS',
+    readTime: '5 min',
+    keywords: ['PUE ZUS', 'formularze', 'wysyłanie', 'instrukcja']
+  }
+
   const steps = [
     {
       title: 'Zaloguj się do PUE ZUS',
@@ -83,6 +128,16 @@ export default function PoradnikPUEZUSPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-blue-900 pt-20 pb-20">
+      <ArticleSchema post={articleData} />
+      <HowToSchema
+        title="Jak wysyłać formularze ZUS przez PUE"
+        description="Instrukcja krok po kroku do wysyłania dokumentów ZUS przez Portal Usług Elektronicznych"
+        image="https://www.vatfaktura.pl/og-image.png"
+        author="VAT Faktura"
+        datePublished="2024-01-01"
+        steps={howToSteps}
+      />
+      <BreadcrumbSchema items={breadcrumbs} />
       <div className="max-w-5xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">

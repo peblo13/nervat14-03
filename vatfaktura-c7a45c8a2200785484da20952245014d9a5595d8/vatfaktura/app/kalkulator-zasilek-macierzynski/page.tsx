@@ -6,6 +6,8 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { ArrowLeft, AlertCircle } from 'lucide-react'
 import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
+import { CalculatorSchema } from '@/components/calculator-schema'
+import { BreadcrumbSchema } from '@/components/breadcrumb-schema'
 
 export const metadata: Metadata = {
   title: 'Kalkulator Zasiłku Macierzyńskiego 2025 - ZUS',
@@ -32,8 +34,20 @@ export default function KalkulatorZasilkuMacierzynskiegoPage() {
 
   const selectedZasilek = rodzaj === 'macierzynski' ? zasilek : zasilekPorod
 
+  const breadcrumbs = [
+    { name: 'Strona główna', url: 'https://www.vatfaktura.pl' },
+    { name: 'Formularze ZUS', url: 'https://www.vatfaktura.pl/formularze-zus' },
+    { name: 'Kalkulator Zasiłku Macierzyńskiego', url: 'https://www.vatfaktura.pl/kalkulator-zasilek-macierzynski' }
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-blue-900 pt-20 pb-20">
+      <CalculatorSchema 
+        title="Kalkulator Zasiłku Macierzyńskiego"
+        description="Oblicz wysokość zasiłku macierzyńskiego i zasiłku porodu ZUS"
+        url="https://www.vatfaktura.pl/kalkulator-zasilek-macierzynski"
+      />
+      <BreadcrumbSchema items={breadcrumbs} />
       <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">

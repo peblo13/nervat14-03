@@ -4,22 +4,67 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 import { ArrowLeft, AlertCircle } from 'lucide-react'
 import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
+import { HowToSchema } from '@/components/how-to-schema'
+import { BreadcrumbSchema } from '@/components/breadcrumb-schema'
 
 export const metadata: Metadata = {
-  title: 'Generator ZUS Z-15 - Zasiłek Opiekuńczy Online',
-  description: 'Bezpłatny generator formularza ZUS Z-15A/Z-15B. Wniosek o zasiłek opiekuńczy dla opieki nad dzieckiem. Wypełnij online, pobierz PDF.',
-  keywords: 'ZUS Z-15, zasiłek opiekuńczy, wniosek opiekuńczy, opieka nad dzieckiem',
+  title: 'Generator ZUS Z-15 - Zasiłek Opiekuńczy Z-15A/Z-15B Online',
+  description: 'Bezpłatny generator formularza ZUS Z-15A/Z-15B dla zasiłku opiekuńczego. Wniosek o zasiłek opiekuńczy do opieki nad dzieckiem, rodzicem, osobą bliską. Wypełnij online, pobierz PDF.',
+  keywords: 'ZUS Z-15, zasiłek opiekuńczy, Z-15A, Z-15B, wniosek opiekuńczy, opieka nad dzieckiem, zasiłek opiekuńczy, generator',
   openGraph: {
     title: 'Generator ZUS Z-15 - Wniosek o Zasiłek Opiekuńczy',
-    description: 'Bezpłatny generator formularza zasiłku opiekuńczego ZUS',
+    description: 'Wygeneruj wniosek o zasiłek opiekuńczy ZUS Z-15A/Z-15B w 5 minut bez rejestracji',
     type: 'website',
     url: 'https://www.vatfaktura.pl/generator-zus-z15',
+    images: [{ url: 'https://www.vatfaktura.pl/og-image.png' }],
   },
 }
 
 export default function GeneratorZUSZ15Page() {
+  const howToSteps = [
+    {
+      name: 'Wybierz typ zasiłku',
+      description: 'Kliknij na Z-15A (dziecko) lub Z-15B (inna osoba). Wybierz rodzaj zasiłku opiekuńczego.',
+    },
+    {
+      name: 'Wpisz dane osobowe',
+      description: 'Dodaj PESEL, imię, nazwisko, datę urodzenia i dane kontaktowe.',
+    },
+    {
+      name: 'Wpisz dane osoby, nad którą będzie opieka',
+      description: 'PESEL, imię, nazwisko i datę urodzenia osoby wymagającej opieki.',
+    },
+    {
+      name: 'Dodaj okresy opiekuńczego',
+      description: 'Podaj daty początkowe i końcowe, gdy sprawować będziesz opiekę.',
+    },
+    {
+      name: 'Pobierz PDF',
+      description: 'Kliknij przycisk pobrania, aby wygenerować formularz w pliku PDF.',
+    },
+    {
+      name: 'Wyślij przez PUE ZUS',
+      description: 'Zaloguj się na pue.zus.pl i wyślij formularz w wyznaczonym terminie.',
+    }
+  ]
+
+  const breadcrumbs = [
+    { name: 'Strona główna', url: 'https://www.vatfaktura.pl' },
+    { name: 'Formularze ZUS', url: 'https://www.vatfaktura.pl/formularze-zus' },
+    { name: 'Generator Z-15', url: 'https://www.vatfaktura.pl/generator-zus-z15' }
+  ]
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-blue-900 pt-20 pb-20">
+      <HowToSchema
+        title="Jak wypełnić wniosek o zasiłek opiekuńczy ZUS Z-15"
+        description="Instrukcja krok po kroku do wygenerowania formularza zasiłku opiekuńczego ZUS Z-15A/Z-15B"
+        image="https://www.vatfaktura.pl/og-image.png"
+        author="VAT Faktura"
+        datePublished="2024-01-01"
+        steps={howToSteps}
+      />
+      <BreadcrumbSchema items={breadcrumbs} />
       <div className="max-w-4xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         {/* Header */}
         <div className="flex items-center gap-4 mb-8">

@@ -2,8 +2,14 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { Metadata } from 'next'
 import { useUser } from '@/hooks/useUser'
 import { Button } from '@/components/ui/button'
+
+export const metadata: Metadata = {
+  title: 'ZUS Dashboard - Zarządzaj formularze, kalkulatory i terminy',
+  description: 'Panel zarządzania ZUS dla zalogowanych użytkowników. Dostęp do generatorów formularzy, kalkulatorów składek i harmonogramu płatności ZUS.',
+}
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { 
@@ -118,11 +124,18 @@ export default function ZUSPage() {
       href: '/formularze-zus'
     },
     {
-      title: 'Kalkulator ZUS',
-      description: 'Oblicz składki ubezpieczeniowe',
+      title: 'Kalkulator Składek ZUS',
+      description: 'Oblicz miesięczne składki ubezpieczeniowe',
       icon: Calculator,
       color: 'from-violet-500 to-purple-500',
       href: '/kalkulator-zus'
+    },
+    {
+      title: 'Roczne Składki ZUS',
+      description: 'Oblicz całoroczne składki i dochód netto',
+      icon: TrendingUp,
+      color: 'from-emerald-500 to-green-500',
+      href: '/kalkulator-roczne-skladki-zus'
     },
     {
       title: 'Kalendarz ZUS',

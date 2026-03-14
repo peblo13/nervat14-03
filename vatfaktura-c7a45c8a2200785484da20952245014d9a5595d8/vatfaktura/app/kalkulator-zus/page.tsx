@@ -7,6 +7,21 @@ import { Card } from '@/components/ui/card'
 import { Calculator, RotateCcw, Info } from 'lucide-react'
 import Link from 'next/link'
 import { AdSenseDisplay728x90, AdSenseDisplayAuto, AdSenseDisplay300x250 } from '@/components/adsense-banner'
+import { CalculatorSchema } from '@/components/calculator-schema'
+import { BreadcrumbSchema } from '@/components/breadcrumb-schema'
+
+export const metadata: Metadata = {
+  title: 'Kalkulator ZUS 2024 - Oblicz składki dla przedsiębiorców online',
+  description: 'Bezpłatny kalkulator składek ZUS dla przedsiębiorców. Oblicz emeryturę, rentę, chorobę i ubezpieczenie zdrowotne. Aktualne stawki 2024.',
+  keywords: 'kalkulator ZUS, składki ZUS, przedsiębiorca, emerytura, renta, ubezpieczenie zdrowotne, stawki ZUS',
+  openGraph: {
+    title: 'Kalkulator ZUS dla przedsiębiorców 2024',
+    description: 'Oblicz składki ZUS dla przedsiębiorcy - emerytura, renta, choroba, ubezpieczenie zdrowotne',
+    type: 'website',
+    url: 'https://www.vatfaktura.pl/kalkulator-zus',
+    images: [{ url: 'https://www.vatfaktura.pl/og-image.png' }],
+  },
+}
 
 export default function KalkulatorZUSPage() {
   const [income, setIncome] = useState<number>(10000)
@@ -34,8 +49,20 @@ export default function KalkulatorZUSPage() {
     setShowDetails(false)
   }
 
+  const breadcrumbs = [
+    { name: 'Strona główna', url: 'https://www.vatfaktura.pl' },
+    { name: 'Narzędzia', url: 'https://www.vatfaktura.pl/narzedzia' },
+    { name: 'Kalkulator ZUS', url: 'https://www.vatfaktura.pl/kalkulator-zus' }
+  ]
+
   return (
     <div className="min-h-screen bg-slate-900 relative overflow-hidden">
+      <CalculatorSchema 
+        title="Kalkulator ZUS 2024"
+        description="Oblicz składki ZUS dla przedsiębiorców: emerytura, renta, choroba i ubezpieczenie zdrowotne"
+        url="https://www.vatfaktura.pl/kalkulator-zus"
+      />
+      <BreadcrumbSchema items={breadcrumbs} />
       {/* Background elements */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
