@@ -6,11 +6,17 @@ import { useUser } from '@/hooks/useUser'
 import { useInvoices } from '../invoice-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Plus, LogOut, FileText, CreditCard, Search, Filter, X, Calculator, Shield } from 'lucide-react'
+import { Plus, LogOut, FileText, CreditCard, Search, Filter, X, Calculator, Shield, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import InvoicesList from '@/components/invoices-list'
 import DashboardStats from '@/components/dashboard-stats'
 import { SupportBanner } from '@/components/support-banner'
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+} from '@/components/ui/dropdown-menu'
 
 export default function DashboardPage() {
   const router = useRouter()
@@ -81,6 +87,41 @@ export default function DashboardPage() {
               </div>
             </div>
           </div>
+
+          <div className="hidden sm:flex items-center gap-1 md:gap-2 ml-2">
+            {/* Dropdown menu for functions */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="px-3 py-2 text-xs sm:text-sm font-semibold text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all inline-flex items-center gap-1">
+                  Funkcje
+                  <ChevronDown className="w-4 h-4" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48 bg-slate-800 border-white/10">
+                <Link href="/zaloz-firme">
+                  <DropdownMenuItem className="flex items-center gap-2 text-purple-300 hover:text-purple-100 hover:bg-purple-500/15 cursor-pointer">
+                    <span>Załóż firmę</span>
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/dashboard">
+                  <DropdownMenuItem className="flex items-center gap-2 text-blue-300 hover:text-blue-100 hover:bg-blue-500/15 cursor-pointer">
+                    <span>Faktury</span>
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/dashboard/pit">
+                  <DropdownMenuItem className="flex items-center gap-2 text-emerald-300 hover:text-emerald-100 hover:bg-emerald-500/15 cursor-pointer">
+                    <span>Rozlicz PIT</span>
+                  </DropdownMenuItem>
+                </Link>
+                <Link href="/formularze-zus">
+                  <DropdownMenuItem className="flex items-center gap-2 text-orange-300 hover:text-orange-100 hover:bg-orange-500/15 cursor-pointer">
+                    <span>Formularze ZUS</span>
+                  </DropdownMenuItem>
+                </Link>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
           <button
             onClick={handleLogout}
             className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm text-blue-300 hover:text-white hover:bg-blue-500/20 rounded-lg transition-all border border-blue-500/30 hover:border-blue-500/50 min-h-[44px] ml-2"

@@ -4,13 +4,20 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/hooks/useUser'
 import { Button } from '@/components/ui/button'
-import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText, Users, Star, Award, LogIn, Edit3, Download } from 'lucide-react'
+import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText, Users, Star, Award, LogIn, Edit3, Download, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
 import { MobileNav } from '@/components/mobile-nav'
 import { PartnerPopup } from '@/components/partner-popup'
 import { SupportBanner } from '@/components/support-banner'
 import { AdSenseDisplay728x90, AdSenseDisplay300x250, AdSenseDisplayAuto } from '@/components/adsense-banner'
 import { NewsletterSignup } from '@/components/newsletter-signup'
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+} from '@/components/ui/dropdown-menu'
 
 export default function Home() {
   const router = useRouter()
@@ -47,20 +54,39 @@ export default function Home() {
               </div>
               <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent truncate">VAT Faktura</h1>
             </div>
-            <nav className="hidden sm:flex items-center gap-1 md:gap-1.5">
-              {/* Primary nav links */}
-              <Link href="/zaloz-firme" className="px-3 py-2 text-sm font-semibold text-purple-300 hover:text-purple-100 hover:bg-purple-500/15 rounded-lg transition-all duration-200">
-                Załóż firmę
-              </Link>
-              <Link href="/dashboard" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-                Faktura
-              </Link>
-              <Link href="/dashboard/pit" className="px-3 py-2 text-sm font-semibold text-emerald-300 hover:text-emerald-100 hover:bg-emerald-500/15 rounded-lg transition-all duration-200">
-                PIT
-              </Link>
-              <Link href="/formularze-zus" className="px-3 py-2 text-sm font-semibold text-orange-300 hover:text-orange-100 hover:bg-orange-500/15 rounded-lg transition-all duration-200">
-                ZUS
-              </Link>
+            <nav className="hidden sm:flex items-center gap-1 md:gap-2">
+              {/* Dropdown menu for main functions */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="px-3 py-2 text-sm font-semibold text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 inline-flex items-center gap-1">
+                    Funkcje
+                    <ChevronDown className="w-4 h-4" />
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-48 bg-slate-800 border-white/10">
+                  <Link href="/zaloz-firme">
+                    <DropdownMenuItem className="flex items-center gap-2 text-purple-300 hover:text-purple-100 hover:bg-purple-500/15 cursor-pointer">
+                      <span>Załóż firmę</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/dashboard">
+                    <DropdownMenuItem className="flex items-center gap-2 text-blue-300 hover:text-blue-100 hover:bg-blue-500/15 cursor-pointer">
+                      <span>Faktura</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/dashboard/pit">
+                    <DropdownMenuItem className="flex items-center gap-2 text-emerald-300 hover:text-emerald-100 hover:bg-emerald-500/15 cursor-pointer">
+                      <span>Rozlicz PIT</span>
+                    </DropdownMenuItem>
+                  </Link>
+                  <Link href="/formularze-zus">
+                    <DropdownMenuItem className="flex items-center gap-2 text-orange-300 hover:text-orange-100 hover:bg-orange-500/15 cursor-pointer">
+                      <span>Formularze ZUS</span>
+                    </DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
+
               <Link href="/faq" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
                 FAQ
               </Link>
