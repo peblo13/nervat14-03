@@ -57,6 +57,49 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.85,
     },
+    // ZUS Forms & Tools Hub
+    {
+      url: `${BASE_URL}/formularze-zus`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/generator-zus-z3`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/kalkulator-zasilek-chorobowy`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/kalkulator-zasilek-macierzynski`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/generator-zus-z15`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.75,
+    },
+    {
+      url: `${BASE_URL}/poradnik-pue-zus`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/kalendarz-zus`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.75,
+    },
     // Content hubs
     {
       url: `${BASE_URL}/blog`,

@@ -42,7 +42,7 @@ export function Footer() {
               <li><Link href="/kalkulator-vat" className="text-blue-300 hover:text-blue-100 transition">Kalkulator VAT</Link></li>
               <li><Link href="/kalkulator-pit" className="text-blue-300 hover:text-blue-100 transition">Kalkulator PIT</Link></li>
               <li><Link href="/kalkulator-zus" className="text-blue-300 hover:text-blue-100 transition">Kalkulator ZUS</Link></li>
-              <li><Link href="/kalkulator-wynagrodzen" className="text-blue-300 hover:text-blue-100 transition">Wynagrodzenia</Link></li>
+              <li><Link href="/formularze-zus" className="text-blue-300 hover:text-blue-100 transition">Formularze ZUS</Link></li>
             </ul>
           </div>
 
