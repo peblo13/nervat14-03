@@ -20,6 +20,7 @@
     "lucide-react": "^0.263.0",
     "tailwindcss": "^4.0.0",
     "@tailwindcss/postcss": "^4.0.0",
+    "tw-animate-css": "^1.0.0",
     "@radix-ui/react-slot": "^1.1.0",
     "axios": "^1.6.0",
     "stripe": "^14.0.0",
