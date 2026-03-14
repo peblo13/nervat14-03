@@ -2,14 +2,8 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Metadata } from 'next'
 import { useUser } from '@/hooks/useUser'
 import { Button } from '@/components/ui/button'
-
-export const metadata: Metadata = {
-  title: 'ZUS Dashboard - Zarządzaj formularze, kalkulatory i terminy',
-  description: 'Panel zarządzania ZUS dla zalogowanych użytkowników. Dostęp do generatorów formularzy, kalkulatorów składek i harmonogramu płatności ZUS.',
-}
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { 
