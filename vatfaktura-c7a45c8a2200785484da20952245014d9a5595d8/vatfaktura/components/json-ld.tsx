@@ -119,7 +119,7 @@ export function JsonLd() {
         'contactPoint': {
           '@type': 'ContactPoint',
           'contactType': 'Customer Support',
-          'email': 'support@vatfaktura.pl',
+          'email': 'kontakt@vatfaktura.pl',
           'availableLanguage': 'Polish'
         }
       },

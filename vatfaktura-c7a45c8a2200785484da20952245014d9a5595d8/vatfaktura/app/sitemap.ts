@@ -68,18 +68,72 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.88,
     },
-    // Existing blog posts
+    // Blog posts — factoring & tax
     {
       url: `${BASE_URL}/blog/kompletny-przewodnik-po-ksef`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-03-10'),
       changeFrequency: 'monthly',
       priority: 0.85,
     },
     {
       url: `${BASE_URL}/blog/jak-prawidlowo-wystawic-fakture-vat`,
-      lastModified: new Date(),
+      lastModified: new Date('2026-03-09'),
       changeFrequency: 'monthly',
       priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/blog/darmowe-programy-do-fakturowania-porownanie`,
+      lastModified: new Date('2026-03-08'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/blog/fakturowanie-dla-freelancerow-praktyczny-poradnik`,
+      lastModified: new Date('2026-03-07'),
+      changeFrequency: 'monthly',
+      priority: 0.82,
+    },
+    {
+      url: `${BASE_URL}/blog/faktura-korygujaca-jak-wystawic`,
+      lastModified: new Date('2026-03-13'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/blog/ryczalt-ewidencjonowany-stawki-limity-2026`,
+      lastModified: new Date('2026-03-11'),
+      changeFrequency: 'monthly',
+      priority: 0.85,
+    },
+    {
+      url: `${BASE_URL}/blog/faktura-proforma-co-to-jest`,
+      lastModified: new Date('2026-03-05'),
+      changeFrequency: 'monthly',
+      priority: 0.82,
+    },
+    {
+      url: `${BASE_URL}/blog/zwolnienie-z-vat-kto-moze-skorzystac`,
+      lastModified: new Date('2026-03-04'),
+      changeFrequency: 'monthly',
+      priority: 0.82,
+    },
+    {
+      url: `${BASE_URL}/blog/podpis-elektroniczny-do-pit-dane-autoryzujace`,
+      lastModified: new Date('2026-03-03'),
+      changeFrequency: 'monthly',
+      priority: 0.82,
+    },
+    {
+      url: `${BASE_URL}/blog/terminy-podatkowe-2026-kalendarz`,
+      lastModified: new Date('2026-03-01'),
+      changeFrequency: 'monthly',
+      priority: 0.82,
+    },
+    {
+      url: `${BASE_URL}/blog/system-fakturowania-dla-malych-firm`,
+      lastModified: new Date('2026-03-06'),
+      changeFrequency: 'monthly',
+      priority: 0.8,
     },
     // Supporting pages
     {

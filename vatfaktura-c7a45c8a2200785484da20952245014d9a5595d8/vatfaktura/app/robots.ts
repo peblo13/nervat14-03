@@ -15,10 +15,11 @@ export default function robots(): MetadataRoute.Robots {
           '/porownanie',
           '/about',
           '/contact',
+          '/privacy',
+          '/terms',
           '/keywords',
           '/register',
           '/login',
-          // PIT landing — publicly accessible and indexable
           '/dashboard/pit',
         ],
         disallow: [

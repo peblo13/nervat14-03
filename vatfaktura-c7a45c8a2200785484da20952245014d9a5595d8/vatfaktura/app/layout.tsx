@@ -17,7 +17,6 @@ const geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'VAT Faktura - Faktury i Rozliczenie PIT Online 100% Za Darmo | KSEF',
   description: 'Bezpłatny program do fakturowania i rozliczania PIT online. Faktury w 30 sekund, PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38 z podpisem elektronicznym i wysyłką do urzędu skarbowego. KSEF. 100% za darmo.',
-  generator: 'v0.app',
   keywords: 'program do fakturowania, faktury za darmo, fakturowanie online, KSEF, generator faktur, faktury VAT, rozliczenie PIT, PIT-37 online, PIT-36 online, PIT-28 ryczałt, PIT-38 giełda, PIT-36L podatek liniowy, rozlicz PIT za darmo, e-deklaracje, urząd skarbowy online, podpis elektroniczny PIT, e-faktura, kSEF integracja, darmowe fakturowanie',
   metadataBase: new URL('https://www.vatfaktura.pl'),
   robots: {
@@ -69,9 +68,7 @@ export const metadata: Metadata = {
     description: 'Faktury online + rozliczenie PIT-37, PIT-36, PIT-28, PIT-38 z e-podpisem. KSEF. 100% bezpłatnie.',
     creator: '@vatfaktura',
   },
-  verification: {
-    google: 'YOUR_GOOGLE_SITE_VERIFICATION',
-  },
+  // verification: { google: 'ADD_YOUR_SEARCH_CONSOLE_TOKEN_HERE' },
 }
 
 export const viewport: Viewport = {
@@ -95,21 +92,31 @@ export default function RootLayout({
         <JsonLd />
         
         {/*
-          IMPORTANT — replace placeholders before submitting AdSense application:
-          1. Replace GA_MEASUREMENT_ID with your real Google Analytics 4 ID (e.g. G-ABC123)
-          2. Replace ADSENSE_PUBLISHER_ID with your real AdSense publisher ID (e.g. ca-pub-1234567890)
-          3. Replace SEARCH_CONSOLE_CODE with your Search Console verification token
+          Google AdSense — active for site review and monetisation.
+          Publisher ID: ca-pub-9110227480064306
+          ads.txt is at /public/ads.txt and served at https://www.vatfaktura.pl/ads.txt
         */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9110227480064306"
+          crossOrigin="anonymous"
+        />
 
-        {/* Google Analytics 4 — replace GA_MEASUREMENT_ID */}
+        {/*
+          Google Analytics 4 — add your real GA4 Measurement ID below.
+          1. Create a GA4 property at https://analytics.google.com
+          2. Copy the Measurement ID (format: G-XXXXXXXXXX)
+          3. Uncomment and replace GA_MEASUREMENT_ID
+        */}
         {/* <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID" /> */}
         {/* <script dangerouslySetInnerHTML={{ __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');` }} /> */}
 
-        {/* Google Search Console — replace SEARCH_CONSOLE_CODE */}
-        {/* <meta name="google-site-verification" content="SEARCH_CONSOLE_CODE" /> */}
-
-        {/* Google AdSense — uncomment ONLY after account is approved */}
-        {/* <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ADSENSE_PUBLISHER_ID" crossOrigin="anonymous" /> */}
+        {/*
+          Google Search Console verification — add your token below.
+          Get it at: https://search.google.com/search-console
+          Uncomment and replace YOUR_TOKEN
+        */}
+        {/* <meta name="google-site-verification" content="YOUR_TOKEN" /> */}
       </head>
       <body className="font-sans antialiased bg-background text-foreground">
         <CursorTrail />
