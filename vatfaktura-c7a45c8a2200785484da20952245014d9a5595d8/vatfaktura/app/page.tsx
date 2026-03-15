@@ -63,20 +63,20 @@ export default function Home() {
 
               {/* Other nav links */}
               <Link href="/faq" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-                FAQ
+                {t('nav.faq', language)}
               </Link>
               <Link href="/blog" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-                Blog
+                {t('nav.blog', language)}
               </Link>
 
               {/* Divider */}
               <div className="w-px h-5 bg-white/15 mx-1" />
 
               <Link href="/pricing" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-                Cennik
+                {t('nav.pricing', language)}
               </Link>
               <Link href="/#partners" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-                Partnerzy
+                {t('nav.partners', language)}
               </Link>
 
               {/* Divider */}
@@ -87,12 +87,12 @@ export default function Home() {
 
               <Link href="/login">
                 <Button variant="outline" className="h-9 px-4 text-sm border-blue-500/40 hover:bg-blue-500/10 text-blue-300">
-                  Zaloguj
+                  {t('nav.login', language)}
                 </Button>
               </Link>
               <Link href="/register">
                 <Button className="h-9 px-4 text-sm bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-500 hover:to-cyan-500 shadow-lg shadow-green-500/30 font-semibold">
-                  Rejestracja
+                  {t('nav.register', language)}
                 </Button>
               </Link>
             </nav>
@@ -273,10 +273,10 @@ export default function Home() {
                         <feature.icon className="w-12 h-12 sm:w-14 sm:h-14 text-blue-300 group-hover:text-cyan-300 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6" />
                         <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
                       </div>
-                      <div className="flex-grow">
-                        <h4 className="text-lg sm:text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors duration-300">{t(feature.titleKey, language)}</h4>
-                        <p className="text-sm sm:text-base text-blue-200/70 group-hover:text-blue-100/80 transition-colors duration-300 leading-relaxed">{t(feature.descriptionKey, language)}</p>
-                      </div>
+                <div className="flex-grow">
+                  <h3 className="text-lg font-bold text-white mb-2">{t(feature.titleKey, language)}</h3>
+                  <p className="text-blue-200/70 text-sm leading-relaxed">{t(feature.descKey, language)}</p>
+                </div>
                       <div className="h-1 bg-gradient-to-r from-blue-500/0 via-blue-500/50 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full"></div>
                     </div>
                   </div>
@@ -299,36 +299,36 @@ export default function Home() {
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-2 h-8 bg-gradient-to-b from-green-400 to-emerald-400 rounded-full"></div>
-                  <span className="text-xs sm:text-sm font-bold tracking-widest text-green-300 uppercase">Nowa usługa</span>
+                  <span className="text-xs sm:text-sm font-bold tracking-widest text-green-300 uppercase">{t('home.newService', language)}</span>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                   <div className="space-y-6">
                     <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-                      <span className="bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">Załóż firmę online</span> za pomocą VAT Faktura
+                      <span className="bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">{t('home.companyTitle', language)}</span>
                     </h3>
                     
                     <p className="text-base sm:text-lg text-blue-100/90 leading-relaxed">
-                      Nie musisz już odwiedzać urzędu! VAT Faktura pomaga w rejestracji Twojej firmy online. Pełna obsługa procesu rejestracji w systemach CEIDG, GUS i ZUS.
+                      {t('home.companyDesc', language)}
                     </p>
                     
                     <div className="space-y-3">
                       {[
-                        '✓ Szybka rejestracja online',
-                        '✓ Bez wizyt w urzędach',
-                        '✓ Pełna obsługa dokumentacji',
-                        '✓ Integracja z fakturaowaniem',
+                        t('home.companyList1', language),
+                        t('home.companyList2', language),
+                        t('home.companyList3', language),
+                        t('home.companyList4', language),
                       ].map((item, idx) => (
                         <div key={idx} className="flex items-center gap-3">
-                          <span className="text-green-400 font-bold">{item.split('✓')[0]}✓</span>
-                          <span className="text-blue-100">{item.split('✓')[1]}</span>
+                          <span className="text-green-400 font-bold">✓</span>
+                          <span className="text-blue-100">{item}</span>
                         </div>
                       ))}
                     </div>
                     
                     <Link href="/zaloz-firme-online">
                       <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold px-8 py-3 text-base shadow-lg shadow-green-500/40 hover:shadow-green-500/60 transition-all flex items-center gap-2">
-                        Załóż firmę teraz
+                        {t('home.companyButton', language)}
                         <ArrowRight className="w-4 h-4" />
                       </Button>
                     </Link>
@@ -338,7 +338,7 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-br from-green-600/30 to-emerald-600/20 flex items-center justify-center">
                       <div className="text-center">
                         <Building2 className="w-16 h-16 sm:w-20 sm:h-20 text-green-300 mx-auto mb-4 opacity-80" />
-                        <p className="text-green-200 text-sm sm:text-base font-semibold">Załóż firmę w kilka minut</p>
+                        <p className="text-green-200 text-sm sm:text-base font-semibold">{t('home.companySubtitle', language)}</p>
                       </div>
                     </div>
                   </div>
@@ -353,11 +353,11 @@ export default function Home() {
           <div className="text-center mb-16 sm:mb-20 md:mb-24">
             <div className="flex items-center justify-center gap-2 mb-6">
               <div className="w-1.5 h-6 bg-gradient-to-b from-orange-400 to-red-400 rounded-full"></div>
-              <span className="text-xs sm:text-sm font-bold tracking-widest text-orange-300 uppercase">Nowości</span>
+              <span className="text-xs sm:text-sm font-bold tracking-widest text-orange-300 uppercase">{t('home.newsSection', language)}</span>
               <div className="w-1.5 h-6 bg-gradient-to-b from-orange-400 to-red-400 rounded-full"></div>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
-              Nowe <span className="bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 bg-clip-text text-transparent">funkcje</span> w VAT Faktura
+              {t('home.newsTitle', language)}
             </h2>
             <p className="text-blue-200/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
               Odkryj najnowsze narzędzia do zarządzania biznesem online
@@ -367,20 +367,20 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
             {[
               {
-                title: 'Załóż firmę online',
-                description: 'Rejestracja firmy w systemach CEIDG, GUS i ZUS bez wychodzenia z domu. Pełna automatyzacja procesu.',
+                titleKey: 'home.newFeature1',
+                descKey: 'home.newFeature1Desc',
                 icon: Building2,
                 color: 'green'
               },
               {
-                title: 'Formularze ZUS',
-                description: 'Kompleksowy zestaw generatorów formularzy ZUS-owych. Z-3, Z-15, kalkulatory zasiłków i poradnik PUE.',
+                titleKey: 'home.newFeature2',
+                descKey: 'home.newFeature2Desc',
                 icon: FileText,
                 color: 'orange'
               },
               {
-                title: 'Rozliczenie PIT',
-                description: 'Wszystkie rodzaje PIT-ów w jednym miejscu. PIT-37, PIT-36, PIT-28 z obsługą ulg podatkowych.',
+                titleKey: 'home.newFeature3',
+                descKey: 'home.newFeature3Desc',
                 icon: Calculator,
                 color: 'emerald'
               }
@@ -424,7 +424,7 @@ export default function Home() {
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
           <div className="text-center mb-16 sm:mb-20 md:mb-24">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-300 bg-clip-text text-transparent mb-4">
-              Jak to działa?
+              {t('home.howTitle', language)}
             </h2>
             <p className="text-blue-200/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
               Zaledwie 3 proste kroki, aby zacząć wystawiać faktury za darmo
@@ -446,9 +446,9 @@ export default function Home() {
                     1
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Załóż konto</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{t('home.step1Title', language)}</h3>
                 <p className="text-blue-200/70 text-sm sm:text-base leading-relaxed">
-                  Załóż bezpłatne konto w ciągu 30 sekund. Nie potrzebujesz karty kredytowej ani jakichkolwiek danych.
+                  {t('home.step1Desc', language)}
                 </p>
               </div>
             </div>
@@ -464,9 +464,9 @@ export default function Home() {
                     2
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Utwórz fakturę</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{t('home.step2Title', language)}</h3>
                 <p className="text-blue-200/70 text-sm sm:text-base leading-relaxed">
-                  Wypełnij dane odbiorcy, towary/usługi i gotowe. System automatycznie obliczy VAT i sumy.
+                  {t('home.step2Desc', language)}
                 </p>
               </div>
             </div>
@@ -482,9 +482,9 @@ export default function Home() {
                     3
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">Pobierz i wyślij</h3>
+                <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">{t('home.step3Title', language)}</h3>
                 <p className="text-blue-200/70 text-sm sm:text-base leading-relaxed">
-                  Pobierz fakturę jako PDF lub wyślij bezpośrednio do klienta. Wszystko w kilka kliknięć.
+                  {t('home.step3Desc', language)}
                 </p>
               </div>
             </div>
@@ -494,7 +494,7 @@ export default function Home() {
           <div className="mt-16 sm:mt-20 text-center">
             <Link href="/register">
               <Button className="bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-500 hover:to-cyan-500 text-white font-bold px-8 sm:px-10 py-3 sm:py-4 text-base sm:text-lg shadow-lg shadow-green-500/30 hover:shadow-green-500/50 transition-all">
-                Zacznij za darmo teraz
+                {t('home.ctaButton', language)}
               </Button>
             </Link>
           </div>
@@ -516,8 +516,25 @@ export default function Home() {
               
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-2 h-8 bg-gradient-to-b from-green-400 to-cyan-400 rounded-full"></div>
-                  <span className="text-xs sm:text-sm font-bold tracking-widest text-green-300 uppercase">Integracja Premium</span>
+                  <div className="w-2 h-8 bg-gradient-to-b from-green-400 to-emerald-400 rounded-full"></div>
+                  <span className="text-xs sm:text-sm font-bold tracking-widest text-green-300 uppercase">{t('home.premiumIntegration', language)}</span>
+                </div>
+                
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                  {t('home.kSEFTitle', language)}
+                </h3>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
+                  {[
+                    { textKey: 'home.kSEFFeature1', highlight: true },
+                    { textKey: 'home.kSEFFeature2', highlight: false },
+                    { textKey: 'home.kSEFFeature3', highlight: false },
+                  ].map((item, idx) => (
+                    <div key={idx} className={`flex items-center gap-3 p-4 rounded-lg transition-all duration-300 ${item.highlight ? 'bg-green-500/20 border border-green-400/50 group-hover:bg-green-500/30' : 'bg-blue-500/10 border border-blue-400/30 group-hover:bg-blue-500/20'}`}>
+                      <span className={`text-xl font-bold ${item.highlight ? 'text-green-300' : 'text-cyan-300'}`}>✓</span>
+                      <span className="text-sm sm:text-base text-blue-100">{t(item.textKey, language)}</span>
+                    </div>
+                  ))}
                 </div>
                 
                 <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
@@ -552,10 +569,10 @@ export default function Home() {
               <span className="text-xs sm:text-sm font-bold tracking-widest text-emerald-300 uppercase">Nowe — Rozliczenia PIT</span>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-300 bg-clip-text text-transparent px-4">
-              Rozlicz PIT bezpośrednio w VAT Faktura
+              {t('home.pitTitle', language)}
             </h2>
             <p className="text-blue-200/70 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-4">
-              Wypełnij deklarację podatkową online, podpisz elektronicznie i wyślij bezpośrednio do urzędu skarbowego — wszystko w jednym miejscu, 100% bezpłatnie.
+              {t('home.pitDesc', language)}
             </p>
           </div>
 
@@ -584,8 +601,8 @@ export default function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mb-10">
             {[
               {
-                title: 'Integracja z urzędem skarbowym',
-                desc: 'Deklaracja trafia bezpośrednio do systemu e-Deklaracje Ministerstwa Finansów — bez papierów, bez wizyt w urzędzie.',
+                titleKey: 'home.pitFeature1',
+                descKey: 'home.pitFeature1Desc',
                 color: 'from-emerald-600/20 to-teal-600/20',
                 border: 'border-emerald-500/30 hover:border-emerald-500/60',
                 icon: (
@@ -595,8 +612,8 @@ export default function Home() {
                 ),
               },
               {
-                title: 'Podpis elektroniczny',
-                desc: 'Podpisz deklarację kwalifikowanym podpisem elektronicznym lub Profilem Zaufanym — zgodnie z wymogami KAS.',
+                titleKey: 'home.pitFeature2',
+                descKey: 'home.pitFeature2Desc',
                 color: 'from-teal-600/20 to-cyan-600/20',
                 border: 'border-teal-500/30 hover:border-teal-500/60',
                 icon: (
@@ -606,8 +623,8 @@ export default function Home() {
                 ),
               },
               {
-                title: 'Automatyczne obliczenia',
-                desc: 'System liczy podatek, ulgi i odliczenia za Ciebie — PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38, PIT-39 i więcej.',
+                titleKey: 'home.pitFeature3',
+                descKey: 'home.pitFeature3Desc',
                 color: 'from-cyan-600/20 to-blue-600/20',
                 border: 'border-cyan-500/30 hover:border-cyan-500/60',
                 icon: (
@@ -619,8 +636,8 @@ export default function Home() {
             ].map((card, idx) => (
               <div key={idx} className={`group bg-gradient-to-br ${card.color} border ${card.border} rounded-xl p-6 sm:p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl`}>
                 <div className="mb-4">{card.icon}</div>
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">{card.title}</h3>
-                <p className="text-sm text-blue-200/70 leading-relaxed">{card.desc}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">{t(card.titleKey, language)}</h3>
+                <p className="text-sm text-blue-200/70 leading-relaxed">{t(card.descKey, language)}</p>
               </div>
             ))}
           </div>
@@ -916,16 +933,16 @@ export default function Home() {
               <div className="relative z-10 space-y-6 sm:space-y-8">
                 <div className="space-y-3 sm:space-y-4">
                   <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
-                    Gotowy do rozpoczęcia?
+                    {t('home.ctaTitle', language)}
                   </h3>
                   <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-                    Załóż darmowe konto i zacznij fakturować dzisiaj. Bez limitów, bez karty kredytowej, zawsze bezpłatnie.
+                    {t('home.ctaDesc', language)}
                   </p>
                 </div>
                 
                 <Link href="/register">
                   <Button className="min-h-[48px] sm:min-h-[52px] px-8 sm:px-10 md:px-14 py-3 sm:py-4 text-base sm:text-lg font-bold bg-white text-green-600 hover:bg-blue-50 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-110 active:scale-95">
-                    Zarejestruj się za darmo
+                    {t('home.cta.start', language)}
                   </Button>
                 </Link>
               </div>
@@ -940,10 +957,10 @@ export default function Home() {
             <div className="relative bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-3xl p-8 sm:p-12 md:p-16 backdrop-blur-xl">
               <div className="max-w-2xl mx-auto text-center">
                 <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-3 sm:mb-4">
-                  Pozostań w kontakcie
+                  {t('home.newsletterTitle', language)}
                 </h3>
                 <p className="text-blue-200/80 text-sm sm:text-base mb-6 sm:mb-8">
-                  Subskrybuj nasz newsletter i otrzymuj tips do podatkowe, nowości i aktualizacje bezpłatnie
+                  {t('home.newsletterDesc', language)}
                 </p>
                 <NewsletterSignup />
               </div>
