@@ -6,6 +6,7 @@ import { Card } from '@/components/ui/card'
 import { AlertCircle, CheckCircle, FileText, Users, Building2, Briefcase, ArrowRight, Globe } from 'lucide-react'
 import { useLanguage } from '@/hooks/use-language'
 import { t } from '@/lib/i18n/translations'
+import { DownloadableResourcesSection } from '@/components/downloadable-resources-section'
 import { AdSenseDisplayAuto } from '@/components/adsense-banner'
 
 export default function ForeignersGuide() {
@@ -145,7 +146,7 @@ export default function ForeignersGuide() {
         {
           num: 5,
           title: 'Otrzymaj potwierdzenie',
-          desc: 'CEIDG wyśle ci potwierdzenie na email. Rejestracja zwykle trwa 1-2 dni.'
+          desc: 'CEIDG wy��le ci potwierdzenie na email. Rejestracja zwykle trwa 1-2 dni.'
         },
         {
           num: 6,
@@ -289,6 +290,16 @@ export default function ForeignersGuide() {
                 </Link>
               </div>
             </section>
+
+            {/* Downloadable Resources Section */}
+            <section className="my-20 sm:my-28">
+              <DownloadableResourcesSection />
+            </section>
+
+            {/* AdSense */}
+            <div className="my-12">
+              <AdSenseDisplayAuto />
+            </div>
           </div>
         </div>
       </div>
