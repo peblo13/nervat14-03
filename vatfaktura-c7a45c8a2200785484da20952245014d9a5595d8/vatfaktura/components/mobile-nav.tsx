@@ -30,6 +30,15 @@ export function MobileNav() {
       ],
     },
     {
+      labelKey: 'nav.guides',
+      items: [
+        { href: '/poradnik-paszport', labelKey: 'nav.passport', icon: <FileText className="w-4 h-4" />, accent: 'blue' },
+        { href: '/mapa-urzedow', labelKey: 'nav.offices', icon: <Building2 className="w-4 h-4" />, accent: 'green' },
+        { href: '/kalendarz-terminow', labelKey: 'nav.deadlines', icon: <ClipboardList className="w-4 h-4" />, accent: 'purple' },
+        { href: '/porada-prawna', labelKey: 'nav.legal', icon: <Users className="w-4 h-4" />, accent: 'cyan' },
+      ],
+    },
+    {
       labelKey: 'nav.more',
       items: [
         { href: '/pricing', labelKey: 'nav.pricing', icon: <Tag className="w-4 h-4" /> },
@@ -88,11 +97,15 @@ export function MobileNav() {
                             ? 'text-orange-300 hover:text-orange-100 hover:bg-orange-500/15'
                             : item.accent === 'green'
                             ? 'text-green-300 hover:text-green-100 hover:bg-green-500/15'
+                            : item.accent === 'purple'
+                            ? 'text-purple-300 hover:text-purple-100 hover:bg-purple-500/15'
+                            : item.accent === 'cyan'
+                            ? 'text-cyan-300 hover:text-cyan-100 hover:bg-cyan-500/15'
                             : 'text-blue-200/80 hover:text-white hover:bg-white/8'
                         }`}
                       >
                         <span className={`flex-shrink-0 transition-transform duration-150 group-hover:scale-110 ${
-                          item.accent === 'emerald' ? 'text-emerald-400' : item.accent === 'orange' ? 'text-orange-400' : item.accent === 'green' ? 'text-green-400' : 'text-blue-400/70'
+                          item.accent === 'emerald' ? 'text-emerald-400' : item.accent === 'orange' ? 'text-orange-400' : item.accent === 'green' ? 'text-green-400' : item.accent === 'purple' ? 'text-purple-400' : item.accent === 'cyan' ? 'text-cyan-400' : 'text-blue-400/70'
                         }`}>
                           {item.icon}
                         </span>
