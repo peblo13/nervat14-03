@@ -921,6 +921,72 @@ export default function Home() {
           <AdSenseDisplay728x90 />
         </div>
 
+        {/* Guides Section */}
+        <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32 relative">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+              Kompleksowe Poradniki dla Przedsiębiorców
+            </h2>
+            <p className="text-base sm:text-lg text-blue-200/80 max-w-2xl mx-auto">
+              Poznaj wszystkie informacje potrzebne do sprawnego zarządzania biznesem w Polsce
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {/* Poradnik Paszport */}
+            <Link href="/poradnik-paszport">
+              <div className="group relative h-full cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-cyan-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"></div>
+                <div className="relative h-full bg-slate-800/40 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border-2 border-blue-500/30 hover:border-blue-500/60 transition-all duration-500 group-hover:bg-slate-800/80 group-hover:shadow-2xl group-hover:shadow-blue-500/30 transform group-hover:-translate-y-2 flex flex-col gap-4">
+                  <div className="text-4xl">🛂</div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Poradnik Paszport</h3>
+                  <p className="text-sm sm:text-base text-blue-200/70 group-hover:text-blue-100 transition-colors flex-grow">Procedura paszportowa, wymagane dokumenty, rezerwacja wizyt</p>
+                  <div className="text-sm font-semibold text-cyan-300 group-hover:text-cyan-200">Czytaj poradnik →</div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Mapa Urzędów */}
+            <Link href="/mapa-urzedow">
+              <div className="group relative h-full cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-br from-green-600/20 to-emerald-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"></div>
+                <div className="relative h-full bg-slate-800/40 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border-2 border-green-500/30 hover:border-green-500/60 transition-all duration-500 group-hover:bg-slate-800/80 group-hover:shadow-2xl group-hover:shadow-green-500/30 transform group-hover:-translate-y-2 flex flex-col gap-4">
+                  <div className="text-4xl">🗺️</div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-green-300 transition-colors">Mapa Urzędów</h3>
+                  <p className="text-sm sm:text-base text-blue-200/70 group-hover:text-blue-100 transition-colors flex-grow">Adresy, godziny pracy, numery telefonów urzędów publicznych</p>
+                  <div className="text-sm font-semibold text-green-300 group-hover:text-green-200">Otwórz mapę →</div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Kalendarz Terminów */}
+            <Link href="/kalendarz-terminow">
+              <div className="group relative h-full cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"></div>
+                <div className="relative h-full bg-slate-800/40 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border-2 border-purple-500/30 hover:border-purple-500/60 transition-all duration-500 group-hover:bg-slate-800/80 group-hover:shadow-2xl group-hover:shadow-purple-500/30 transform group-hover:-translate-y-2 flex flex-col gap-4">
+                  <div className="text-4xl">📅</div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">Kalendarz Terminów</h3>
+                  <p className="text-sm sm:text-base text-blue-200/70 group-hover:text-blue-100 transition-colors flex-grow">Harmonogram ważnych terminów (PIT, ZUS, VAT, deklaracje)</p>
+                  <div className="text-sm font-semibold text-purple-300 group-hover:text-purple-200">Sprawdź terminy →</div>
+                </div>
+              </div>
+            </Link>
+
+            {/* Porada Prawna */}
+            <Link href="/porada-prawna">
+              <div className="group relative h-full cursor-pointer">
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-600/20 to-blue-600/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110"></div>
+                <div className="relative h-full bg-slate-800/40 backdrop-blur-xl rounded-2xl p-6 sm:p-8 border-2 border-cyan-500/30 hover:border-cyan-500/60 transition-all duration-500 group-hover:bg-slate-800/80 group-hover:shadow-2xl group-hover:shadow-cyan-500/30 transform group-hover:-translate-y-2 flex flex-col gap-4">
+                  <div className="text-4xl">⚖️</div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">Porada Prawna</h3>
+                  <p className="text-sm sm:text-base text-blue-200/70 group-hover:text-blue-100 transition-colors flex-grow">Bezpłatne porady prawne od legalnych organizacji</p>
+                  <div className="text-sm font-semibold text-cyan-300 group-hover:text-cyan-200">Szukaj porady →</div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </section>
+
         {/* CTA Final */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32 relative">
           <div className="relative group">
