@@ -30,6 +30,11 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://www.vatfaktura.pl',
+    languages: {
+      'pl': 'https://www.vatfaktura.pl',
+      'uk': 'https://www.vatfaktura.pl/uk',
+      'x-default': 'https://www.vatfaktura.pl',
+    },
   },
   icons: {
     icon: [

@@ -9,6 +9,8 @@ import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText, Users, Star, Awa
 import Link from 'next/link'
 import { MobileNav } from '@/components/mobile-nav'
 import { HeaderMenu } from '@/components/header-menu'
+import { LanguageSwitcher } from '@/components/language-switcher'
+import { UkrainianBanner } from '@/components/ukrainian-banner'
 import { PartnerPopup } from '@/components/partner-popup'
 import { SupportBanner } from '@/components/support-banner'
 import { AdSenseDisplay728x90, AdSenseDisplay300x250, AdSenseDisplayAuto } from '@/components/adsense-banner'
@@ -28,6 +30,9 @@ export default function Home() {
     <div className="min-h-screen relative overflow-hidden">
       {/* Support Banner */}
       <SupportBanner />
+
+      {/* Ukrainian Banner */}
+      <UkrainianBanner />
 
       {/* Partner Popup */}
       <PartnerPopup />
@@ -73,6 +78,9 @@ export default function Home() {
 
               {/* Divider */}
               <div className="w-px h-5 bg-white/15 mx-1" />
+
+              {/* Language Switcher */}
+              <LanguageSwitcher />
 
               <Link href="/login">
                 <Button variant="outline" className="h-9 px-4 text-sm border-blue-500/40 hover:bg-blue-500/10 text-blue-300">
