@@ -196,22 +196,56 @@ function AccordionItem({
   question: string
   answer: string
   index: number
-  accent: 'emerald' | 'blue'
+  accent: 'emerald' | 'blue' | 'orange'
 }) {
   const [open, setOpen] = useState(false)
 
-  const isEmerald = accent === 'emerald'
+  const borderClasses = {
+    emerald: 'border-emerald-500/15 bg-slate-900/50 hover:border-emerald-500/35 hover:bg-emerald-950/20',
+    blue: 'border-blue-500/15 bg-slate-900/50 hover:border-blue-500/35 hover:bg-blue-950/20',
+    orange: 'border-orange-500/15 bg-slate-900/50 hover:border-orange-500/35 hover:bg-orange-950/20'
+  }
+  
+  const openClasses = {
+    emerald: 'border-emerald-500/50 bg-emerald-950/40 shadow-lg shadow-emerald-900/30',
+    blue: 'border-blue-500/50 bg-blue-950/30 shadow-lg shadow-blue-900/20',
+    orange: 'border-orange-500/50 bg-orange-950/40 shadow-lg shadow-orange-900/30'
+  }
+  
+  const iconClasses = {
+    emerald: 'bg-emerald-500/10 text-emerald-400',
+    blue: 'bg-blue-500/10 text-blue-400',
+    orange: 'bg-orange-500/10 text-orange-400'
+  }
+  
+  const iconOpenClasses = {
+    emerald: 'bg-emerald-500/30 text-emerald-200',
+    blue: 'bg-blue-500/30 text-blue-200',
+    orange: 'bg-orange-500/30 text-orange-200'
+  }
+  
+  const textOpenClasses = {
+    emerald: 'text-emerald-200',
+    blue: 'text-blue-200',
+    orange: 'text-orange-200'
+  }
+  
+  const chevronClasses = {
+    emerald: 'text-emerald-400',
+    blue: 'text-blue-400',
+    orange: 'text-orange-400'
+  }
+  
+  const answerClasses = {
+    emerald: 'text-emerald-100/70',
+    blue: 'text-blue-100/70',
+    orange: 'text-orange-100/70'
+  }
 
   return (
     <div
       className={`faq-item rounded-xl border transition-all duration-300 overflow-hidden ${
-        isEmerald
-          ? open
-            ? 'border-emerald-500/50 bg-emerald-950/40 shadow-lg shadow-emerald-900/30'
-            : 'border-emerald-500/15 bg-slate-900/50 hover:border-emerald-500/35 hover:bg-emerald-950/20'
-          : open
-          ? 'border-blue-500/50 bg-blue-950/30 shadow-lg shadow-blue-900/20'
-          : 'border-blue-500/15 bg-slate-900/50 hover:border-blue-500/35 hover:bg-blue-950/20'
+        open ? openClasses[accent] : borderClasses[accent]
       }`}
       style={{ animationDelay: `${index * 40}ms` }}
     >
@@ -222,23 +256,21 @@ function AccordionItem({
       >
         <span
           className={`flex-shrink-0 w-6 h-6 mt-0.5 rounded-full flex items-center justify-center text-xs font-bold transition-colors duration-300 ${
-            isEmerald
-              ? open ? 'bg-emerald-500/30 text-emerald-200' : 'bg-emerald-500/10 text-emerald-400'
-              : open ? 'bg-blue-500/30 text-blue-200' : 'bg-blue-500/10 text-blue-400'
+            open ? iconOpenClasses[accent] : iconClasses[accent]
           }`}
         >
           {index + 1}
         </span>
         <span className={`flex-1 font-semibold text-sm sm:text-base leading-snug transition-colors duration-200 ${
           open
-            ? isEmerald ? 'text-emerald-200' : 'text-blue-200'
+            ? textOpenClasses[accent]
             : 'text-white/90'
         }`}>
           {question}
         </span>
         <ChevronDown
           className={`flex-shrink-0 w-5 h-5 mt-0.5 transition-all duration-300 ${
-            open ? 'rotate-180 ' + (isEmerald ? 'text-emerald-400' : 'text-blue-400') : 'text-white/30'
+            open ? 'rotate-180 ' + chevronClasses[accent] : 'text-white/30'
           }`}
         />
       </button>
@@ -249,9 +281,7 @@ function AccordionItem({
         }`}
       >
         <div className="overflow-hidden">
-          <p className={`px-5 pb-5 pl-[3.75rem] text-sm sm:text-base leading-relaxed ${
-            isEmerald ? 'text-emerald-100/70' : 'text-blue-100/70'
-          }`}>
+          <p className={`px-5 pb-5 pl-[3.75rem] text-sm sm:text-base leading-relaxed ${answerClasses[accent]}`}>
             {answer}
           </p>
         </div>
@@ -270,24 +300,30 @@ function SectionHeader({
   icon: React.ReactNode
   title: string
   count: number
-  accent: 'emerald' | 'blue'
+  accent: 'emerald' | 'blue' | 'orange'
   id?: string
 }) {
+  const accentClasses = {
+    emerald: 'bg-emerald-500/20 text-emerald-300',
+    blue: 'bg-blue-500/20 text-blue-300',
+    orange: 'bg-orange-500/20 text-orange-300'
+  }
+  
+  const badgeClasses = {
+    emerald: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300',
+    blue: 'bg-blue-500/10 border-blue-500/30 text-blue-300',
+    orange: 'bg-orange-500/10 border-orange-500/30 text-orange-300'
+  }
+  
   return (
     <div id={id} className="flex items-center gap-4 mb-6 pt-2 scroll-mt-24">
-      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
-        accent === 'emerald' ? 'bg-emerald-500/20 text-emerald-300' : 'bg-blue-500/20 text-blue-300'
-      }`}>
+      <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${accentClasses[accent]}`}>
         {icon}
       </div>
       <div className="flex-1 min-w-0">
         <h2 className="text-xl sm:text-2xl font-bold text-white leading-tight">{title}</h2>
       </div>
-      <span className={`flex-shrink-0 px-3 py-1 rounded-full text-xs font-semibold border ${
-        accent === 'emerald'
-          ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-          : 'bg-blue-500/10 border-blue-500/30 text-blue-300'
-      }`}>
+      <span className={`flex-shrink-0 px-3 py-1 rounded-full text-xs font-semibold border ${badgeClasses[accent]}`}>
         {count} pytań
       </span>
     </div>
@@ -321,11 +357,15 @@ export default function FAQPage() {
           <div className="flex flex-wrap justify-center gap-2 pt-1">
             <a href="#pit" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-500/10 border border-emerald-500/25 rounded-full text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 transition-colors">
               <Receipt className="w-3.5 h-3.5" />
-              {pitFaqs.length} pytań o PIT
+              PIT
+            </a>
+            <a href="#zus" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-orange-500/10 border border-orange-500/25 rounded-full text-xs font-semibold text-orange-300 hover:bg-orange-500/20 transition-colors">
+              <Briefcase className="w-3.5 h-3.5" />
+              ZUS
             </a>
             <a href="#faktury" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-500/10 border border-blue-500/25 rounded-full text-xs font-semibold text-blue-300 hover:bg-blue-500/20 transition-colors">
               <FileText className="w-3.5 h-3.5" />
-              {invoiceFaqs.length} pytań o fakturowanie
+              Faktury
             </a>
           </div>
         </div>
@@ -367,10 +407,10 @@ export default function FAQPage() {
         <section id="zus" className="scroll-mt-20 mb-16">
           <SectionHeader
             id="zus-header"
-            icon={<FileText className="w-5 h-5" />}
+            icon={<Briefcase className="w-5 h-5" />}
             title="Formularze i Zasiłki ZUS"
             count={zusFaqs.length}
-            accent="blue"
+            accent="orange"
           />
           <div className="space-y-2">
             {zusFaqs.map((faq, idx) => (
@@ -379,17 +419,17 @@ export default function FAQPage() {
                 question={faq.question}
                 answer={faq.answer}
                 index={idx}
-                accent="blue"
+                accent="orange"
               />
             ))}
           </div>
-          <div className="mt-6 p-4 rounded-xl bg-blue-500/8 border border-blue-500/20 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="mt-6 p-4 rounded-xl bg-orange-500/8 border border-orange-500/20 flex flex-col sm:flex-row items-start sm:items-center gap-3">
             <div className="flex-1">
-              <p className="text-sm font-semibold text-blue-300">Potrzebujesz formularza ZUS?</p>
-              <p className="text-xs text-blue-200/60 mt-0.5">Mamy bezpłatne generatory Z-3, kalkulatory zasiłków i porady.</p>
+              <p className="text-sm font-semibold text-orange-300">Potrzebujesz formularza ZUS?</p>
+              <p className="text-xs text-orange-200/60 mt-0.5">Mamy bezpłatne generatory Z-3, kalkulatory zasiłków i porady.</p>
             </div>
             <Link href="/formularze-zus">
-              <Button className="h-9 px-5 text-sm bg-blue-600 hover:bg-blue-500 text-white font-semibold flex-shrink-0">
+              <Button className="h-9 px-5 text-sm bg-orange-600 hover:bg-orange-500 text-white font-semibold flex-shrink-0">
                 Generatory ZUS
               </Button>
             </Link>

@@ -37,9 +37,26 @@ export default function BlogPage() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent mb-6">
             Blog VAT Faktura
           </h1>
-          <p className="text-lg text-blue-200/80 max-w-2xl mx-auto mb-4">
+          <p className="text-lg text-blue-200/80 max-w-2xl mx-auto mb-8">
             Poradniki, wskazówki i artykuły o fakturach, KSEF, podatach i zarządzaniu biznesem
           </p>
+          
+          {/* Section Navigation */}
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <a href="#pit" className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-sm font-semibold text-emerald-300 hover:bg-emerald-500/20 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+              PIT
+            </a>
+            <a href="#zus" className="inline-flex items-center gap-1.5 px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full text-sm font-semibold text-orange-300 hover:bg-orange-500/20 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-orange-400"></span>
+              ZUS
+            </a>
+            <a href="#pozostale" className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-full text-sm font-semibold text-blue-300 hover:bg-blue-500/20 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+              Inne
+            </a>
+          </div>
+          
           <Link href="/register">
             <Button className="bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-700 hover:to-cyan-700">
               Zacznij Fakturować Za Darmo
@@ -150,7 +167,7 @@ export default function BlogPage() {
           </div>
 
           {/* All other articles */}
-          <div className="flex items-center gap-3 mb-6">
+          <div id="pozostale" className="flex items-center gap-3 mb-6 scroll-mt-24">
             <div className="w-1.5 h-8 bg-gradient-to-b from-blue-400 to-cyan-400 rounded-full flex-shrink-0"></div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">Pozostałe artykuły</h2>
           </div>
