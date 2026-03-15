@@ -1,21 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { Metadata } from 'next'
 import { ArrowLeft, CheckCircle2 } from 'lucide-react'
 import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
-
-export const metadata: Metadata = {
-  title: 'Poradnik PUE ZUS - Jak Wysyłać Formularze Online',
-  description: 'Krok po kroku poradnik jak logować się do PUE ZUS i wysyłać formularze online. Instrukcje dla Z-3, zasiłków i innych dokumentów.',
-  keywords: 'PUE ZUS, portal ZUS, formularze online, jak wysłać do ZUS, instrukcja PUE',
-  openGraph: {
-    title: 'Poradnik PUE ZUS - Wysyłanie Formularzy Online',
-    description: 'Krok po kroku jak wysyłać dokumenty do ZUS przez PUE',
-    type: 'website',
-    url: 'https://www.vatfaktura.pl/poradnik-pue-zus',
-  },
-}
 
 export default function PoradnikPUEZUSPage() {
   const steps = [
