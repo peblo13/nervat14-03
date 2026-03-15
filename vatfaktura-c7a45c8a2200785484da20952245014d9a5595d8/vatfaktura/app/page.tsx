@@ -386,12 +386,12 @@ export default function Home() {
               }
             ].map((feature, idx) => {
               const IconComponent = feature.icon
-              const colorClasses = {
+              const colorClasses: Record<string, string> = {
                 green: 'border-green-500/30 hover:border-green-500/60 bg-green-900/10 hover:bg-green-900/20',
                 orange: 'border-orange-500/30 hover:border-orange-500/60 bg-orange-900/10 hover:bg-orange-900/20',
                 emerald: 'border-emerald-500/30 hover:border-emerald-500/60 bg-emerald-900/10 hover:bg-emerald-900/20'
               }
-              const textColors = {
+              const textColors: Record<string, string> = {
                 green: 'text-green-400',
                 orange: 'text-orange-400',
                 emerald: 'text-emerald-400'
