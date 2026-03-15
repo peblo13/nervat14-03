@@ -2,23 +2,10 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Metadata } from 'next'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { FileText, Calculator, Calendar, HelpCircle, Download, Clock, AlertCircle } from 'lucide-react'
 import { AdSenseDisplay728x90, AdSenseDisplayAuto } from '@/components/adsense-banner'
-
-export const metadata: Metadata = {
-  title: 'Formularze ZUS Online - Generator Z-3, Zasiłki, Poradnik',
-  description: 'Bezpłatne generatory formularzy ZUS (Z-3, Z-15), kalkulatory zasiłków i poradnik PUE ZUS. Wypełnij online, pobierz PDF do wysyłki.',
-  keywords: 'formularze ZUS, generator ZUS, Z-3, zasiłek chorobowy, zasiłek macierzyński, poradnik PUE',
-  openGraph: {
-    title: 'Formularze ZUS Online - Bezpłatnie',
-    description: 'Generator formularzy ZUS i kalkulatory zasiłków do wypełnienia online',
-    type: 'website',
-    url: 'https://www.vatfaktura.pl/formularze-zus',
-  },
-}
 
 const tools = [
   {
