@@ -404,7 +404,7 @@ export default function Home() {
                     </div>
                     <h3 className="text-lg sm:text-xl font-bold text-white">{t(feature.titleKey, language)}</h3>
                   </div>
-                  <p className="text-blue-200/80 text-sm sm:text-base leading-relaxed">{t(feature.descriptionKey, language)}</p>
+                  <p className="text-blue-200/80 text-sm sm:text-base leading-relaxed">{t(feature.descKey, language)}</p>
                 </Card>
               )
             })}
