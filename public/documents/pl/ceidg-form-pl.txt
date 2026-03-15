@@ -1,0 +1,45 @@
+INSTRUKCJA WYPEŁNIANIA FORMULARZA CEIDG JED
+
+SEKCJA I - DANE OSOBOWE
+Imię: Wpisz swoje imię dokładnie jak w paszporcie
+Nazwisko: Wpisz swoje nazwisko
+PESEL: Twój numer PESEL (11 cyfr)
+Data urodzenia: DD.MM.RRRR
+Miejsce urodzenia: Miasto, Kraj
+
+SEKCJA II - ADRES ZAMIESZKANIA
+Ulica: Pełna nazwa ulicy i numer budynku
+Kod pocztowy: XX-XXX
+Miasto: Nazwa miasta
+Powiat: Nazwa powiatu
+Gmina: Nazwa gminy
+
+SEKCJA III - ADRES SIEDZIBY FIRMY
+(Może być takie same jak adres zamieszkania)
+Ulica: Pełna nazwa
+Kod pocztowy: XX-XXX
+Miasto: Nazwa miasta
+
+SEKCJA IV - DANE FIRMY
+Nazwa przedsiębiorstwa: Wpisz nazwę firmy (polska lub ukraińska)
+Forma prawna: Wybierz - Osoba fizyczna prowadząca działalność
+Działalność gospodarcza: Kod PKD (6 cyfr) - np. 69.20.Z
+
+SEKCJA V - TELEFON I EMAIL
+Telefon: +48 XXX XXX XXX
+Email: twoj@email.com
+
+SEKCJA VI - JĘZYK KOMUNIKACJI
+Wybierz: Polski
+
+SEKCJA VII - PODPIS ELEKTRONICZNY
+Zaloguj się Profilem Zaufanym lub e-dowodem
+Podpisz formularz elektronicznie
+Wyślij
+
+WAŻNE!
+- Wszystkie pola są obowiązkowe
+- Sprawdź pisownię - musi być jak w paszporcie
+- Po wysłaniu otrzymasz potwierdzenie
+- Musisz sprawdzić email w ciągu 3 dni
+- Nie możesz prowadzić firmy przed potwierdzeniem
