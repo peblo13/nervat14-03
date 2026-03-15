@@ -63,20 +63,20 @@ export default function Home() {
 
               {/* Other nav links */}
               <Link href="/faq" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-                FAQ
+                {t('nav.faq', language)}
               </Link>
               <Link href="/blog" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-                Blog
+                {t('nav.blog', language)}
               </Link>
 
               {/* Divider */}
               <div className="w-px h-5 bg-white/15 mx-1" />
 
               <Link href="/pricing" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-                Cennik
+                {t('nav.pricing', language)}
               </Link>
               <Link href="/#partners" className="px-3 py-2 text-sm font-medium text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200">
-                Partnerzy
+                {t('nav.partners', language)}
               </Link>
 
               {/* Divider */}
@@ -87,12 +87,12 @@ export default function Home() {
 
               <Link href="/login">
                 <Button variant="outline" className="h-9 px-4 text-sm border-blue-500/40 hover:bg-blue-500/10 text-blue-300">
-                  Zaloguj
+                  {t('nav.login', language)}
                 </Button>
               </Link>
               <Link href="/register">
                 <Button className="h-9 px-4 text-sm bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-500 hover:to-cyan-500 shadow-lg shadow-green-500/30 font-semibold">
-                  Rejestracja
+                  {t('nav.register', language)}
                 </Button>
               </Link>
             </nav>
@@ -299,36 +299,36 @@ export default function Home() {
               <div className="relative z-10">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-2 h-8 bg-gradient-to-b from-green-400 to-emerald-400 rounded-full"></div>
-                  <span className="text-xs sm:text-sm font-bold tracking-widest text-green-300 uppercase">Nowa usługa</span>
+                  <span className="text-xs sm:text-sm font-bold tracking-widest text-green-300 uppercase">{t('home.newService', language)}</span>
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                   <div className="space-y-6">
                     <h3 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-                      <span className="bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">Załóż firmę online</span> za pomocą VAT Faktura
+                      <span className="bg-gradient-to-r from-green-300 to-emerald-300 bg-clip-text text-transparent">{t('home.companyTitle', language)}</span>
                     </h3>
                     
                     <p className="text-base sm:text-lg text-blue-100/90 leading-relaxed">
-                      Nie musisz już odwiedzać urzędu! VAT Faktura pomaga w rejestracji Twojej firmy online. Pełna obsługa procesu rejestracji w systemach CEIDG, GUS i ZUS.
+                      {t('home.companyDesc', language)}
                     </p>
                     
                     <div className="space-y-3">
                       {[
-                        '✓ Szybka rejestracja online',
-                        '✓ Bez wizyt w urzędach',
-                        '✓ Pełna obsługa dokumentacji',
-                        '✓ Integracja z fakturaowaniem',
+                        t('home.companyList1', language),
+                        t('home.companyList2', language),
+                        t('home.companyList3', language),
+                        t('home.companyList4', language),
                       ].map((item, idx) => (
                         <div key={idx} className="flex items-center gap-3">
-                          <span className="text-green-400 font-bold">{item.split('✓')[0]}✓</span>
-                          <span className="text-blue-100">{item.split('✓')[1]}</span>
+                          <span className="text-green-400 font-bold">✓</span>
+                          <span className="text-blue-100">{item}</span>
                         </div>
                       ))}
                     </div>
                     
                     <Link href="/zaloz-firme-online">
                       <Button className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold px-8 py-3 text-base shadow-lg shadow-green-500/40 hover:shadow-green-500/60 transition-all flex items-center gap-2">
-                        Załóż firmę teraz
+                        {t('home.companyButton', language)}
                         <ArrowRight className="w-4 h-4" />
                       </Button>
                     </Link>
@@ -338,7 +338,7 @@ export default function Home() {
                     <div className="absolute inset-0 bg-gradient-to-br from-green-600/30 to-emerald-600/20 flex items-center justify-center">
                       <div className="text-center">
                         <Building2 className="w-16 h-16 sm:w-20 sm:h-20 text-green-300 mx-auto mb-4 opacity-80" />
-                        <p className="text-green-200 text-sm sm:text-base font-semibold">Załóż firmę w kilka minut</p>
+                        <p className="text-green-200 text-sm sm:text-base font-semibold">{t('home.companySubtitle', language)}</p>
                       </div>
                     </div>
                   </div>

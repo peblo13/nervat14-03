@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { AuthProvider } from './auth-context'
 import { InvoiceProvider } from './invoice-context'
+import { LanguageProvider } from '@/contexts/language-context'
 import { InitDemo } from './init-demo'
 import CookieConsent from './cookie-consent'
 import { CursorTrail } from '@/components/cursor-trail'
@@ -128,18 +129,20 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-background text-foreground min-h-screen flex flex-col">
         <CursorTrail />
         <FuturisticLoader />
-        <AuthProvider>
-          <InvoiceProvider>
-            <InitDemo />
-            <main className="flex-grow">
-              {children}
-            </main>
-            <Footer />
-            <StickyHeaderCTA />
-            <CookieConsent />
-            <Analytics />
-          </InvoiceProvider>
-        </AuthProvider>
+        <LanguageProvider>
+          <AuthProvider>
+            <InvoiceProvider>
+              <InitDemo />
+              <main className="flex-grow">
+                {children}
+              </main>
+              <Footer />
+              <StickyHeaderCTA />
+              <CookieConsent />
+              <Analytics />
+            </InvoiceProvider>
+          </AuthProvider>
+        </LanguageProvider>
       </body>
     </html>
   )

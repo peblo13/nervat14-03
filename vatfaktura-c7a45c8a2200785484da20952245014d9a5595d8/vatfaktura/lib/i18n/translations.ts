@@ -94,6 +94,17 @@ export const translations: Record<Language, Record<string, string>> = {
     'home.feature.mathDesc': 'Wszystkie matematyczne obliczenia wykonywane automatycznie',
     'home.feature.professional': 'Profesjonalny wygląd',
     'home.feature.professionalDesc': 'Faktury z profesjonalnym designem dla Twojej firmy',
+
+    // Company Registration Section
+    'home.newService': 'Nowa usługa',
+    'home.companyTitle': 'Załóż firmę online za pomocą VAT Faktura',
+    'home.companyDesc': 'Nie musisz już odwiedzać urzędu! VAT Faktura pomaga w rejestracji Twojej firmy online. Pełna obsługa procesu rejestracji w systemach CEIDG, GUS i ZUS.',
+    'home.companyList1': 'Szybka rejestracja online',
+    'home.companyList2': 'Bez wizyt w urzędach',
+    'home.companyList3': 'Pełna obsługa dokumentacji',
+    'home.companyList4': 'Integracja z fakturaowaniem',
+    'home.companyButton': 'Załóż firmę teraz',
+    'home.companySubtitle': 'Załóż firmę w kilka minut',
   },
   uk: {
     // Header & Navigation
@@ -188,6 +199,17 @@ export const translations: Record<Language, Record<string, string>> = {
     'home.feature.mathDesc': 'Усі математичні розрахунки виконуються автоматично',
     'home.feature.professional': 'Професійний вигляд',
     'home.feature.professionalDesc': 'Рахунки з професійним дизайном для вашої компанії',
+
+    // Company Registration Section
+    'home.newService': 'Нова послуга',
+    'home.companyTitle': 'Зареєструйте ФОП онлайн за допомогою VAT Faktura',
+    'home.companyDesc': 'Вам більше не потрібно відвідувати офіс! VAT Faktura допомагає у реєстрації вашого бізнесу онлайн. Повна підтримка процесу реєстрації в системах CEIDG, GUS та ZUS.',
+    'home.companyList1': 'Швидка реєстрація онлайн',
+    'home.companyList2': 'Без відвідування офісів',
+    'home.companyList3': 'Повна підтримка документації',
+    'home.companyList4': 'Інтеграція з виставленням рахунків',
+    'home.companyButton': 'Зареєструйте ФОП зараз',
+    'home.companySubtitle': 'Зареєструйте ФОП за кілька хвилин',
   },
 };
 
