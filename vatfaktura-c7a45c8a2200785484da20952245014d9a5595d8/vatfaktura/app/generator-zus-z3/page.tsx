@@ -117,7 +117,7 @@ export default function GeneratorZUSZ3Page() {
                     value={formData.peselLecacy}
                     onChange={handleChange}
                     placeholder="XXXXXXXXXXX"
-                    maxLength="11"
+                    maxLength={11}
                     className="w-full px-4 py-3 bg-slate-900/50 border border-blue-500/30 rounded-lg text-white placeholder-blue-300/50 focus:outline-none focus:border-blue-400"
                   />
                 </div>
