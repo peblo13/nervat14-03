@@ -1,0 +1,273 @@
+import { Metadata } from 'next'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { getAllBlogPosts } from '@/lib/blog-posts'
+import { ArrowRight, Calendar, Clock } from 'lucide-react'
+import { AdSenseDisplayAuto, AdSenseDisplay728x90 } from '@/components/adsense-banner'
+
+export const metadata: Metadata = {
+  title: 'Blog — Poradniki o Fakturach, KSEF i Rozliczeniu PIT 2026 | VAT Faktura',
+  description: 'Praktyczne poradniki o fakturowaniu, KSEF, PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38. Jak wypełnić i wysłać PIT online. Podpis elektroniczny, e-Deklaracje, ulgi podatkowe 2026.',
+  keywords: 'blog PIT, PIT-37 jak wypełnić, PIT-36 działalność gospodarcza, PIT-28 ryczałt, rozliczenie PIT 2026, KSEF poradnik, faktura VAT jak wystawić, podpis elektroniczny PIT, e-Deklaracje krok po kroku, ulgi podatkowe 2026',
+  alternates: {
+    canonical: 'https://www.vatfaktura.pl/blog',
+  },
+  openGraph: {
+    title: 'Blog — Poradniki o Fakturach, KSEF i Rozliczeniu PIT 2026 | VAT Faktura',
+    description: 'Praktyczne poradniki: PIT-37, PIT-36, PIT-28, PIT-38, KSEF, fakturowanie. Jak wypełnić PIT online i wysłać do urzędu skarbowego.',
+    url: 'https://www.vatfaktura.pl/blog',
+    type: 'website',
+    locale: 'pl_PL',
+  },
+}
+
+export default function BlogPage() {
+  const articles = getAllBlogPosts()
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-900 to-slate-800 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-600/20 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+      <div className="relative z-10">
+        {/* Header */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-28 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent mb-6">
+            Blog VAT Faktura
+          </h1>
+          <p className="text-lg text-blue-200/80 max-w-2xl mx-auto mb-8">
+            Poradniki, wskazówki i artykuły o fakturach, KSEF, podatach i zarządzaniu biznesem
+          </p>
+          
+          {/* Section Navigation */}
+          <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <a href="#zaloz-firme" className="inline-flex items-center gap-1.5 px-4 py-2 bg-green-500/10 border border-green-500/30 rounded-full text-sm font-semibold text-green-300 hover:bg-green-500/20 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-green-400"></span>
+              Załóż firmę
+            </a>
+            <a href="#pit" className="inline-flex items-center gap-1.5 px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-full text-sm font-semibold text-emerald-300 hover:bg-emerald-500/20 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
+              PIT
+            </a>
+            <a href="#zus" className="inline-flex items-center gap-1.5 px-4 py-2 bg-orange-500/10 border border-orange-500/30 rounded-full text-sm font-semibold text-orange-300 hover:bg-orange-500/20 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-orange-400"></span>
+              ZUS
+            </a>
+            <a href="#pozostale" className="inline-flex items-center gap-1.5 px-4 py-2 bg-blue-500/10 border border-blue-500/30 rounded-full text-sm font-semibold text-blue-300 hover:bg-blue-500/20 transition-colors">
+              <span className="w-2 h-2 rounded-full bg-blue-400"></span>
+              Inne
+            </a>
+          </div>
+          
+          <Link href="/register">
+            <Button className="bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-700 hover:to-cyan-700">
+              Zacznij Fakturować Za Darmo
+            </Button>
+          </Link>
+        </div>
+
+        {/* Articles Grid */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+          {/* Company Articles Section */}
+          <div id="zaloz-firme" className="mb-14">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1.5 h-8 bg-gradient-to-b from-green-400 to-emerald-400 rounded-full flex-shrink-0"></div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">Artykuły o Założeniu Firmy</h2>
+              <span className="ml-2 px-3 py-1 bg-green-500/20 border border-green-500/40 rounded-full text-xs font-semibold text-green-300 uppercase tracking-wider">Nowe</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              {articles.filter(a => a.category === 'Biznes').map((article) => (
+                <Link key={article.id} href={`/blog/${article.slug}`}>
+                  <Card className="bg-green-900/20 backdrop-blur-sm border border-green-500/20 p-6 hover:border-green-500/50 transition-all h-full cursor-pointer group hover:-translate-y-2">
+                    <div className="space-y-4 h-full flex flex-col">
+                      <div>
+                        <span className="inline-block px-3 py-1 bg-green-500/20 text-green-300 text-xs font-semibold rounded-full mb-3">
+                          {article.category}
+                        </span>
+                        <h3 className="text-lg font-bold text-white group-hover:text-green-300 transition-colors leading-tight">
+                          {article.title}
+                        </h3>
+                      </div>
+                      <p className="text-sm text-blue-200/70 flex-grow">{article.excerpt}</p>
+                      <div className="flex items-center justify-between text-xs text-blue-200/60 pt-4 border-t border-green-500/20">
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" />
+                          {article.readTime}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          {new Date(article.date).toLocaleDateString('pl-PL', { month: 'short', day: 'numeric' })}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1 pt-3">
+                        {article.keywords.slice(0, 2).map((keyword) => (
+                          <span key={keyword} className="text-xs text-green-400 bg-green-500/10 px-2 py-1 rounded">
+                            #{keyword}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* PIT Articles Section */}
+          <div id="pit" className="mb-14">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1.5 h-8 bg-gradient-to-b from-emerald-400 to-teal-400 rounded-full flex-shrink-0"></div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">Artykuly o rozliczeniu PIT</h2>
+              <span className="ml-2 px-3 py-1 bg-emerald-500/20 border border-emerald-500/40 rounded-full text-xs font-semibold text-emerald-300 uppercase tracking-wider">Nowe</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              {articles.filter(a => a.category === 'PIT').map((article) => (
+                <Link key={article.id} href={`/blog/${article.slug}`}>
+                  <Card className="bg-emerald-900/20 backdrop-blur-sm border border-emerald-500/20 p-6 hover:border-emerald-500/50 transition-all h-full cursor-pointer group hover:-translate-y-2">
+                    <div className="space-y-4 h-full flex flex-col">
+                      <div>
+                        <span className="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-300 text-xs font-semibold rounded-full mb-3">
+                          {article.category}
+                        </span>
+                        <h3 className="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors leading-tight">
+                          {article.title}
+                        </h3>
+                      </div>
+                      <p className="text-sm text-blue-200/70 flex-grow">{article.excerpt}</p>
+                      <div className="flex items-center justify-between text-xs text-blue-200/60 pt-4 border-t border-emerald-500/20">
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" />
+                          {article.readTime}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          {new Date(article.date).toLocaleDateString('pl-PL', { month: 'short', day: 'numeric' })}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1 pt-3">
+                        {article.keywords.slice(0, 2).map((keyword) => (
+                          <span key={keyword} className="text-xs text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded">
+                            #{keyword}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* AdSense — Leaderboard między sekcjami PIT i ZUS */}
+          <div className="mb-14">
+            <AdSenseDisplay728x90 />
+          </div>
+
+          {/* ZUS Articles Section */}
+          <div id="zus" className="mb-14">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1.5 h-8 bg-gradient-to-b from-orange-400 to-red-400 rounded-full flex-shrink-0"></div>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white">Artykuły o ZUS i Formularach</h2>
+              <span className="ml-2 px-3 py-1 bg-orange-500/20 border border-orange-500/40 rounded-full text-xs font-semibold text-orange-300 uppercase tracking-wider">Nowe</span>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+              {articles.filter(a => a.category === 'ZUS').map((article) => (
+                <Link key={article.id} href={`/blog/${article.slug}`}>
+                  <Card className="bg-orange-900/20 backdrop-blur-sm border border-orange-500/20 p-6 hover:border-orange-500/50 transition-all h-full cursor-pointer group hover:-translate-y-2">
+                    <div className="space-y-4 h-full flex flex-col">
+                      <div>
+                        <span className="inline-block px-3 py-1 bg-orange-500/20 text-orange-300 text-xs font-semibold rounded-full mb-3">
+                          {article.category}
+                        </span>
+                        <h3 className="text-lg font-bold text-white group-hover:text-orange-300 transition-colors leading-tight">
+                          {article.title}
+                        </h3>
+                      </div>
+                      <p className="text-sm text-blue-200/70 flex-grow">{article.excerpt}</p>
+                      <div className="flex items-center justify-between text-xs text-blue-200/60 pt-4 border-t border-orange-500/20">
+                        <div className="flex items-center gap-2">
+                          <Clock className="w-4 h-4" />
+                          {article.readTime}
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          {new Date(article.date).toLocaleDateString('pl-PL', { month: 'short', day: 'numeric' })}
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap gap-1 pt-3">
+                        {article.keywords.slice(0, 2).map((keyword) => (
+                          <span key={keyword} className="text-xs text-orange-400 bg-orange-500/10 px-2 py-1 rounded">
+                            #{keyword}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* AdSense — Leaderboard między sekcjami ZUS i pozostałe */}
+          <div className="mb-14">
+            <AdSenseDisplay728x90 />
+          </div>
+
+          {/* All other articles */}
+          <div id="pozostale" className="flex items-center gap-3 mb-6 scroll-mt-24">
+            <div className="w-1.5 h-8 bg-gradient-to-b from-blue-400 to-cyan-400 rounded-full flex-shrink-0"></div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">Pozostałe artykuły</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {articles.filter(a => a.category !== 'PIT' && a.category !== 'ZUS').map((article) => (
+              <Link key={article.id} href={`/blog/${article.slug}`}>
+                <Card className="bg-slate-800/40 backdrop-blur-sm border border-blue-500/20 p-6 hover:border-blue-500/50 transition-all h-full cursor-pointer group hover:-translate-y-2">
+                  <div className="space-y-4 h-full flex flex-col">
+                    <div>
+                      <span className="inline-block px-3 py-1 bg-blue-500/20 text-blue-300 text-xs font-semibold rounded-full mb-3">
+                        {article.category}
+                      </span>
+                      <h3 className="text-lg font-bold text-white group-hover:text-cyan-300 transition-colors leading-tight">
+                        {article.title}
+                      </h3>
+                    </div>
+
+                    <p className="text-sm text-blue-200/70 flex-grow">
+                      {article.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between text-xs text-blue-200/60 pt-4 border-t border-blue-500/20">
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-4 h-4" />
+                        {article.readTime}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4" />
+                        {new Date(article.date).toLocaleDateString('pl-PL', { month: 'short', day: 'numeric' })}
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-1 pt-3">
+                      {article.keywords.slice(0, 2).map((keyword) => (
+                        <span key={keyword} className="text-xs text-blue-400 bg-blue-500/10 px-2 py-1 rounded">
+                          #{keyword}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Card>
+              </Link>
+            ))}
+          </div>
+
+          {/* AdSense Banner - Between articles and footer */}
+          <div className="mt-16">
+            <AdSenseDisplayAuto />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
