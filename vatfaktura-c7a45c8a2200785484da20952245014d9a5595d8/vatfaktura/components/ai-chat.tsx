@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { useChat } from '@ai-sdk/react';
+import { DefaultChatTransport } from 'ai';
 import { Send, Loader } from 'lucide-react';
 import { ChatMessage } from './chat-message';
 
@@ -11,7 +12,7 @@ interface AIChatProps {
 
 export function AIChat({ onClose }: AIChatProps) {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: '/api/ai-chat',
+    transport: new DefaultChatTransport({ api: '/api/ai-chat' }),
   });
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -38,7 +39,7 @@ export function AIChat({ onClose }: AIChatProps) {
             <ChatMessage
               key={msg.id}
               role={msg.role}
-              content={msg.content}
+              parts={msg.parts}
             />
           ))
         )}
