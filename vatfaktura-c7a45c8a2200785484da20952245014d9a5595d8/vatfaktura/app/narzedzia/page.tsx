@@ -1,15 +1,10 @@
-import { Metadata } from 'next'
+'use client'
+
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Calculator, FileText, Zap, BarChart3, Users, ArrowRight } from 'lucide-react'
 import { AdSenseDisplay728x90, AdSenseDisplayAuto, AdSenseDisplay300x250 } from '@/components/adsense-banner'
-
-export const metadata: Metadata = {
-  title: 'Narzędzia - Kalkulatory VAT, PIT, ZUS | VAT Faktura',
-  description: 'Bezpłatne kalkulatory: VAT, PIT, ZUS, wynagrodzenia. Wszystkie narzędzia do rozliczania się z podatkami w jednym miejscu. 100% za darmo.',
-  keywords: 'kalkulator VAT, kalkulator PIT, kalkulator ZUS, kalkulator wynagrodzeń, narzędzia do rozliczania',
-}
 
 const tools = [
   {
