@@ -275,7 +275,7 @@ export default function Home() {
                       </div>
                 <div className="flex-grow">
                   <h3 className="text-lg font-bold text-white mb-2">{t(feature.titleKey, language)}</h3>
-                  <p className="text-blue-200/70 text-sm leading-relaxed">{t(feature.descKey, language)}</p>
+                  <p className="text-blue-200/70 text-sm leading-relaxed">{t(feature.descriptionKey, language)}</p>
                 </div>
                       <div className="h-1 bg-gradient-to-r from-blue-500/0 via-blue-500/50 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full"></div>
                     </div>
