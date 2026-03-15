@@ -6,7 +6,7 @@ import { useUser } from '@/hooks/useUser'
 import { useInvoices } from '../invoice-context'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Plus, LogOut, FileText, CreditCard, Search, Filter, X, Calculator, Shield, Briefcase } from 'lucide-react'
+import { Plus, LogOut, FileText, CreditCard, Search, Filter, X, Calculator, Shield, Briefcase, Building2 } from 'lucide-react'
 import Link from 'next/link'
 import InvoicesList from '@/components/invoices-list'
 import DashboardStats from '@/components/dashboard-stats'
@@ -145,6 +145,13 @@ export default function DashboardPage() {
               <Plus className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
               <span className="hidden sm:inline">Nowa faktura</span>
               <span className="sm:hidden">Nowa</span>
+            </Button>
+          </Link>
+          <Link href="/zaloz-firme-online" className="group">
+            <Button variant="outline" className="w-full min-h-[44px] text-xs sm:text-sm font-medium border-green-500/30 hover:bg-green-500/10 text-green-300 group-hover:border-green-500/50 transition-all">
+              <Building2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">Załóż firmę</span>
+              <span className="sm:hidden">Firma</span>
             </Button>
           </Link>
           {user.accountType === 'business' && (
