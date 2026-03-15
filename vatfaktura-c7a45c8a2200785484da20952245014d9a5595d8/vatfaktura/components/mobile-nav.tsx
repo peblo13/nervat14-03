@@ -3,41 +3,44 @@
 import { useState } from 'react'
 import { Menu, X, FileText, Receipt, HelpCircle, BookOpen, Users, Tag, LogIn, UserPlus, ClipboardList, Building2, Briefcase, Globe } from 'lucide-react'
 import Link from 'next/link'
+import { useLanguage } from '@/hooks/use-language'
+import { t } from '@/lib/i18n/translations'
 
 type NavGroup = {
-  label: string
-  items: { href: string; label: string; icon: React.ReactNode; accent?: string }[]
+  labelKey: string
+  items: { href: string; labelKey: string; icon: React.ReactNode; accent?: string }[]
 }
 
 export function MobileNav() {
+  const { language } = useLanguage()
   const [open, setOpen] = useState(false)
 
   const navGroups: NavGroup[] = [
     {
-      label: 'Główne',
+      labelKey: 'nav.mainMenu',
       items: [
-        { href: '/zaloz-firme-online', label: 'Załóż firmę', icon: <Building2 className="w-4 h-4" />, accent: 'green' },
-        { href: '/poradnik-obcokrajowcy', label: 'Dla obcokrajowców', icon: <Globe className="w-4 h-4" />, accent: 'blue' },
-        { href: '/dashboard', label: 'Faktura', icon: <FileText className="w-4 h-4" /> },
-        { href: '/dashboard/pit', label: 'Rozlicz PIT', icon: <Receipt className="w-4 h-4" />, accent: 'emerald' },
-        { href: '/dashboard/zus', label: 'ZUS', icon: <Briefcase className="w-4 h-4" />, accent: 'orange' },
-        { href: '/formularze-zus', label: 'Formularze ZUS', icon: <ClipboardList className="w-4 h-4" />, accent: 'orange' },
-        { href: '/faq', label: 'FAQ', icon: <HelpCircle className="w-4 h-4" /> },
-        { href: '/blog', label: 'Blog', icon: <BookOpen className="w-4 h-4" /> },
+        { href: '/zaloz-firme-online', labelKey: 'menu.company', icon: <Building2 className="w-4 h-4" />, accent: 'green' },
+        { href: '/poradnik-obcokrajowcy', labelKey: 'nav.foreigners', icon: <Globe className="w-4 h-4" />, accent: 'blue' },
+        { href: '/dashboard', labelKey: 'menu.invoice', icon: <FileText className="w-4 h-4" /> },
+        { href: '/dashboard/pit', labelKey: 'menu.pit', icon: <Receipt className="w-4 h-4" />, accent: 'emerald' },
+        { href: '/dashboard/zus', labelKey: 'menu.zus', icon: <Briefcase className="w-4 h-4" />, accent: 'orange' },
+        { href: '/formularze-zus', labelKey: 'nav.zusForm', icon: <ClipboardList className="w-4 h-4" />, accent: 'orange' },
+        { href: '/faq', labelKey: 'nav.faq', icon: <HelpCircle className="w-4 h-4" /> },
+        { href: '/blog', labelKey: 'nav.blog', icon: <BookOpen className="w-4 h-4" /> },
       ],
     },
     {
-      label: 'Więcej',
+      labelKey: 'nav.more',
       items: [
-        { href: '/pricing', label: 'Cennik', icon: <Tag className="w-4 h-4" /> },
-        { href: '/#partners', label: 'Partnerzy', icon: <Users className="w-4 h-4" /> },
+        { href: '/pricing', labelKey: 'nav.pricing', icon: <Tag className="w-4 h-4" /> },
+        { href: '/#partners', labelKey: 'nav.partners', icon: <Users className="w-4 h-4" /> },
       ],
     },
     {
-      label: 'Konto',
+      labelKey: 'nav.account',
       items: [
-        { href: '/login', label: 'Zaloguj się', icon: <LogIn className="w-4 h-4" /> },
-        { href: '/register', label: 'Załóż konto', icon: <UserPlus className="w-4 h-4" />, accent: 'green' },
+        { href: '/login', labelKey: 'nav.login', icon: <LogIn className="w-4 h-4" /> },
+        { href: '/register', labelKey: 'nav.register', icon: <UserPlus className="w-4 h-4" />, accent: 'green' },
       ],
     },
   ]
@@ -47,7 +50,7 @@ export function MobileNav() {
       <button
         onClick={() => setOpen(!open)}
         className="inline-flex items-center justify-center w-10 h-10 rounded-lg text-blue-300 hover:text-white hover:bg-white/10 transition-all duration-200"
-        aria-label={open ? 'Zamknij menu' : 'Otwórz menu'}
+        aria-label={open ? t('nav.closeMenu', language) : t('nav.openMenu', language)}
       >
         {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
       </button>
@@ -70,7 +73,7 @@ export function MobileNav() {
                 <div key={gi}>
                   {gi > 0 && <div className="h-px bg-white/8 mx-3" />}
                   <div className="px-3 pt-2.5 pb-1">
-                    <span className="text-[10px] font-semibold uppercase tracking-widest text-white/30">{group.label}</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-widest text-white/30">{t(group.labelKey, language)}</span>
                   </div>
                   <div className="px-2 pb-2 space-y-0.5">
                     {group.items.map((item) => (
@@ -93,7 +96,7 @@ export function MobileNav() {
                         }`}>
                           {item.icon}
                         </span>
-                        <span className="text-sm font-medium">{item.label}</span>
+                        <span className="text-sm font-medium">{t(item.labelKey, language)}</span>
                       </Link>
                     ))}
                   </div>

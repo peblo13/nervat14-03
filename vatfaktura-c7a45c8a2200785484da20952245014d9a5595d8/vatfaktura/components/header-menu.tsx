@@ -1,18 +1,21 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ChevronDown, Building2, FileText, Calculator, Briefcase } from 'lucide-react'
 import Link from 'next/link'
+import { useLanguage } from '@/hooks/use-language'
+import { t } from '@/lib/i18n/translations'
 
 export function HeaderMenu() {
+  const { language } = useLanguage()
   const [open, setOpen] = useState(false)
   let hoverTimeout: NodeJS.Timeout
 
   const menuItems = [
-    { href: '/zaloz-firme-online', label: 'Załóż firmę', icon: <Building2 className="w-4 h-4" />, accent: 'green' },
-    { href: '/dashboard', label: 'Faktura', icon: <FileText className="w-4 h-4" />, accent: 'blue' },
-    { href: '/dashboard/pit', label: 'PIT', icon: <Calculator className="w-4 h-4" />, accent: 'emerald' },
-    { href: '/dashboard/zus', label: 'ZUS', icon: <Briefcase className="w-4 h-4" />, accent: 'orange' },
+    { href: '/zaloz-firme-online', labelKey: 'menu.company', icon: <Building2 className="w-4 h-4" />, accent: 'green' },
+    { href: '/dashboard', labelKey: 'menu.invoice', icon: <FileText className="w-4 h-4" />, accent: 'blue' },
+    { href: '/dashboard/pit', labelKey: 'menu.pit', icon: <Calculator className="w-4 h-4" />, accent: 'emerald' },
+    { href: '/dashboard/zus', labelKey: 'menu.zus', icon: <Briefcase className="w-4 h-4" />, accent: 'orange' },
   ]
 
   const handleMouseEnter = () => {
@@ -31,7 +34,7 @@ export function HeaderMenu() {
       <button
         className="hidden sm:flex items-center gap-1 px-3 py-2 text-sm font-semibold text-blue-200 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200 group"
       >
-        <span>Menu</span>
+        <span>{t('nav.menu', language)}</span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-200 group-hover:text-cyan-300 ${open ? 'rotate-180' : ''}`} />
       </button>
 
@@ -61,7 +64,7 @@ export function HeaderMenu() {
                   }`}>
                     {item.icon}
                   </span>
-                  <span className="text-sm font-medium">{item.label}</span>
+                  <span className="text-sm font-medium">{t(item.labelKey, language)}</span>
                 </Link>
               ))}
             </div>

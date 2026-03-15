@@ -3,6 +3,8 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { useUser } from '@/hooks/useUser'
+import { useLanguage } from '@/hooks/use-language'
+import { t } from '@/lib/i18n/translations'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { CheckCircle, Zap, Shield, TrendingUp, Clock, FileText, Users, Star, Award, LogIn, Edit3, Download, Building2, ArrowRight, Calculator } from 'lucide-react'
@@ -19,6 +21,7 @@ import { NewsletterSignup } from '@/components/newsletter-signup'
 export default function Home() {
   const router = useRouter()
   const { user, isLoading } = useUser()
+  const { language } = useLanguage()
 
   useEffect(() => {
     if (!isLoading && user) {
@@ -102,36 +105,36 @@ export default function Home() {
           <div className="text-center space-y-8 sm:space-y-10 md:space-y-12">
             {/* Free Badge */}
             <div className="inline-block px-4 sm:px-5 py-2 sm:py-3 bg-gradient-to-r from-green-500/30 to-cyan-500/30 border border-green-400/60 rounded-full backdrop-blur-sm hover:border-green-300/80 transition-all duration-300">
-              <span className="text-xs sm:text-sm font-bold tracking-wider text-green-300 uppercase">100% Bezpłatnie na zawsze</span>
+              <span className="text-xs sm:text-sm font-bold tracking-wider text-green-300 uppercase">{t('home.badge', language)}</span>
             </div>
             
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
               <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-tight px-2 tracking-tight">
                 <span className="bg-gradient-to-r from-green-400 via-cyan-300 to-green-300 bg-clip-text text-transparent drop-shadow-lg">
-                  Fakturowanie
+                  {t('home.heroTitle1', language)}
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-cyan-300 bg-clip-text text-transparent drop-shadow-lg">
-                  bez limitów
+                  {t('home.heroTitle2', language)}
                 </span>
                 <br />
-                <span className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white/80 font-bold">bez dodatkowych kosztów</span>
+                <span className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white/80 font-bold">{t('home.heroTitle3', language)}</span>
               </h1>
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-blue-200/80 max-w-3xl mx-auto leading-relaxed px-4 font-light">
-                Profesjonalna, nowoczesna platforma do tworzenia faktur z pełnymi funkcjami. Żadnych limitów, żadnej karty kredytowej, żadnych ukrytych opłat.
+                {t('home.heroDesc', language)}
               </p>
             </div>
             
             {/* Trust Signals */}
             <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4 max-w-2xl mx-auto py-4 sm:py-6">
               {[
-                { text: 'Bezpłatnie zawsze', icon: '∞' },
-                { text: 'Bez limitów', icon: '∞' },
-                { text: 'Brak karty', icon: '💳' },
+                { textKey: 'home.signalsItem1', icon: '∞' },
+                { textKey: 'home.signalsItem2', icon: '∞' },
+                { textKey: 'home.signalsItem3', icon: '💳' },
               ].map((item, idx) => (
                 <div key={idx} className="flex flex-col items-center gap-1 p-2 sm:p-3 rounded-lg bg-blue-500/10 border border-blue-400/30 hover:bg-blue-500/15 hover:border-blue-300/50 transition-all duration-300">
                   <span className="text-lg sm:text-2xl">{item.icon}</span>
-                  <span className="text-xs sm:text-sm text-blue-200 font-medium text-center">{item.text}</span>
+                  <span className="text-xs sm:text-sm text-blue-200 font-medium text-center">{t(item.textKey, language)}</span>
                 </div>
               ))}
             </div>
@@ -139,12 +142,12 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center pt-4 sm:pt-8 px-3">
               <Link href="/register">
                 <Button className="min-h-[50px] sm:min-h-[52px] px-8 sm:px-10 md:px-12 lg:px-14 py-3 text-base sm:text-lg font-bold bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-500 hover:to-cyan-500 shadow-xl shadow-green-500/50 hover:shadow-green-500/80 transition-all duration-300 transform hover:scale-110 active:scale-95 text-white">
-                  Rozpocznij za darmo
+                  {t('home.cta.start', language)}
                 </Button>
               </Link>
               <Link href="/login">
                 <Button variant="outline" className="min-h-[50px] sm:min-h-[52px] px-8 sm:px-10 md:px-12 lg:px-14 py-3 text-base sm:text-lg font-bold border-2 border-blue-400/60 hover:border-blue-300 hover:bg-blue-500/20 text-blue-100 hover:text-blue-50 transition-all duration-300 transform hover:scale-110 active:scale-95 backdrop-blur-sm">
-                  Zaloguj się
+                  {t('home.cta.login', language)}
                 </Button>
               </Link>
             </div>
@@ -161,7 +164,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-2xl sm:text-3xl font-black text-white mb-1">50 000+</div>
-              <div className="text-xs sm:text-sm text-blue-200/60">aktywnych uzytkownikow</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">{t('home.users', language)}</div>
             </div>
             <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
               <div className="flex justify-center mb-3">
@@ -170,7 +173,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-2xl sm:text-3xl font-black text-white mb-1">2 000 000+</div>
-              <div className="text-xs sm:text-sm text-blue-200/60">wystawionych faktur</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">{t('home.invoices', language)}</div>
             </div>
             <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
               <div className="flex justify-center mb-3">
@@ -179,7 +182,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-2xl sm:text-3xl font-black text-white mb-1">4.9/5</div>
-              <div className="text-xs sm:text-sm text-blue-200/60">srednia ocena</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">{t('home.rating', language)}</div>
             </div>
             <div className="bg-slate-800/50 border border-blue-500/20 rounded-xl p-4 sm:p-6 text-center hover:border-blue-400/40 transition-colors">
               <div className="flex justify-center mb-3">
@@ -188,7 +191,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-2xl sm:text-3xl font-black text-white mb-1">100%</div>
-              <div className="text-xs sm:text-sm text-blue-200/60">bezplatnie na zawsze</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">{t('home.free', language)}</div>
             </div>
           </div>
         </section>
@@ -197,7 +200,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
             <p className="text-sm text-yellow-200/80 text-center">
-              <span className="font-semibold">Ujawnienie:</span> VAT Faktura zawiera linki partnerskie. Jeśli dokonasz zakupu poprzez te linki, możemy otrzymać prowizję bez dodatkowych kosztów dla Ciebie. <a href="/disclaimer" className="text-yellow-300 hover:text-yellow-200 underline">Więcej informacji</a>
+              <span className="font-semibold">{t('home.disclosure', language)}</span> {t('home.disclosureText', language)} <a href="/disclaimer" className="text-yellow-300 hover:text-yellow-200 underline">{t('home.moreInfo', language)}</a>
             </p>
           </div>
 
@@ -210,10 +213,10 @@ export default function Home() {
           <div className="relative z-10">
             <div className="text-center mb-12 sm:mb-16 md:mb-20 space-y-4 sm:space-y-6">
               <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-center bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-300 bg-clip-text text-transparent px-4">
-                Dlaczego VAT Faktura?
+                {t('home.featuresTitle', language)}
               </h2>
               <p className="text-blue-200/70 text-center text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed px-4">
-                Zaawansowane narzędzia zaprojektowane do maksymalnej wydajności. Wszystko czego potrzebujesz do profesjonalnego fakturowania.
+                {t('home.featuresDesc', language)}
               </p>
             </div>
             
@@ -221,43 +224,43 @@ export default function Home() {
               {[
                 {
                   icon: Zap,
-                  title: 'Szybkie tworzenie',
-                  description: 'Utwórz profesjonalną fakturę w kilka sekund dzięki intuicyjnemu interfejsowi',
+                  titleKey: 'home.feature.quickCreate',
+                  descriptionKey: 'home.feature.quickCreateDesc',
                   gradient: 'from-amber-600/20 to-orange-600/20',
                   borderColor: 'border-amber-500/30 hover:border-amber-500/60'
                 },
                 {
                   icon: Shield,
-                  title: 'Bezpieczne',
-                  description: 'Twoje dane są chronione i przechowywane bezpiecznie w przeglądarce',
+                  titleKey: 'home.feature.secure',
+                  descriptionKey: 'home.feature.secureDesc',
                   gradient: 'from-purple-600/20 to-pink-600/20',
                   borderColor: 'border-purple-500/30 hover:border-purple-500/60'
                 },
                 {
                   icon: FileText,
-                  title: 'Export do PDF',
-                  description: 'Pobierz i wyślij faktury w formacie PDF gotowym do druku',
+                  titleKey: 'home.feature.pdf',
+                  descriptionKey: 'home.feature.pdfDesc',
                   gradient: 'from-green-600/20 to-emerald-600/20',
                   borderColor: 'border-green-500/30 hover:border-green-500/60'
                 },
                 {
                   icon: TrendingUp,
-                  title: 'Szablony',
-                  description: 'Korzystaj z gotowych szablonów i stwórz własne dla swojej firmy',
+                  titleKey: 'home.feature.templates',
+                  descriptionKey: 'home.feature.templatesDesc',
                   gradient: 'from-blue-600/20 to-cyan-600/20',
                   borderColor: 'border-blue-500/30 hover:border-blue-500/60'
                 },
                 {
                   icon: Clock,
-                  title: 'Historia',
-                  description: 'Dostęp do wszystkich poprzednich faktur w jednym miejscu',
+                  titleKey: 'home.feature.math',
+                  descriptionKey: 'home.feature.mathDesc',
                   gradient: 'from-rose-600/20 to-red-600/20',
                   borderColor: 'border-rose-500/30 hover:border-rose-500/60'
                 },
                 {
                   icon: CheckCircle,
-                  title: 'Prawidłowe podatki',
-                  description: 'Automatyczne obliczanie VAT na poziomach 0%, 5%, 8% i 23%',
+                  titleKey: 'home.feature.professional',
+                  descriptionKey: 'home.feature.professionalDesc',
                   gradient: 'from-indigo-600/20 to-purple-600/20',
                   borderColor: 'border-indigo-500/30 hover:border-indigo-500/60'
                 },
@@ -271,8 +274,8 @@ export default function Home() {
                         <div className="absolute inset-0 bg-blue-500/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition duration-500"></div>
                       </div>
                       <div className="flex-grow">
-                        <h4 className="text-lg sm:text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors duration-300">{feature.title}</h4>
-                        <p className="text-sm sm:text-base text-blue-200/70 group-hover:text-blue-100/80 transition-colors duration-300 leading-relaxed">{feature.description}</p>
+                        <h4 className="text-lg sm:text-xl font-bold text-white mb-3 group-hover:text-cyan-300 transition-colors duration-300">{t(feature.titleKey, language)}</h4>
+                        <p className="text-sm sm:text-base text-blue-200/70 group-hover:text-blue-100/80 transition-colors duration-300 leading-relaxed">{t(feature.descriptionKey, language)}</p>
                       </div>
                       <div className="h-1 bg-gradient-to-r from-blue-500/0 via-blue-500/50 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-full"></div>
                     </div>
