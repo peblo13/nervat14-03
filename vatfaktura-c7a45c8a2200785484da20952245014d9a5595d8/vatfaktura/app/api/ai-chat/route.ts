@@ -1,11 +1,10 @@
-import { openai } from '@ai-sdk/openai';
-import { streamText } from 'ai';
+import { generateText } from 'ai';
 
 const systemPrompt = `Jesteś inteligentnym asystentem AI dla aplikacji VAT Faktura. Twoja rola to pomoc użytkownikom ze wszystkim, co dotyczy:
 
 1. **Faktury**: Generowanie faktur, faktury VAT, faktury uproszczone, faktury zaliczkowe, faktury proforma
 2. **PIT**: Rozliczenie PIT-37, PIT-36, PIT-28 (ryczałt), PIT-38 (giełda), PIT-36L (podatek liniowy), ulgi, odliczenia
-3. **ZUS**: Składki ZUS, formularze Z-3, ubezpieczenia społeczne, zdravotnické pojištění
+3. **ZUS**: Składki ZUS, formularze Z-3, ubezpieczenia społeczne, ubezpieczenia zdrowotne
 4. **Rejestracja firmy**: CEIDG (jednoosobowa działalność gospodarcza), rejestracja GUS, założenie spółki
 5. **KSEF**: Krajowy System e-Faktur, wysyłka faktur do urzędu skarbowego
 6. **E-podpis**: Podpis elektroniczny, jego zastosowanie i znaczenie
@@ -16,17 +15,22 @@ export async function POST(request: Request) {
   try {
     const { messages } = await request.json();
 
-    const result = streamText({
-      model: openai('gpt-4o-mini'),
+    const result = await generateText({
+      model: 'openai/gpt-4o-mini',
       system: systemPrompt,
       messages,
       temperature: 0.7,
       maxTokens: 1024,
     });
 
-    return (await result).toDataStreamResponse();
+    return Response.json({
+      content: result.text,
+    });
   } catch (error) {
     console.error('AI Chat Error:', error);
-    return new Response('Błąd przy przetwarzaniu wiadomości', { status: 500 });
+    return Response.json(
+      { error: 'Błąd przy przetwarzaniu wiadomości' },
+      { status: 500 }
+    );
   }
 }
