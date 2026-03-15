@@ -55,6 +55,11 @@ export const translations: Record<Language, Record<string, string>> = {
     'nav.zusForm': 'Formularze ZUS',
     'nav.openMenu': 'Otwórz menu',
     'nav.closeMenu': 'Zamknij menu',
+    'nav.passport': 'Poradnik Paszport',
+    'nav.offices': 'Mapa Urzędów',
+    'nav.deadlines': 'Kalendarz Terminów',
+    'nav.legal': 'Porada Prawna',
+    'nav.guides': 'Poradniki',
 
     // Home Page Hero
     'home.badge': '100% Bezpłatnie na zawsze',
@@ -222,11 +227,16 @@ export const translations: Record<Language, Record<string, string>> = {
     'nav.zusForm': 'Форми ZUS',
     'nav.openMenu': 'Відкрити меню',
     'nav.closeMenu': 'Закрити меню',
+    'nav.passport': 'Путівник Паспорт',
+    'nav.offices': 'Карта Уповноважених органів',
+    'nav.deadlines': 'Календар Терміне',
+    'nav.legal': 'Безпла́тні Правні Поради',
+    'nav.guides': 'Путівники',
 
     // Home Page Hero
     'home.badge': '100% Безкоштовно на завжди',
     'home.heroTitle1': 'Виставлення рахунків',
-    'home.heroTitle2': 'без обмежень',
+    'home.heroTitle2': '��ез обмежень',
     'home.heroTitle3': 'без додаткових витрат',
     'home.heroDesc': 'Професійна, сучасна платформа для створення рахунків з повним функціоналом. Жодних обмежень, жод��ої кредитної карти, жодних прихованих зборів.',
     'home.signalsItem1': 'Безкоштовно на завжди',
@@ -288,7 +298,7 @@ export const translations: Record<Language, Record<string, string>> = {
     'home.step1Title': 'Зареєструйтеся',
     'home.step1Desc': 'Створіть безпаспортний рахунок за 30 секунд. Вам не потрібна кредитна карта чи будь-які дані.',
     'home.step2Title': 'Створіть рахунок',
-    'home.step2Desc': 'Заповніть дані одержувача, товари/послуги і готово. Система автоматично обчислить податок та суми.',
+    'home.step2Desc': 'Заповніть дані оде��жувача, товари/послуги і готово. Система автоматично обчислить податок та суми.',
     'home.step3Title': 'Надішліть або завантажте',
     'home.step3Desc': 'Надішліть рахунок електронною поштою або завантажте як PDF. Все автоматично зберігається в історії.',
 
