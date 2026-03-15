@@ -1,4 +1,4 @@
 {
-  "buildCommand": "cd vatfaktura && next build",
+  "buildCommand": "cd vatfaktura && pnpm run build",
   "outputDirectory": "vatfaktura/.next"
 }
