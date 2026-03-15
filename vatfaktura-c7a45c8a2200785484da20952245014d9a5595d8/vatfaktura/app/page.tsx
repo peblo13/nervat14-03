@@ -339,6 +339,78 @@ export default function Home() {
         {/* How it works - 3 kroków */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
           <div className="text-center mb-16 sm:mb-20 md:mb-24">
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <div className="w-1.5 h-6 bg-gradient-to-b from-orange-400 to-red-400 rounded-full"></div>
+              <span className="text-xs sm:text-sm font-bold tracking-widest text-orange-300 uppercase">Nowości</span>
+              <div className="w-1.5 h-6 bg-gradient-to-b from-orange-400 to-red-400 rounded-full"></div>
+            </div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+              Nowe <span className="bg-gradient-to-r from-orange-400 via-red-400 to-orange-400 bg-clip-text text-transparent">funkcje</span> w VAT Faktura
+            </h2>
+            <p className="text-blue-200/70 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+              Odkryj najnowsze narzędzia do zarządzania biznesem online
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                title: 'Załóż firmę online',
+                description: 'Rejestracja firmy w systemach CEIDG, GUS i ZUS bez wychodzenia z domu. Pełna automatyzacja procesu.',
+                icon: Building2,
+                color: 'green'
+              },
+              {
+                title: 'Formularze ZUS',
+                description: 'Kompleksowy zestaw generatorów formularzy ZUS-owych. Z-3, Z-15, kalkulatory zasiłków i poradnik PUE.',
+                icon: FileText,
+                color: 'orange'
+              },
+              {
+                title: 'Rozliczenie PIT',
+                description: 'Wszystkie rodzaje PIT-ów w jednym miejscu. PIT-37, PIT-36, PIT-28 z obsługą ulg podatkowych.',
+                icon: Calculator,
+                color: 'emerald'
+              }
+            ].map((feature, idx) => {
+              const IconComponent = feature.icon
+              const colorClasses = {
+                green: 'border-green-500/30 hover:border-green-500/60 bg-green-900/10 hover:bg-green-900/20',
+                orange: 'border-orange-500/30 hover:border-orange-500/60 bg-orange-900/10 hover:bg-orange-900/20',
+                emerald: 'border-emerald-500/30 hover:border-emerald-500/60 bg-emerald-900/10 hover:bg-emerald-900/20'
+              }
+              const textColors = {
+                green: 'text-green-400',
+                orange: 'text-orange-400',
+                emerald: 'text-emerald-400'
+              }
+              return (
+                <Card key={idx} className={`p-6 sm:p-8 border-2 transition-all duration-300 group cursor-default ${colorClasses[feature.color]}`}>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`p-3 rounded-lg ${textColors[feature.color]}`}>
+                      <IconComponent className="w-6 h-6 sm:w-8 sm:h-8" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-white">{feature.title}</h3>
+                  </div>
+                  <p className="text-blue-200/80 text-sm sm:text-base leading-relaxed">{feature.description}</p>
+                </Card>
+              )
+            })}
+          </div>
+
+          <div className="text-center">
+            <Link href="/#features">
+              <Button variant="outline" className="border-blue-500/40 text-blue-300 hover:bg-blue-500/10 hover:border-blue-500/60">
+                Zobacz wszystkie funkcje
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* How it works - 3 kroków */}
+        <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-20 sm:py-28 md:py-32">
+          <div className="text-center mb-16 sm:mb-20 md:mb-24">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-blue-300 bg-clip-text text-transparent mb-4">
               Jak to działa?
             </h2>

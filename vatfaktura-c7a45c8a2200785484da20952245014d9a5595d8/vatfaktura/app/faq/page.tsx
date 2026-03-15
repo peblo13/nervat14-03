@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ChevronDown, FileText, Receipt, HelpCircle } from 'lucide-react'
+import { ChevronDown, FileText, Receipt, HelpCircle, Briefcase } from 'lucide-react'
 import { AdSenseDisplayAuto } from '@/components/adsense-banner'
 
 const zusFaqs = [

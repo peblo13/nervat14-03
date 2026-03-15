@@ -17,9 +17,9 @@ const geist = Geist({ subsets: ["latin"] });
 const geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'VAT Faktura - Faktury i Rozliczenie PIT Online 100% Za Darmo | KSEF',
-  description: 'Bezpłatny program do fakturowania i rozliczania PIT online. Faktury w 30 sekund, PIT-37, PIT-36, PIT-36L, PIT-28, PIT-38 z podpisem elektronicznym i wysyłką do urzędu skarbowego. KSEF. 100% za darmo.',
-  keywords: 'program do fakturowania, faktury za darmo, fakturowanie online, KSEF, generator faktur, faktury VAT, rozliczenie PIT, PIT-37 online, PIT-36 online, PIT-28 ryczałt, PIT-38 giełda, PIT-36L podatek liniowy, rozlicz PIT za darmo, e-deklaracje, urząd skarbowy online, podpis elektroniczny PIT, e-faktura, kSEF integracja, darmowe fakturowanie',
+  title: 'VAT Faktura - Faktury, PIT, ZUS, Załóż firmę online 100% Za Darmo | KSEF',
+  description: 'Bezpłatny program do fakturowania, rozliczania PIT, ZUS i założenia firmy online. Faktury w 30 sekund, wszystkie PIT-y, formularze ZUS, rejestracja CEIDG/GUS/ZUS. E-podpis i wysyłka do urzędu. KSEF. 100% za darmo.',
+  keywords: 'program do fakturowania, faktury za darmo, fakturowanie online, KSEF, generator faktur, faktury VAT, rozliczenie PIT, PIT-37 online, PIT-36 online, PIT-28 ryczałt, PIT-38 giełda, PIT-36L podatek liniowy, rozlicz PIT za darmo, e-deklaracje, urząd skarbowy online, podpis elektroniczny PIT, e-faktura, kSEF integracja, darmowe fakturowanie, załóż firmę online, formularze ZUS, Z-3, generator ZUS, rejestracja CEIDG',
   metadataBase: new URL('https://www.vatfaktura.pl'),
   robots: {
     index: true,
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     apple: '/apple-icon.png',
   },
   openGraph: {
-    title: 'VAT Faktura - Faktury i Rozliczenie PIT Online Za Darmo | KSEF',
-    description: 'Bezpłatny program do fakturowania i rozliczania PIT. Faktury w 30 sekund. PIT-37, PIT-36, PIT-28, PIT-38 z e-podpisem i wysyłką do US. KSEF. 100% bezpłatnie.',
+    title: 'VAT Faktura - Faktury, PIT, ZUS i Rejestracja Firmy Online Za Darmo | KSEF',
+    description: 'Bezpłatny kompleksowy program: faktury online, rozliczenie PIT-37/PIT-36/PIT-28/PIT-38, formularze ZUS, załóż firmę. E-podpis, wysyłka do US i ZUS. KSEF. 100% bezpłatnie.',
     url: 'https://www.vatfaktura.pl',
     type: 'website',
     locale: 'pl_PL',
@@ -60,14 +60,14 @@ export const metadata: Metadata = {
         url: 'https://www.vatfaktura.pl/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'VAT Faktura - Faktury i Rozliczenie PIT Online Za Darmo',
+        alt: 'VAT Faktura - Faktury, PIT, ZUS i Załóż Firmę Online Za Darmo',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'VAT Faktura - Faktury i PIT Za Darmo',
-    description: 'Faktury online + rozliczenie PIT-37, PIT-36, PIT-28, PIT-38 z e-podpisem. KSEF. 100% bezpłatnie.',
+    title: 'VAT Faktura - Faktury, PIT, ZUS i Firma Online Za Darmo',
+    description: 'Program all-in-one: faktury + PIT-37/36/28/38 + formularze ZUS + rejestracja firmy. E-podpis, wysyłka do urzędu. 100% bezpłatnie.',
     creator: '@vatfaktura',
   },
   // verification: { google: 'ADD_YOUR_SEARCH_CONSOLE_TOKEN_HERE' },
