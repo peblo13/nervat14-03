@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ChevronDown, FileText, Receipt, HelpCircle, Briefcase } from 'lucide-react'
+import { ChevronDown, FileText, Receipt, HelpCircle, Briefcase, Building2 } from 'lucide-react'
 import { AdSenseDisplayAuto } from '@/components/adsense-banner'
 
 const zusFaqs = [
@@ -151,7 +151,7 @@ const invoiceFaqs = [
   },
   {
     question: 'Czy VAT Faktura ma kopie zapasowe moich danych?',
-    answer: 'Tak, wszystkie dane są automatycznie szyfrowane i kopiowane. Twoje faktury są bezpieczne nawet jeśli stracisz dostęp do urządzenia.'
+    answer: 'Tak, wszystkie dane są automatycznie szyfrowane i kopiowane. Twoje faktury są bezpieczne nawet jeśli stracisz dostęp do urz��dzenia.'
   },
   {
     question: 'Jak długo mogę przechowywać faktury w VAT Faktura?',
@@ -187,6 +187,49 @@ const invoiceFaqs = [
   },
 ]
 
+const companyFaqs = [
+  {
+    question: 'Jak założyć firmę online za pomocą VAT Faktura?',
+    answer: 'Wchodz na stronę "Załóż firmę online" i wypełnij formularz rejestracyjny. Podasz dane firmy, dane właściciela i adres siedziby. Następnie nasza platforma złoży wniosek do CEIDG, GUS i ZUS. Cały proces trwa kilka minut.'
+  },
+  {
+    question: 'Jakie dane potrzebuję do założenia firmy online?',
+    answer: 'Będziesz potrzebować: imienia, nazwiska i numeru PESEL właściciela, nazwy firmy, adresu siedziby, rodzaju działalności (PKD), oraz informacji o strukturze organizacyjnej. Wszystkie dane muszą być zgodne z dokumentami.'
+  },
+  {
+    question: 'Czy mogę założyć firmę bez wychodzenia z domu?',
+    answer: 'Tak! Cały proces rejestracji firmy w systemach CEIDG, GUS i ZUS można przeprowadzić online. Nie musisz odwiedzać żadnego urzędu. Wszystkie dokumenty są wysyłane elektronicznie.'
+  },
+  {
+    question: 'Ile czasu trwa rejestracja firmy online?',
+    answer: 'Złożenie wniosku trwa kilka minut. Rejestracja w CEIDG zwykle trwa 1-2 dni robocze. Rejestracja w GUS i ZUS może potrwać kilka dni. W sumie cały proces to zazwyczaj 5-10 dni roboczych.'
+  },
+  {
+    question: 'Czy rejestracja firmy online jest bezpłatna?',
+    answer: 'Rejestracja w CEIDG jest bezpłatna. VAT Faktura nie pobiera opłat za pomoc w rejestracji. Jedyne koszty to składki ZUS, które są obowiązkowe dla każdego przedsiębiorcy.'
+  },
+  {
+    question: 'Jaki jest kod PKD dla mojej działalności?',
+    answer: 'Kod PKD (Polska Klasyfikacja Działalności) określa rodzaj prowadzonej działalności. Możesz znaleźć odpowiedni kod na stronie GUS. Na naszej stronie rejestracji mamy wyszukiwarkę kodów PKD z podpowiedziami.'
+  },
+  {
+    question: 'Co to jest CEIDG, GUS i ZUS?',
+    answer: 'CEIDG to Centralna Ewidencja i Informacja o Działalności Gospodarczej. GUS to Główny Urząd Statystyczny. ZUS to Zakład Ubezpieczeń Społecznych. Do rozpoczęcia działalności musisz się zarejestrować we wszystkich trzech instytucjach.'
+  },
+  {
+    question: 'Czy po założeniu firmy online mogę od razu wystawiać faktury?',
+    answer: 'Nie, przed wystawianiem faktur musisz poczekać na potwierdzenie rejestracji w ZUS i GUS. Zwykle trwa to kilka dni. Jednak możesz już zacząć korzystać z VAT Faktura do tworzenia szablonów.'
+  },
+  {
+    question: 'Czy mogę zmienić dane firmy po rejestracji?',
+    answer: 'Tak, wiele danych można zmienić w CEIDG (np. adres, nazwa), ale niektóre zmiany wymagają wniosku. Najłatwiej możesz to zrobić online w systemie CEIDG lub skontaktować się z urzędem.'
+  },
+  {
+    question: 'Czy VAT Faktura może pomóc w rejestracji spółki sp. z o.o.?',
+    answer: 'Aktualnie obsługujemy rejestrację działalności gospodarczej osób fizycznych (CEIDG). Rejestracja spółek kapitałowych wymaga bardziej zaawansowanego procesu, który planujemy dodać w przyszłości.'
+  },
+]
+
 function AccordionItem({
   question,
   answer,
@@ -196,50 +239,57 @@ function AccordionItem({
   question: string
   answer: string
   index: number
-  accent: 'emerald' | 'blue' | 'orange'
+  accent: 'emerald' | 'blue' | 'orange' | 'green'
 }) {
   const [open, setOpen] = useState(false)
 
   const borderClasses = {
     emerald: 'border-emerald-500/15 bg-slate-900/50 hover:border-emerald-500/35 hover:bg-emerald-950/20',
     blue: 'border-blue-500/15 bg-slate-900/50 hover:border-blue-500/35 hover:bg-blue-950/20',
-    orange: 'border-orange-500/15 bg-slate-900/50 hover:border-orange-500/35 hover:bg-orange-950/20'
+    orange: 'border-orange-500/15 bg-slate-900/50 hover:border-orange-500/35 hover:bg-orange-950/20',
+    green: 'border-green-500/15 bg-slate-900/50 hover:border-green-500/35 hover:bg-green-950/20'
   }
   
   const openClasses = {
     emerald: 'border-emerald-500/50 bg-emerald-950/40 shadow-lg shadow-emerald-900/30',
     blue: 'border-blue-500/50 bg-blue-950/30 shadow-lg shadow-blue-900/20',
-    orange: 'border-orange-500/50 bg-orange-950/40 shadow-lg shadow-orange-900/30'
+    orange: 'border-orange-500/50 bg-orange-950/40 shadow-lg shadow-orange-900/30',
+    green: 'border-green-500/50 bg-green-950/40 shadow-lg shadow-green-900/30'
   }
   
   const iconClasses = {
     emerald: 'bg-emerald-500/10 text-emerald-400',
     blue: 'bg-blue-500/10 text-blue-400',
-    orange: 'bg-orange-500/10 text-orange-400'
+    orange: 'bg-orange-500/10 text-orange-400',
+    green: 'bg-green-500/10 text-green-400'
   }
   
   const iconOpenClasses = {
     emerald: 'bg-emerald-500/30 text-emerald-200',
     blue: 'bg-blue-500/30 text-blue-200',
-    orange: 'bg-orange-500/30 text-orange-200'
+    orange: 'bg-orange-500/30 text-orange-200',
+    green: 'bg-green-500/30 text-green-200'
   }
   
   const textOpenClasses = {
     emerald: 'text-emerald-200',
     blue: 'text-blue-200',
-    orange: 'text-orange-200'
+    orange: 'text-orange-200',
+    green: 'text-green-200'
   }
   
   const chevronClasses = {
     emerald: 'text-emerald-400',
     blue: 'text-blue-400',
-    orange: 'text-orange-400'
+    orange: 'text-orange-400',
+    green: 'text-green-400'
   }
   
   const answerClasses = {
     emerald: 'text-emerald-100/70',
     blue: 'text-blue-100/70',
-    orange: 'text-orange-100/70'
+    orange: 'text-orange-100/70',
+    green: 'text-green-100/70'
   }
 
   return (
@@ -300,19 +350,21 @@ function SectionHeader({
   icon: React.ReactNode
   title: string
   count: number
-  accent: 'emerald' | 'blue' | 'orange'
+  accent: 'emerald' | 'blue' | 'orange' | 'green'
   id?: string
 }) {
   const accentClasses = {
     emerald: 'bg-emerald-500/20 text-emerald-300',
     blue: 'bg-blue-500/20 text-blue-300',
-    orange: 'bg-orange-500/20 text-orange-300'
+    orange: 'bg-orange-500/20 text-orange-300',
+    green: 'bg-green-500/20 text-green-300'
   }
   
   const badgeClasses = {
     emerald: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300',
     blue: 'bg-blue-500/10 border-blue-500/30 text-blue-300',
-    orange: 'bg-orange-500/10 border-orange-500/30 text-orange-300'
+    orange: 'bg-orange-500/10 border-orange-500/30 text-orange-300',
+    green: 'bg-green-500/10 border-green-500/30 text-green-300'
   }
   
   return (
@@ -355,6 +407,10 @@ export default function FAQPage() {
             Odpowiedzi na pytania o fakturowaniu, KSEF, rozliczeniach PIT i bezpieczeństwie danych.
           </p>
           <div className="flex flex-wrap justify-center gap-2 pt-1">
+            <a href="#company" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-green-500/10 border border-green-500/25 rounded-full text-xs font-semibold text-green-300 hover:bg-green-500/20 transition-colors">
+              <Building2 className="w-3.5 h-3.5" />
+              Załóż firmę
+            </a>
             <a href="#pit" className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-emerald-500/10 border border-emerald-500/25 rounded-full text-xs font-semibold text-emerald-300 hover:bg-emerald-500/20 transition-colors">
               <Receipt className="w-3.5 h-3.5" />
               PIT
@@ -369,6 +425,39 @@ export default function FAQPage() {
             </a>
           </div>
         </div>
+
+        {/* Company FAQ */}
+        <section id="company" className="scroll-mt-20 mb-16">
+          <SectionHeader
+            id="company-header"
+            icon={<Building2 className="w-5 h-5" />}
+            title="Założenie Firmy Online"
+            count={companyFaqs.length}
+            accent="green"
+          />
+          <div className="space-y-2">
+            {companyFaqs.map((faq, idx) => (
+              <AccordionItem
+                key={idx}
+                question={faq.question}
+                answer={faq.answer}
+                index={idx}
+                accent="green"
+              />
+            ))}
+          </div>
+          <div className="mt-6 p-4 rounded-xl bg-green-500/8 border border-green-500/20 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <div className="flex-1">
+              <p className="text-sm font-semibold text-green-300">Gotowy założyć firmę?</p>
+              <p className="text-xs text-green-200/60 mt-0.5">Rozpocznij rejestrację online i uzyskaj NIP w kilka minut.</p>
+            </div>
+            <Link href="/zaloz-firme-online">
+              <Button className="h-9 px-5 text-sm bg-green-600 hover:bg-green-500 text-white font-semibold flex-shrink-0">
+                Załóż firmę
+              </Button>
+            </Link>
+          </div>
+        </section>
 
         {/* PIT FAQ */}
         <section id="pit" className="scroll-mt-20 mb-16">
