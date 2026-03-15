@@ -9,6 +9,7 @@
     "lint": "cd vatfaktura && eslint ."
   },
   "dependencies": {
+    "ai": "^6.0.0",
     "@stripe/stripe-js": "^4.1.0",
     "stripe": "^14.13.0",
     "@hookform/resolvers": "^3.9.1",
