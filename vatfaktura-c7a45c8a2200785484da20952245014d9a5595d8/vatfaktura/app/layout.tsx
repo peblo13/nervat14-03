@@ -12,6 +12,7 @@ import { JsonLd } from '@/components/json-ld'
 import { PerformanceOptimizations } from '@/components/performance-optimizations'
 import { Footer } from '@/components/footer'
 import { StickyHeaderCTA } from '@/components/sticky-header-cta'
+import { AIAssistant } from '@/components/ai-assistant'
 import './globals.css'
 
 const geist = Geist({ subsets: ["latin"] });
@@ -139,6 +140,7 @@ export default function RootLayout({
               <Footer />
               <StickyHeaderCTA />
               <CookieConsent />
+              <AIAssistant />
               <Analytics />
             </InvoiceProvider>
           </AuthProvider>
