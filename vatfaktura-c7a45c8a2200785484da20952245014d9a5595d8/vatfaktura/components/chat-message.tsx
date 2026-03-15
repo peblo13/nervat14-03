@@ -2,25 +2,14 @@
 
 import React from 'react';
 import { MessageCircle, User } from 'lucide-react';
-import { UIMessage } from 'ai';
 
 interface ChatMessageProps {
   role: 'user' | 'assistant';
-  content?: string;
-  parts?: UIMessage['parts'];
+  content: string;
 }
 
-export function ChatMessage({ role, content, parts }: ChatMessageProps) {
+export function ChatMessage({ role, content }: ChatMessageProps) {
   const isAssistant = role === 'assistant';
-  
-  // Extract text from parts array if present (AI SDK 6 format)
-  let displayContent = content;
-  if (!displayContent && parts) {
-    displayContent = parts
-      .filter((p): p is { type: 'text'; text: string } => p.type === 'text')
-      .map((p) => p.text)
-      .join('');
-  }
 
   return (
     <div className={`flex gap-2 ${isAssistant ? 'justify-start' : 'justify-end'}`}>
@@ -36,7 +25,7 @@ export function ChatMessage({ role, content, parts }: ChatMessageProps) {
             : 'bg-gray-700 text-white rounded-br-none'
         }`}
       >
-        <p className="whitespace-pre-wrap break-words">{displayContent}</p>
+        <p className="whitespace-pre-wrap break-words">{content}</p>
       </div>
       {!isAssistant && (
         <div className="flex-shrink-0 w-6 h-6 rounded-full bg-gray-700 text-white flex items-center justify-center">
