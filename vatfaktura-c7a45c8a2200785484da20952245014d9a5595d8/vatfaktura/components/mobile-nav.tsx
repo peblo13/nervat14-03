@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X, FileText, Receipt, HelpCircle, BookOpen, Users, Tag, LogIn, UserPlus, ClipboardList } from 'lucide-react'
+import { Menu, X, FileText, Receipt, HelpCircle, BookOpen, Users, Tag, LogIn, UserPlus, ClipboardList, Building2, Briefcase } from 'lucide-react'
 import Link from 'next/link'
 
 type NavGroup = {
@@ -16,8 +16,10 @@ export function MobileNav() {
     {
       label: 'Główne',
       items: [
+        { href: '/zaloz-firme-online', label: 'Załóż firmę', icon: <Building2 className="w-4 h-4" />, accent: 'green' },
         { href: '/dashboard', label: 'Faktura', icon: <FileText className="w-4 h-4" /> },
         { href: '/dashboard/pit', label: 'Rozlicz PIT', icon: <Receipt className="w-4 h-4" />, accent: 'emerald' },
+        { href: '/dashboard/zus', label: 'ZUS', icon: <Briefcase className="w-4 h-4" />, accent: 'orange' },
         { href: '/formularze-zus', label: 'Formularze ZUS', icon: <ClipboardList className="w-4 h-4" />, accent: 'orange' },
         { href: '/faq', label: 'FAQ', icon: <HelpCircle className="w-4 h-4" /> },
         { href: '/blog', label: 'Blog', icon: <BookOpen className="w-4 h-4" /> },
