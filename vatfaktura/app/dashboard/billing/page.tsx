@@ -71,14 +71,21 @@ export default function BillingPage() {
                 <div className="space-y-3">
                   <div>
                     <p className="text-2xl font-bold text-white">
-                      {invoicesThisMonth}
+                      {invoicesThisMonth} / {planDetails?.invoicesPerMonth === -1 ? '∞' : planDetails?.invoicesPerMonth}
                     </p>
-                    <p className="text-sm text-slate-400">faktury (bez limitów)</p>
+                    <p className="text-sm text-slate-400">faktury (limit miesięczny)</p>
                   </div>
-                  <div className="flex items-center gap-2 text-green-400">
-                    <CheckCircle className="w-4 h-4" />
-                    <span className="text-sm">Wszystko dostępne</span>
-                  </div>
+                  {planDetails?.invoicesPerMonth === -1 ? (
+                    <div className="flex items-center gap-2 text-green-400">
+                      <CheckCircle className="w-4 h-4" />
+                      <span className="text-sm">Nieograniczone faktury</span>
+                    </div>
+                  ) : (
+                    <div className={`flex items-center gap-2 ${invoicesThisMonth >= planDetails!.invoicesPerMonth ? 'text-red-400' : 'text-yellow-400'}`}>
+                      <CheckCircle className="w-4 h-4" />
+                      <span className="text-sm">{planDetails!.invoicesPerMonth - invoicesThisMonth} faktur pozostało</span>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -91,7 +98,9 @@ export default function BillingPage() {
                     <span className="text-sm font-medium text-green-300">Aktywny</span>
                   </div>
                   <p className="text-xs text-slate-400 mt-2">
-                    Bezpłatny na zawsze bez względu na liczbę faktur
+                    {planDetails?.invoicesPerMonth === -1 
+                      ? 'Plan Premium - Nieograniczone faktury'
+                      : `Plan Darmowy - ${planDetails?.invoicesPerMonth} faktur na miesiąc`}
                   </p>
                 </div>
               </div>

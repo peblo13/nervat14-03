@@ -12,8 +12,9 @@ export const metadata: Metadata = {
 
 export default function ComparisonPage() {
   const features = [
-    { name: 'Cena', vatFaktura: '100% bezpłatnie', infakt: 'Od 9 zł/m-c', wychowankowie: 'Od 29 zł/m-c' },
-    { name: 'Faktury bez limitów', vatFaktura: true, infakt: true, wychowankowie: true },
+    { name: 'Cena', vatFaktura: 'Od 0 PLN (darmowy plan)', infakt: 'Od 9 zł/m-c', wychowankowie: 'Od 29 zł/m-c' },
+    { name: 'Faktury', vatFaktura: '5 w planie darmowym, ∞ w premium', infakt: true, wychowankowie: true },
+    { name: 'Premium plan', vatFaktura: '99 PLN/m-c', infakt: 'Zależy od planu', wychowankowie: 'Zależy od planu' },
     { name: 'Integracja KSEF', vatFaktura: true, infakt: true, wychowankowie: true },
     { name: 'Eksport PDF', vatFaktura: true, infakt: true, wychowankowie: true },
     { name: 'E-podpis', vatFaktura: false, infakt: true, wychowankowie: true },
@@ -149,13 +150,13 @@ export default function ComparisonPage() {
             </table>
           </div>
 
-          <div className="mt-16 bg-gradient-to-r from-green-600/20 to-cyan-600/20 border-2 border-green-500/50 rounded-lg p-12 text-center">
+          <div className="mt-16 bg-gradient-to-r from-blue-600/20 to-cyan-600/20 border-2 border-blue-500/50 rounded-lg p-12 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">Dlaczego wybrać VAT Faktura?</h2>
-            <p className="text-lg text-green-200/80 mb-8">
-              100% bezpłatnie, bez limitów, bez zbędnych funkcji. Wszystko czego potrzebujesz do fakturowania bez dodatkowych kosztów.
+            <p className="text-lg text-blue-200/80 mb-8">
+              Zacznij za darmo z 5 fakturami. Kiedy ich będzie za mało, przejdź na Premium za 99 PLN/miesiąc i uzyskaj nieograniczone fakturowanie. Prosto i transparentnie.
             </p>
             <Link href="/register">
-              <Button className="bg-gradient-to-r from-green-600 to-cyan-600 hover:from-green-700 hover:to-cyan-700 shadow-lg shadow-green-500/50 font-bold text-lg px-8 py-3">
+              <Button className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 shadow-lg shadow-blue-500/50 font-bold text-lg px-8 py-3">
                 Zaloguj się i zacznij za darmo
               </Button>
             </Link>

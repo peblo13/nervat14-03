@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 const stats = [
   { value: '50 000+', label: 'aktywnych użytkowników' },
   { value: '2 000 000+', label: 'wystawionych faktur' },
-  { value: '100%', label: 'bezpłatnie na zawsze' },
+  { value: 'Od 0 PLN', label: 'plan darmowy z 5 fakturami' },
   { value: '4.9/5', label: 'średnia ocena użytkowników' },
 ]
 
@@ -38,7 +38,7 @@ const values = [
   {
     icon: <Users className="w-6 h-6" />,
     title: 'Dostępność dla wszystkich',
-    desc: 'Wierzymy, że profesjonalne narzędzia biznesowe powinny być dostępne dla każdego — niezależnie od wielkości firmy czy budżetu.',
+    desc: 'Wierzymy, że profesjonalne narzędzia biznesowe powinny być dostępne dla każdego — dlatego oferujemy darmowy plan z 5 fakturami. Premium za 99 PLN/miesiąc dla większych firm.',
   },
   {
     icon: <Star className="w-6 h-6" />,

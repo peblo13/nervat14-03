@@ -49,10 +49,12 @@ export function SubscriptionLimitAlert({
         </p>
         <p className={isAtLimit ? 'text-red-200/80' : 'text-yellow-200/80'}>
           {message ||
-            `Jesteś ${isAtLimit ? 'na' : 'blisko'} limitu ${limit} faktur na ten miesiąc.`}
+            (planId === 'free'
+              ? `${isAtLimit ? 'Osiągnąłeś' : 'Bliski'} limit ${limit} faktur na ten miesiąc. Przejdź na plan Premium za 99 PLN, aby odblokować nieograniczone fakturowanie.`
+              : `${isAtLimit ? 'Osiągnąłeś' : 'Bliski'} limit ${limit} faktur na ten miesiąc.`)}
         </p>
       </div>
-      {planId !== 'enterprise' && (
+      {planId !== 'premium' && (
         <Link href="/pricing" className="flex-shrink-0">
           <Button
             size="sm"

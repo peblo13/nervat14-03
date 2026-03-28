@@ -94,8 +94,8 @@ const pitFaqs = [
 
 const invoiceFaqs = [
   {
-    question: 'Czy VAT Faktura jest naprawdę 100% bezpłatna?',
-    answer: 'Tak, VAT Faktura jest w pełni bezpłatna. Nie trzeba podawać karty kredytowej, nie ma ukrytych opłat, a wszystkie funkcje są dostępne dla wszystkich użytkowników.'
+    question: 'Czy VAT Faktura jest naprawdę darmowa?',
+    answer: 'VAT Faktura oferuje darmowy plan z 5 fakturami na miesiąc - bez karty kredytowej i bez ukrytych opłat. Jeśli potrzebujesz więcej, możesz przejść na plan Premium za 99 PLN/miesiąc i wystawić nieograniczoną liczbę faktur.'
   },
   {
     question: 'Czy mogę eksportować faktury do PDF?',

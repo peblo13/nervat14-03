@@ -7,12 +7,12 @@ export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
 export const SUBSCRIPTION_PLANS = {
   free: {
     id: 'free',
-    name: 'Free',
+    name: 'Darmowy',
     price: 0,
-    invoicesPerMonth: 10,
+    invoicesPerMonth: 5,
     stripePriceId: 'price_free',
     features: [
-      'Nieograniczone faktury',
+      'Do 5 faktur na miesiąc',
       'Eksport do PDF',
       'Zarządzanie kontrahentami',
       'Raporty VAT',
@@ -35,19 +35,20 @@ export const SUBSCRIPTION_PLANS = {
       'Zaawansowana analityka',
     ],
   },
-  enterprise: {
-    id: 'enterprise',
-    name: 'Enterprise',
-    price: 29.99,
+  premium: {
+    id: 'premium',
+    name: 'Premium',
+    price: 99,
     invoicesPerMonth: -1,
-    stripePriceId: 'price_enterprise',
+    stripePriceId: 'price_premium',
     features: [
-      'Wszystkie funkcje z Pro',
+      'Nieograniczone faktury',
+      'Wszystkie funkcje',
       'Dedykowany wspierający',
       'API dostęp',
       'Integracje niestandardowe',
+      'Priorytet w obsłudze',
       'SLA gwarancji',
-      'Wielopoziomowe konta',
     ],
   },
 };
