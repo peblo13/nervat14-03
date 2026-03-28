@@ -998,6 +998,8 @@ export default function Home() {
           animation-delay: 4s;
         }
       `}</style>
+      </div>
+
     </div>
   )
 }
