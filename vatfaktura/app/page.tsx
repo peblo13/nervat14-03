@@ -103,9 +103,9 @@ export default function Home() {
         {/* Hero */}
         <section className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-16 sm:py-24 md:py-32 lg:py-40 relative">
           <div className="text-center space-y-8 sm:space-y-10 md:space-y-12">
-            {/* Free Badge */}
-            <div className="inline-block px-4 sm:px-5 py-2 sm:py-3 bg-gradient-to-r from-green-500/30 to-cyan-500/30 border border-green-400/60 rounded-full backdrop-blur-sm hover:border-green-300/80 transition-all duration-300">
-              <span className="text-xs sm:text-sm font-bold tracking-wider text-green-300 uppercase">{t('home.badge', language)}</span>
+          {/* Free Badge */}
+            <div className="inline-block px-4 sm:px-5 py-2 sm:py-3 bg-gradient-to-r from-blue-500/30 to-cyan-500/30 border border-blue-400/60 rounded-full backdrop-blur-sm hover:border-blue-300/80 transition-all duration-300">
+              <span className="text-xs sm:text-sm font-bold tracking-wider text-blue-300 uppercase">Zacznij za darmo - 5 faktur/miesiąc</span>
             </div>
             
             <div className="space-y-4 sm:space-y-6 md:space-y-8">
@@ -128,13 +128,13 @@ export default function Home() {
             {/* Trust Signals */}
             <div className="grid grid-cols-3 sm:grid-cols-3 gap-2 sm:gap-3 md:gap-4 max-w-2xl mx-auto py-4 sm:py-6">
               {[
-                { textKey: 'home.signalsItem1', icon: '∞' },
-                { textKey: 'home.signalsItem2', icon: '∞' },
-                { textKey: 'home.signalsItem3', icon: '💳' },
+                { textKey: 'Darmowy plan', icon: '0' },
+                { textKey: '5 faktur', icon: '5️⃣' },
+                { textKey: 'Premium: 99 PLN', icon: '💳' },
               ].map((item, idx) => (
                 <div key={idx} className="flex flex-col items-center gap-1 p-2 sm:p-3 rounded-lg bg-blue-500/10 border border-blue-400/30 hover:bg-blue-500/15 hover:border-blue-300/50 transition-all duration-300">
                   <span className="text-lg sm:text-2xl">{item.icon}</span>
-                  <span className="text-xs sm:text-sm text-blue-200 font-medium text-center">{t(item.textKey, language)}</span>
+                  <span className="text-xs sm:text-sm text-blue-200 font-medium text-center">{item.textKey}</span>
                 </div>
               ))}
             </div>
@@ -191,16 +191,15 @@ export default function Home() {
                 </div>
               </div>
               <div className="text-2xl sm:text-3xl font-black text-white mb-1">100%</div>
-              <div className="text-xs sm:text-sm text-blue-200/60">{t('home.free', language)}</div>
+              <div className="text-xs sm:text-sm text-blue-200/60">Darmowy start z 5 fakturami</div>
             </div>
           </div>
         </section>
 
-        {/* Affiliate Disclosure */}
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-4 mb-6">
-            <p className="text-sm text-yellow-200/80 text-center">
-              <span className="font-semibold">{t('home.disclosure', language)}</span> {t('home.disclosureText', language)} <a href="/disclaimer" className="text-yellow-300 hover:text-yellow-200 underline">{t('home.moreInfo', language)}</a>
+          {/* Affiliate Disclosure */}
+          <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-4 mb-6">
+            <p className="text-sm text-blue-200/80 text-center">
+              <span className="font-semibold">Nowy model cenowy:</span> Plan darmowy zawiera 5 faktur na miesiąc. Po przekroczeniu limitu możesz przejść na Premium za 99 PLN/miesiąc, aby uzyskać nieograniczone fakturowanie. <Link href="/pricing" className="text-blue-300 hover:text-blue-200 underline">Dowiedz się więcej o planach →</Link>
             </p>
           </div>
 

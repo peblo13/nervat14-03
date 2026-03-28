@@ -193,7 +193,15 @@ export default function CreateInvoicePage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* No subscription limit alert needed - unlimited for all */}
+          {/* Show subscription limit alert if needed */}
+          {subscriptionCheck && !subscriptionCheck.canCreateInvoice && (
+            <SubscriptionLimitAlert
+              canCreateInvoice={subscriptionCheck.canCreateInvoice}
+              currentCount={subscriptionCheck.currentCount}
+              limit={subscriptionCheck.limit}
+              planId={user?.subscription?.plan || 'free'}
+            />
+          )}
           
           {/* Basic Info */}
           <Card className="bg-slate-800/50 backdrop-blur-sm border-blue-500/20 p-6 shadow-lg">
