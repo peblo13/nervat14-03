@@ -12,7 +12,6 @@ export default function PricingPage() {
 
   const plans = [
     SUBSCRIPTION_PLANS.free,
-    SUBSCRIPTION_PLANS.pro,
     SUBSCRIPTION_PLANS.premium,
   ]
 
