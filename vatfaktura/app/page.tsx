@@ -1,123 +1,112 @@
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Check } from 'lucide-react'
 
-export default function HomePage( ) {
+export const metadata = {
+  title: 'VAT Faktura - Faktury, PIT, ZUS | KSEF',
+  description: 'Bezpłatne faktury online. Plan darmowy z 5 fakturami, Premium 99 PLN za nieograniczone.',
+}
+
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Navigation */}
-      <nav className="bg-slate-900/50 backdrop-blur-md border-b border-slate-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <div className="text-2xl font-bold text-white">VAT Faktura</div>
-            <div className="flex gap-4">
-              <Link href="/pricing">
-                <Button variant="outline" className="text-white border-slate-400 hover:bg-slate-700">
-                  Cennik
-                </Button>
-              </Link>
-              <Link href="/login">
-                <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                  Zaloguj się
-                </Button>
-              </Link>
-            </div>
+      <nav className="fixed top-0 w-full bg-slate-900/95 backdrop-blur border-b border-slate-700 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <div className="text-xl font-bold text-white">VAT Faktura</div>
+          <div className="flex gap-4">
+            <Link href="/pricing" className="text-slate-300 hover:text-white">Cennik</Link>
+            <Link href="/register" className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded">Zaloguj</Link>
           </div>
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-            Fakturowanie stało się proste
-          </h1>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Zacznij za darmo z 5 fakturami na miesiąc. Bez karty kredytowej, bez ukrytych opłat.
-          </p>
-          <div className="flex gap-4 justify-center">
-            <Link href="/register">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8">
-                Zacznij za darmo
-              </Button>
-            </Link>
-            <Link href="/pricing">
-              <Button size="lg" variant="outline" className="text-white border-slate-400 hover:bg-slate-700 px-8">
-                Poznaj plany
-              </Button>
-            </Link>
-          </div>
+      {/* Hero */}
+      <section className="pt-32 pb-20 px-4 text-center max-w-4xl mx-auto">
+        <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">Faktury bez limitów bez kosztów</h1>
+        <p className="text-xl text-slate-300 mb-8">Darmowy plan z 5 fakturami, Premium za 99 PLN za nieograniczone.</p>
+        
+        <div className="grid grid-cols-3 gap-4 mb-8">
+          <div><div className="text-2xl font-bold text-green-400">5</div><p className="text-sm text-slate-300">Faktur darmowo</p></div>
+          <div><div className="text-2xl font-bold text-green-400">∞</div><p className="text-sm text-slate-300">Faktur Premium</p></div>
+          <div><div className="text-2xl font-bold text-green-400">99 PLN</div><p className="text-sm text-slate-300">/miesiąc</p></div>
         </div>
 
-        {/* Trust Signals */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-          <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 text-center">
-            <div className="text-4xl font-bold text-green-400 mb-2">5</div>
-            <p className="text-slate-300">Faktur w planie darmowym</p>
-          </div>
-          <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 text-center">
-            <div className="text-4xl font-bold text-green-400 mb-2">∞</div>
-            <p className="text-slate-300">Faktur w planie Premium</p>
-          </div>
-          <div className="bg-slate-800 border border-slate-700 rounded-lg p-8 text-center">
-            <div className="text-4xl font-bold text-green-400 mb-2">99 PLN</div>
-            <p className="text-slate-300">Miesięcznie za Premium</p>
+        <div className="flex gap-4 justify-center">
+          <Link href="/register" className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded">Zacznij za darmo</Link>
+          <Link href="/pricing" className="px-8 py-3 border border-blue-500 text-blue-300 font-bold rounded">Cennik</Link>
+        </div>
+
+        <div className="grid grid-cols-3 gap-8 text-center py-12 border-t border-slate-700 mt-12">
+          <div><div className="text-3xl font-bold text-white">50K+</div><p className="text-slate-400">użytkowników</p></div>
+          <div><div className="text-3xl font-bold text-white">2M+</div><p className="text-slate-400">faktur</p></div>
+          <div><div className="text-3xl font-bold text-white">4.9/5</div><p className="text-slate-400">ocena</p></div>
+        </div>
+      </section>
+
+      {/* Features */}
+      <section className="py-20 px-4 bg-slate-800/50">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-white mb-12 text-center">Dlaczego VAT Faktura?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {title: 'Szybkie', desc: 'Utwórz fakturę w kilka sekund'},
+              {title: 'Bezpieczne', desc: 'Dane chronione i przechowywane bezpiecznie'},
+              {title: 'PDF Export', desc: 'Pobierz faktury jako PDF'},
+              {title: 'Szablony', desc: 'Gotowe szablony dla firmy'},
+              {title: 'Obliczenia', desc: 'Automatyczne wyliczanie VAT'},
+              {title: 'Profesjonalne', desc: 'Faktury z profesjonalnym designem'},
+            ].map((f, i) => (
+              <div key={i} className="p-6 bg-slate-700/50 border border-slate-600 rounded">
+                <h3 className="text-xl font-bold text-white mb-2">{f.title}</h3>
+                <p className="text-slate-300">{f.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 bg-slate-800/50">
-        <div className="mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-4">
-            Plan Darmowy zawiera
-          </h2>
-          <p className="text-slate-300 text-center">Wszystko czego potrzebujesz do zarządzania fakturami</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {[
-            'Wystawianie do 5 faktur na miesiąc',
-            'Eksport do PDF',
-            'Zarządzanie kontrahentami',
-            'Raporty VAT',
-            'Integracja z kSEF',
-            'Historia i archiwum',
-          ].map((feature) => (
-            <div key={feature} className="flex items-center gap-4">
-              <Check className="w-6 h-6 text-green-400 flex-shrink-0" />
-              <span className="text-lg text-slate-300">{feature}</span>
+      {/* Pricing */}
+      <section className="py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-4xl font-bold text-white text-center mb-12">Elastyczne plany</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-8 bg-slate-700/30 border border-slate-600 rounded-lg">
+              <h3 className="text-2xl font-bold text-white mb-4">Darmowy</h3>
+              <div className="text-4xl font-bold text-green-400 mb-4">0 PLN</div>
+              <p className="text-slate-300 mb-6">5 faktur/miesiąc</p>
+              <ul className="space-y-2 text-left text-slate-300">
+                <li>✓ 5 faktur</li>
+                <li>✓ PDF Export</li>
+                <li>✓ Szablony</li>
+                <li>✓ kSEF</li>
+              </ul>
             </div>
-          ))}
+            <div className="p-8 bg-gradient-to-br from-green-900/40 to-slate-700 border-2 border-green-500 rounded-lg">
+              <div className="inline-block mb-4 px-3 py-1 bg-green-500 text-white text-sm font-bold rounded">NAJLEPSZY</div>
+              <h3 className="text-2xl font-bold text-white mb-4">Premium</h3>
+              <div className="text-4xl font-bold text-green-400 mb-4">99 PLN<span className="text-lg">/mth</span></div>
+              <p className="text-slate-300 mb-6">∞ faktur</p>
+              <ul className="space-y-2 text-left text-slate-300 mb-8">
+                <li>✓ Nieograniczone</li>
+                <li>✓ Wszystkie funkcje</li>
+                <li>✓ Wsparcie</li>
+                <li>✓ API</li>
+              </ul>
+              <Link href="/pricing" className="block w-full px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-bold rounded">
+                Wybierz Premium
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Premium CTA */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-gradient-to-r from-green-900/40 to-slate-800 border-2 border-green-500/60 rounded-lg p-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Potrzebujesz więcej faktur?
-          </h2>
-          <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Przejdź na plan Premium za 99 PLN na miesiąc i wystawiaj nieograniczoną liczbę faktur.
-          </p>
-          <Link href="/pricing">
-            <Button size="lg" className="bg-green-600 hover:bg-green-700 text-white">
-              Poznaj plan Premium
-            </Button>
-          </Link>
-        </div>
+      {/* CTA */}
+      <section className="py-20 px-4 bg-blue-600/20 text-center">
+        <h2 className="text-4xl font-bold text-white mb-4">Gotów?</h2>
+        <p className="text-lg text-slate-300 mb-8">Załóż konto i zacznij fakturować za darmo</p>
+        <Link href="/register" className="inline-block px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded text-lg">
+          Zacznij za darmo - 5 faktur
+        </Link>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-slate-900 border-t border-slate-700 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-400">
-          <p>© 2024 VAT Faktura. Wszystkie prawa zastrzeżone.</p>
-        </div>
-      </footer>
     </div>
   )
 }
-
-// Force HMR refresh - v4
-
