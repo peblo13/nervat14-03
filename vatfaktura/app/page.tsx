@@ -967,9 +967,6 @@ export default function Home() {
           </div>
         </section>
 
-
-      </div>
-
       <style jsx>{`
         @keyframes blob {
           0%, 100% {
@@ -999,6 +996,7 @@ export default function Home() {
           animation-delay: 4s;
         }
       `}</style>
+      </div>
     </div>
   )
 }
