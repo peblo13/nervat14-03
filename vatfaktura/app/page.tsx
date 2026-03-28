@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Check } from 'lucide-react'
 
-export default function HomePage() {
+export default function HomePage( ) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Navigation */}
@@ -118,3 +118,6 @@ export default function HomePage() {
     </div>
   )
 }
+
+// Force HMR refresh - v4
+
