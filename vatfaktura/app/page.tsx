@@ -966,7 +966,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
       </div>
 
       <style jsx>{`
@@ -998,8 +997,6 @@ export default function Home() {
           animation-delay: 4s;
         }
       `}</style>
-      </div>
-
     </div>
   )
 }
